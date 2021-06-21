@@ -1,0 +1,48 @@
+// variables CSS 
+@import "./default/variables";
+
+// font family
+@font-face {
+    font-family: 'charterregular';
+    src: url('../fonts/charter/regular.eot');
+    src: url('../fonts/charter/regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/charter/regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'charteritalic';
+    src: url('../fonts/charter/italic.eot');
+    src: url('../fonts/charter/italic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/charter/italic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'charterbold';
+    src: url('../fonts/charter/bold.eot');
+    src: url('../fonts/charter/bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/charter/bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// container sizes for different viewports
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+    @include for-small-devices{
+
+    }
+}
+
+// global css
+.grid-container{
+    display: grid;
+}
+
+h1{
+    font-family: $regular;
+}
