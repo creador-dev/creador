@@ -24,11 +24,9 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   return (
     <Layout>
       <Seo title={post.title} description={post.excerpt} />
-
+      
       <article
         className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
       >
         <header>
           <h1 itemProp="headline">{parse(post.title)}</h1>

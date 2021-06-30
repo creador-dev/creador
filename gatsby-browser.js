@@ -1,5 +1,5 @@
 // normalize CSS across browsers
-import "./src/scss/default/normalize.scss"
+import "@sass/default/normalize.scss"
 
 // custom CSS styles
-import "./src/scss/global.scss"
+import "@sass/global.scss"

@@ -1,4 +1,5 @@
 // color variables
+$light-black: #333;
 
 // font variables
 $regular: 'charterregular', sans-serif;
@@ -7,25 +8,21 @@ $bold: 'charterbold', sans-serif;
 
 // media queries
 @mixin for-desktop {
-    @media (min-width: 1200px) { @content; }
+    @media (min-width: 1280px) { @content; }
 }
 
 @mixin for-tablet-horizontal {
-    @media (min-width: 992px) and (max-width: 1199px) { @content; }
+    @media (min-width: 992px) and (max-width: 1279px) { @content; }
 }
 
 @mixin for-tablet-vertical {
     @media (min-width: 768px) and (max-width: 991px) { @content; }
 }
 
-@mixin for-phone {
-    @media (max-width: 767px) { @content; }
-}
-
 @mixin for-small-devices {
     @media (max-width: 991px) { @content; }
 }
 
-@mixin for-large-devices {
-    @media (min-width: 992px) { @content; }
+@mixin for-mobile {
+    @media (max-width: 576px) { @content; }
 }
