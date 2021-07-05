@@ -61,6 +61,8 @@
 html,
 body {
     margin: 0;
+    background-color: $black;
+    color: $white;
 }
 
 h1{
@@ -71,6 +73,5 @@ p{
     font-family: $regular;
     font-size: 16px;
     line-height: 1.5;
-    color: $light-black;
     margin: 22px 0;
 }
