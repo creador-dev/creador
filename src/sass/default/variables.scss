@@ -1,7 +1,11 @@
 // color variables
 $white: #fff;
-$black: #000;
+$black: #111;
 $theme-color: #F9A826;
+
+// for glassmorphism css
+$body-bg: rgba(16, 18, 27, 0.4);
+$blur: blur(40px);
 
 // font variables
 $regular: 'charterregular', sans-serif;

@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer className="global-footer">
         <div className="container grid-container">
-          <a href="/" alt="Creador" class="site-logo">
+          <a href="/" alt="Creador" className="site-logo">
             <img src="/logo.svg" alt="site-logo"/>
           </a>
           {menuItems.map(item => (

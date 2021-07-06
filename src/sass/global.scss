@@ -61,8 +61,24 @@
 html,
 body {
     margin: 0;
-    background-color: $black;
     color: $white;
+    background: $black;
+}
+
+body{
+    
+}
+
+#smoothScrollbar{
+    width: 100%;
+    max-height: 100vh;
+    overflow: auto;
+    height: 100%;
+    will-change: transform;
+}
+
+.page-wrapper{
+    
 }
 
 h1{
@@ -74,4 +90,20 @@ p{
     font-size: 16px;
     line-height: 1.5;
     margin: 22px 0;
+}
+
+a{
+    color: $white;
+    text-decoration: none;
+}
+
+
+// header css
+.global-header{
+
+}
+
+// footer css
+.global-footer{
+
 }

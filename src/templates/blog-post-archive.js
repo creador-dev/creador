@@ -2,9 +2,9 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-import Bio from "@components/bio"
+import Bio from "@components/global/bio"
 import Layout from "@components/layout"
-import Seo from "@components/seo"
+import Seo from "@components/global/seo"
 
 const BlogIndex = ({
   data,
