@@ -32,10 +32,14 @@ const Layout = ({ isHomePage, children }) => {
   })
   
   return (
-    <div id="smoothScrollbar" className="global-wrapper page-wrapper" data-is-root-path={isHomePage}>
+    <div className="global-wrapper page-wrapper" data-is-root-path={isHomePage}>
       <Header></Header>
-      <main>{children}</main>
-      <Footer></Footer>
+      <div id="smoothScrollbar">
+        <main>
+          {children}
+        </main>
+        <Footer></Footer>
+      </div>      
     </div>    
   )
 }

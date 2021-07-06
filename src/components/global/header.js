@@ -20,13 +20,15 @@ const Header = () => {
       
   return (
     <header className="global-header">
-        <div className="container grid-container">
-          <a href="/" alt="Creador" className="site-logo">
-            <img src="/logo.svg" alt="site-logo"/>
-          </a>
-          {menuItems.map(item => (
-            <Link to={item.url} key={item.id}>{item.label}</Link>
-          ))}
+        <div className="container grid-container header-grid">
+          <div>
+            <a href="/" alt="Creador" className="site-logo">
+              <img src="/logo.svg" alt="site-logo"/>
+            </a>
+          </div>
+          <div>
+            
+          </div>          
         </div>        
     </header>
   )

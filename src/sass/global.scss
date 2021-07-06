@@ -65,20 +65,8 @@ body {
     background: $black;
 }
 
-body{
-    
-}
-
-#smoothScrollbar{
-    width: 100%;
-    max-height: 100vh;
-    overflow: auto;
-    height: 100%;
-    will-change: transform;
-}
-
-.page-wrapper{
-    
+main{
+    padding-top: 120px;
 }
 
 h1{
@@ -97,13 +85,52 @@ a{
     text-decoration: none;
 }
 
+img{
+    max-width: 100%;
+}
+
+.site-logo{
+    display: block;
+    max-width: 150px;
+}
 
 // header css
 .global-header{
-
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    // background: $body-bg;
+    backdrop-filter: $blur;
+    padding: 15px 0;
+    .header-grid{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 // footer css
 .global-footer{
 
+}
+
+// scrollbar css
+#smoothScrollbar{
+    width: 100%;
+    max-height: 100vh;
+    overflow: auto;
+    height: 100%;
+    will-change: transform;
+}
+
+.scroll-content{
+    will-change: transform;
+}
+
+.scrollbar-track{
+    background: transparent !important;
+}
+
+.scrollbar-thumb{
+    background: $theme-color !important;
 }
