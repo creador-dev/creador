@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 // import parse from "html-react-parser"
 
 // import smooth-scrollbar
-import Scrollbar from 'smooth-scrollbar';
+import Scrollbar from "smooth-scrollbar"
 
 // import header
 import Header from "@components/global/header"
@@ -26,20 +26,48 @@ const Layout = ({ isHomePage, children }) => {
   //     }
   //   }
   // `)
-  // change state on scroll
+
+  // function for animating header
+  function headerAnimate(scrollbar){
+    let lastScrollTop = 0
+    let headerElem = document.querySelector(".global-header")
+    scrollbar.addListener((status) => {
+      let st = status.offset.y
+
+      if(st < 80){
+        // if scroll is less then remove css
+        headerElem.classList.remove("show")
+        headerElem.classList.remove("hide")
+      } else if (st > lastScrollTop){
+        // downscroll code
+        headerElem.classList.remove("show")
+        headerElem.classList.add("hide")
+      } else {
+        // upscroll code
+        headerElem.classList.remove("hide")
+        headerElem.classList.add("show")
+      }
+      lastScrollTop = st <= 0 ? 0 : st  // For Mobile or negative scrolling
+    })
+  }
+ 
   useEffect(() => {
-    Scrollbar.init(document.querySelector('#smoothScrollbar'));
+    // smooth scrollbar init
+    let scrollbar = Scrollbar.init(document.querySelector("#smoothScrollbar"))
+
+    // animate header in scroll
+    headerAnimate(scrollbar)
   })
   
   return (
     <div className="global-wrapper page-wrapper" data-is-root-path={isHomePage}>
-      <Header></Header>
-      <div id="smoothScrollbar">
         <main>
-          {children}
+          <Header></Header>
+          <div id="smoothScrollbar">
+            {children}
+            <Footer></Footer>
+          </div>
         </main>
-        <Footer></Footer>
-      </div>      
     </div>    
   )
 }

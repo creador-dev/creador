@@ -13,7 +13,7 @@ const Bio = () => {
     query BioQuery {
       # if there was more than one user, this would need to be filtered
       author: wpUser {
-        firstName
+        name
         twitter: name
         description
         avatar {
@@ -23,20 +23,20 @@ const Bio = () => {
     }
   `)
 
-  const avatarUrl = author?.avatar?.url
+  const avatarUrl = author?.avatar?.url;
 
   return (
     <div className="bio">
       {avatarUrl && (
         <img
-          alt={author?.firstName || ``}
+          alt={author?.name || ``}
           className="bio-avatar"
           src={avatarUrl}
         />
       )}
-      {author?.firstName && (
+      {author?.name && (
         <p>
-          Written by <strong>{author.firstName}</strong>
+          Written by <strong>{author.name}</strong>
           {` `}
           {author?.description || null}
           {` `}

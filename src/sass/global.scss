@@ -52,6 +52,7 @@
 
 // global css
 * {
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
@@ -62,11 +63,7 @@ html,
 body {
     margin: 0;
     color: $white;
-    background: $black;
-}
-
-main{
-    padding-top: 120px;
+    background: $navy;
 }
 
 h1{
@@ -83,6 +80,9 @@ p{
 a{
     color: $white;
     text-decoration: none;
+    &:hover{
+        color: $green;
+    }
 }
 
 img{
@@ -98,14 +98,26 @@ img{
 .global-header{
     position: fixed;
     left: 0;
-    right: 0;
+    right: 8px;
     top: 0;
     z-index: 10;
-    // background: $body-bg;
+    height: $nav-scroll-height;
+    background-color: $header-bg;
     backdrop-filter: $blur;
-    padding: 15px 0;
+    transition: $transition;
+    will-change: transform;
+    &.show{
+        transform: translateY(0px);
+        box-shadow: 0 10px 30px -10px $navy-shadow;
+    }
+    &.hide{
+        transform: translateY(-100%);
+        box-shadow: 0 10px 30px -10px $navy-shadow;
+    }
     .header-grid{
         grid-template-columns: 1fr 1fr;
+        height: 100%;
+        align-items: center;
     }
 }
 
@@ -124,13 +136,23 @@ img{
 }
 
 .scroll-content{
+    padding-top: 150px;
     will-change: transform;
 }
 
 .scrollbar-track{
-    background: transparent !important;
+    // background: transparent !important;
+    background-color: $header-bg !important;
+    backdrop-filter: $blur !important;
+}
+
+.scrollbar-track-y{
+    opacity: 1 !important;
 }
 
 .scrollbar-thumb{
-    background: $theme-color !important;
+    top: 2px !important;
+    padding-right: 2px; 
+    width: 6px !important;
+    background: $dark-slate !important;
 }

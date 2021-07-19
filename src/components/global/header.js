@@ -19,7 +19,7 @@ const Header = () => {
   const menuItems = data.wpMenu.menuItems.nodes
       
   return (
-    <header className="global-header">
+    <header className="global-header" id="fixedHeader">
         <div className="container grid-container header-grid">
           <div>
             <a href="/" alt="Creador" className="site-logo">
