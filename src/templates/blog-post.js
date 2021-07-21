@@ -8,12 +8,15 @@ import parse from "html-react-parser"
 // version used by the Gatsby and @wordpress packages that causes build
 // failures.
 // @todo update this once @wordpress upgrades their postcss version
-import "../css/@wordpress/block-library/build-style/style.css"
-import "../css/@wordpress/block-library/build-style/theme.css"
+// import "../css/@wordpress/block-library/build-style/style.css"
+// import "../css/@wordpress/block-library/build-style/theme.css"
 
 import Bio from "@components/global/bio"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
+
+// import page css
+import "@sass/pages/blog-post.scss"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -28,23 +31,26 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <article
         className="blog-post"
       >
-        <header>
+        <div className="container">
           <h1 itemProp="headline">{parse(post.title)}</h1>
-
           <p>{post.date}</p>
-
+        </div>
+        <div className="lead-image">
           {/* if we have a featured image for this post let's display it */}
           {featuredImage?.fluid && (
             <Image
               fluid={featuredImage.fluid}
               alt={featuredImage.alt}
-              style={{ marginBottom: 50 }}
             />
           )}
-        </header>
+        </div>
 
         {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
+          <section itemProp="articleBody">
+            <div className="article-content-wrapper">
+              {parse(post.content)}
+            </div>
+          </section>
         )}
 
         <hr />

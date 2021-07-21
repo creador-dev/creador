@@ -3,30 +3,86 @@
 
 // font family
 @font-face {
-    font-family: 'charterregular';
-    src: url('/static/fonts/charter/regular.eot');
-    src: url('/static/fonts/charter/regular.eot?#iefix') format('embedded-opentype'),
-         url('/static/fonts/charter/regular.woff') format('woff');
+    font-family: 'Lora';
+    src: url('/static/fonts/lora/Lora-Regular.eot');
+    src: url('/static/fonts/lora/Lora-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/lora/Lora-Regular.woff2') format('woff2'),
+        url('/static/fonts/lora/Lora-Regular.woff') format('woff'),
+        url('/static/fonts/lora/Lora-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'charteritalic';
-    src: url('/static/fonts/charter/italic.eot');
-    src: url('/static/fonts/charter/italic.eot?#iefix') format('embedded-opentype'),
-         url('/static/fonts/charter/italic.woff') format('woff');
+    font-family: 'Lora Italic';
+    src: url('/static/fonts/lora/Lora-Italic.eot');
+    src: url('/static/fonts/lora/Lora-Italic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/lora/Lora-Italic.woff2') format('woff2'),
+        url('/static/fonts/lora/Lora-Italic.woff') format('woff'),
+        url('/static/fonts/lora/Lora-Italic.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'charterbold';
-    src: url('/static/fonts/charter/bold.eot');
-    src: url('/static/fonts/charter/bold.eot?#iefix') format('embedded-opentype'),
-         url('/static/fonts/charter/bold.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Lora Bold';
+    src: url('/static/fonts/lora/Lora-Bold.eot');
+    src: url('/static/fonts/lora/Lora-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/lora/Lora-Bold.woff2') format('woff2'),
+        url('/static/fonts/lora/Lora-Bold.woff') format('woff'),
+        url('/static/fonts/lora/Lora-Bold.ttf') format('truetype');
+    font-weight: bold;
     font-style: normal;
+    font-display: swap;
+}
+
+// global css
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    font-family: $regular;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+h1{
+    font-size: $font-main-heading;
+    line-height: 60px;
+    margin: 0 0 20px;
+}
+
+h2 , h3{
+    font-size: $font-heading;
+}
+
+p{
+    font-family: $regular;
+    font-size: $font-xl;
+    line-height: 32px;
+    margin: 22px 0;
+}
+
+a{
+    color: $white;
+    text-decoration: none;
+    &:hover{
+        color: $green;
+    }
+}
+
+figure{
+    margin: 60px 0;
+}
+
+img{
+    max-width: 100%;
 }
 
 // container css
@@ -48,45 +104,6 @@
 
 .grid-container{
     display: grid;
-}
-
-// global css
-* {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    font-family: $regular;
-}
-
-html,
-body {
-    margin: 0;
-    color: $lightest-slate;
-    background: $navy;
-}
-
-h1, h2, h3, h4, h5, h6{
-    color: $white;
-}
-
-p{
-    font-family: $regular;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 22px 0;
-}
-
-a{
-    color: $white;
-    text-decoration: none;
-    &:hover{
-        color: $green;
-    }
-}
-
-img{
-    max-width: 100%;
 }
 
 .site-logo{
@@ -157,104 +174,13 @@ img{
 
 }
 
-// dark/light mode switch
-.switch-wrapper{
-    position: relative;
+// color based on theme mode light/dark
+.light-mode{
+    color: $black;
+    background: $white;
 }
 
-.switch {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 65px;
-    height: 34px;
-    input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-        z-index: 99;
-        &:checked  + .slider {
-            background-color: black;
-            .moon {
-                opacity: 1;
-                transition: opacity 0.5s ease;
-            }
-            .sun {
-                opacity: 0;
-                transition: opacity 0.5s ease;
-            }
-        }        
-        &:checked + .slider:before {
-            transform: translate(40px,-50%);
-        }
-    }
-    
-    .slider {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: black;
-        transition: $transition;
-        &:before {
-            position: absolute;
-            content: "";
-            height: 30px;
-            width: 30px;
-            left: -10px;
-            top: 50%;
-            will-change: transform;
-            transform: translate(0,-50%);
-            background-color: white;
-            border: 5px solid #3498db;
-            transition: $transition;
-            box-shadow: 0 0 5px 0 grey;
-        }
-
-        &:hover {
-            cursor: pointer;
-        }	
-    
-        .moon {
-            position: absolute;
-            top: 50%;
-            left: 12px;
-            height: 15px;
-            width: 15px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: transparent;
-            box-shadow: inset -5px 0px 0px 0 yellow;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .sun {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            height: 10px;
-            width: 10px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: yellow;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-            box-shadow: 0 0 10px 5px yellow;
-            
-        }
-    }
-    .round {
-        border-radius: 38px;
-        &:before {
-            border-radius: 50%;
-        }
-    }
-}
-
-// prefers color scheme
-@media (prefers-color-scheme: dark) {
-
+.dark-mode{
+    color: $white;
+    background: $black;
 }

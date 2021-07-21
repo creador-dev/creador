@@ -1,6 +1,9 @@
 // switch button for dark and light mode
 import React, { useEffect, useState } from 'react'
 
+// import css
+import "@sass/components/switch-button.scss"
+
 function SwitchMode() {
     
     // detect theme
@@ -53,7 +56,7 @@ function SwitchMode() {
         const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)")
         darkThemeMq.addListener(mqListener)
         return () => darkThemeMq.removeListener(mqListener)
-    })
+    } , [])
 
     return (
         <div className="switch-wrapper">
