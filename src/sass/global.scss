@@ -73,7 +73,7 @@ a{
     color: $white;
     text-decoration: none;
     &:hover{
-        color: $green;
+        color: $dark-yellow;
     }
 }
 
@@ -83,6 +83,15 @@ figure{
 
 img{
     max-width: 100%;
+    height: auto;
+}
+
+.inline-gatsby-image-wrapper{
+    width: 100% !important;
+}
+
+pre{
+    overflow-y: scroll;
 }
 
 // container css
@@ -137,8 +146,8 @@ img{
 
 .scrollbar-thumb{
     top: 2px !important;
-    padding-right: 2px; 
-    width: 6px !important;
+    left: 2px !important;
+    width: 4px !important;
     background: $dark-slate !important;
 }
 
@@ -150,17 +159,13 @@ img{
     top: 0;
     z-index: 10;
     height: $nav-scroll-height;
-    background-color: $header-bg;
-    backdrop-filter: $blur;
     transition: $transition;
     will-change: transform;
     &.show{
         transform: translateY(0px);
-        box-shadow: 0 10px 30px -10px $navy-shadow;
     }
     &.hide{
         transform: translateY(-100%);
-        box-shadow: 0 10px 30px -10px $navy-shadow;
     }
     .header-grid{
         grid-template-columns: 1fr 1fr;
@@ -178,9 +183,28 @@ img{
 .light-mode{
     color: $black;
     background: $white;
+    transition: ease all 0.3s;
+    .global-header{
+        background-color: $white;
+        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+    }
+    a{
+        color: $black;
+    }
 }
 
 .dark-mode{
     color: $white;
     background: $black;
+    transition: ease all 0.3s;
+    .global-header{
+        background-color: $header-bg;
+        backdrop-filter: $blur;
+        &.show{
+            box-shadow: 0 10px 30px -10px $navy-shadow;
+        }
+        &.hide{
+            box-shadow: 0 10px 30px -10px $navy-shadow;
+        }
+    }
 }

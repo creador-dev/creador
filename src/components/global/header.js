@@ -33,14 +33,14 @@ const Header = () => {
     <header className="global-header" id="fixedHeader">
         <div className="container grid-container header-grid">
           <div>
-            <a href="/" alt="Creador" className="site-logo">
+            <Link to="/" alt="Creador" className="site-logo">
               <img src="/logo.svg" alt="site-logo"/>
-            </a>
+            </Link>
           </div>
           <div>
             <div className="primary-menu">
               {menuItems.map((data) => {
-                return <li key={data.id}><a href={data.url}>{data.label}</a></li>
+                return <li key={data.id}><Link to={data.url}>{data.label}</Link></li>
               })}
             </div>
             <SwitchMode></SwitchMode>  

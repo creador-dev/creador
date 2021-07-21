@@ -1,5 +1,5 @@
 // switch button for dark and light mode
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 // import css
 import "@sass/components/switch-button.scss"

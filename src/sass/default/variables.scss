@@ -1,13 +1,18 @@
 // color variables
+$slate: #8892b0;
 $dark-slate: #495670;
 $green: #64ffda;
 $green-tint: rgba(100,255,218,0.1);
-$header-bg: rgba(0, 0, 0, 0.65);
+$header-bg: rgba(0, 0, 0, 0.85);
 $navy-shadow: #1d1d1d;
 $black: #000;
 $white: #fff;
 $grey: #808080;
 $yellow: #FFFF00;
+$dark-yellow: #F9A826;
+$light-yellow: #F4F1C9;
+// light mode colors
+
 
 // font variables
 $regular: 'Lora', sans-serif;
@@ -23,7 +28,7 @@ $font-xxl: 22px;
 $font-heading: 32px;
 $font-main-heading: 48px;
 $border-radius: 4px;
-$nav-scroll-height: 70px;
+$nav-scroll-height: 65px;
 $easing: cubic-bezier(0.645,0.045,0.355,1);
 $transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
 
