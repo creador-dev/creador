@@ -4,11 +4,11 @@
 // font family
 @font-face {
     font-family: 'Lora';
-    src: url('/static/fonts/lora/Lora-Regular.eot');
-    src: url('/static/fonts/lora/Lora-Regular.eot?#iefix') format('embedded-opentype'),
-        url('/static/fonts/lora/Lora-Regular.woff2') format('woff2'),
-        url('/static/fonts/lora/Lora-Regular.woff') format('woff'),
-        url('/static/fonts/lora/Lora-Regular.ttf') format('truetype');
+    src: url('/fonts/lora/Lora-Regular.eot');
+    src: url('/fonts/lora/Lora-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/lora/Lora-Regular.woff2') format('woff2'),
+        url('/fonts/lora/Lora-Regular.woff') format('woff'),
+        url('/fonts/lora/Lora-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -16,11 +16,11 @@
 
 @font-face {
     font-family: 'Lora Italic';
-    src: url('/static/fonts/lora/Lora-Italic.eot');
-    src: url('/static/fonts/lora/Lora-Italic.eot?#iefix') format('embedded-opentype'),
-        url('/static/fonts/lora/Lora-Italic.woff2') format('woff2'),
-        url('/static/fonts/lora/Lora-Italic.woff') format('woff'),
-        url('/static/fonts/lora/Lora-Italic.ttf') format('truetype');
+    src: url('/fonts/lora/Lora-Italic.eot');
+    src: url('/fonts/lora/Lora-Italic.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/lora/Lora-Italic.woff2') format('woff2'),
+        url('/fonts/lora/Lora-Italic.woff') format('woff'),
+        url('/fonts/lora/Lora-Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -28,11 +28,11 @@
 
 @font-face {
     font-family: 'Lora Bold';
-    src: url('/static/fonts/lora/Lora-Bold.eot');
-    src: url('/static/fonts/lora/Lora-Bold.eot?#iefix') format('embedded-opentype'),
-        url('/static/fonts/lora/Lora-Bold.woff2') format('woff2'),
-        url('/static/fonts/lora/Lora-Bold.woff') format('woff'),
-        url('/static/fonts/lora/Lora-Bold.ttf') format('truetype');
+    src: url('/fonts/lora/Lora-Bold.eot');
+    src: url('/fonts/lora/Lora-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/lora/Lora-Bold.woff2') format('woff2'),
+        url('/fonts/lora/Lora-Bold.woff') format('woff'),
+        url('/fonts/lora/Lora-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;

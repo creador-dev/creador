@@ -1,8 +1,9 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
 // version used by the Gatsby and @wordpress packages that causes build
@@ -72,17 +73,17 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.uri} rel="prev">
+              <AniLink direction="right" duration={1} cover bg="#F9A826" to={previous.uri} rel="prev">
                 ← {parse(previous.title)}
-              </Link>
+              </AniLink>
             )}
           </li>
 
           <li>
             {next && (
-              <Link to={next.uri} rel="next">
+              <AniLink direction="right" duration={1} cover bg="#F9A826" to={next.uri} rel="next">
                 {parse(next.title)} →
-              </Link>
+              </AniLink>
             )}
           </li>
         </ul>
