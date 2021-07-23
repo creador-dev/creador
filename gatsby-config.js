@@ -116,6 +116,7 @@ module.exports = {
           "@sass": "src/sass",
           "@templates": "src/templates",
           "@static": "static",
+          "@utils": "src/utils"
         },
         extensions: [
           "js",

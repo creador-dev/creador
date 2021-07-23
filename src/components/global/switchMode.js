@@ -5,68 +5,62 @@ import React, { useEffect } from 'react'
 import "@sass/components/switch-button.scss"
 
 function SwitchMode() {
-    
-    // detect theme
-    function toggleBtn(){
-        if(document.querySelector("#toggleCheckbox").checked){
+
+    function toggleBtn() {
+        if(document.body.classList.contains("light-theme")) {
+            enableDarkMode()
             localStorage.setItem("theme" , "dark")
-            document.body.classList.remove("light-mode")
-            document.body.classList.add("dark-mode")
         } else {
+            enableLightMode()
             localStorage.setItem("theme" , "light")
-            document.body.classList.remove("dark-mode")
-            document.body.classList.add("light-mode")
         }
     }
 
-    function detectLocalStorage(){
+    function enableDarkMode() {
+        document.body.classList.remove("light-theme");
+        document.body.classList.add("dark-theme");
+    }
+
+    function enableLightMode() {
+        document.body.classList.remove("dark-theme");
+        document.body.classList.add("light-theme");
+    }
+
+    function setThemePreference() {
         var currentTheme = localStorage.getItem("theme")
         if(currentTheme){
             if (currentTheme === "dark"){
-                document.body.classList.remove("light-mode")
-                document.body.classList.add("dark-mode")
-                document.querySelector("#toggleCheckbox").checked = true
-
+                document.body.classList.remove("light-theme")
+                document.body.classList.add("dark-theme")
             } else if (currentTheme === "light"){
-                document.body.classList.remove("dark-mode")
-                document.body.classList.add("light-mode")
-                document.querySelector("#toggleCheckbox").checked = false
+                document.body.classList.remove("dark-theme")
+                document.body.classList.add("light-theme")
             }
         } else {
-            if(window.matchMedia("(prefers-color-scheme: dark)").matches){
-                document.querySelector("#toggleCheckbox").checked = true
-                document.body.classList.remove("light-mode")
-                document.body.classList.add("dark-mode")
-            } else {
-                document.querySelector("#toggleCheckbox").checked = false
-                document.body.classList.remove("dark-mode")
-                document.body.classList.add("light-mode")
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                enableDarkMode();
+                return;
             }
+            enableLightMode();
         }
     }
 
     useEffect(() => {
-        // on click switch theme
-        detectLocalStorage()
-
-        // listen if system switches dark/light mode
-        const mqListener = (e => {
-            detectLocalStorage()
-        });
-        const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)")
-        darkThemeMq.addListener(mqListener)
-        return () => darkThemeMq.removeListener(mqListener)
-    } , [])
+        setThemePreference();
+    }, [])
 
     return (
         <div className="switch-wrapper">
-            <label className="switch">
-                <input type="checkbox" id="toggleCheckbox" onClick={toggleBtn}/>
-                <span className="slider round">
-                    <div className="moon"></div>
-                    <div className="sun"></div>
-                </span>
-            </label>
+            <button id="theme-toggle" onClick={toggleBtn}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="472.39" height="472.39" viewBox="0 0 472.39 472.39">
+                    <g class="toggle-sun">
+                        <path d="M403.21,167V69.18H305.38L236.2,0,167,69.18H69.18V167L0,236.2l69.18,69.18v97.83H167l69.18,69.18,69.18-69.18h97.83V305.38l69.18-69.18Zm-167,198.17a129,129,0,1,1,129-129A129,129,0,0,1,236.2,365.19Z" />
+                    </g>
+                    <g class="toggle-circle">
+                        <circle class="cls-1" cx="236.2" cy="236.2" r="103.78" />
+                    </g>
+                </svg>
+            </button>
         </div>
     )
 }

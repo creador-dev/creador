@@ -35,14 +35,14 @@ const Header = () => {
     <header className="global-header" id="fixedHeader">
         <div className="container grid-container header-grid">
           <div>
-            <AniLink direction="right" duration={1} cover bg="#F9A826" to="/" alt="Creador" className="site-logo">
+            <AniLink direction="right" duration={1.5} cover bg="#F9A826" to="/" alt="Creador" className="site-logo">
               <img src="/logo.svg" alt="site-logo"/>
             </AniLink>
           </div>
           <div>
             <div className="primary-menu">
               {menuItems.map((data) => {
-                return <li key={data.id}><AniLink direction="right" duration={1} cover bg="#F9A826" to={data.url}>{data.label}</AniLink></li>
+                return <li key={data.id}><AniLink direction="right" duration={1.5} cover bg="#F9A826" to={data.url}>{data.label}</AniLink></li>
               })}
             </div>
             <SwitchMode></SwitchMode>  

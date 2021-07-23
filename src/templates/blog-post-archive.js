@@ -45,7 +45,7 @@ const BlogIndex = ({
               >
                 <header>
                   <h2>
-                    <AniLink direction="right" duration={1} cover bg="#F9A826" to={post.uri} itemProp="url">
+                    <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={post.uri} itemProp="url">
                       <span itemProp="headline">{parse(title)}</span>
                     </AniLink>
                   </h2>
@@ -60,11 +60,11 @@ const BlogIndex = ({
 
       {previousPagePath && (
         <>
-          <AniLink direction="right" duration={1} cover bg="#F9A826" to={previousPagePath}>Previous page</AniLink>
+          <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={previousPagePath}>Previous page</AniLink>
           <br />
         </>
       )}
-      {nextPagePath && <AniLink direction="right" duration={1} cover bg="#F9A826" to={nextPagePath}>Next page</AniLink>}
+      {nextPagePath && <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={nextPagePath}>Next page</AniLink>}
     </Layout>
   )
 }

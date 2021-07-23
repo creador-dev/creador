@@ -62,6 +62,19 @@ h2 , h3{
     font-size: $font-heading;
 }
 
+h2 , h3, h4, h5, h6{
+    margin: 60px 0 40px;
+}
+
+p,
+ul li,
+ol li{
+    font-family: $regular;
+    font-size: $font-xl;
+    line-height: 32px;
+    margin: 10px 0;
+}
+
 p{
     font-family: $regular;
     font-size: $font-xl;
@@ -77,8 +90,14 @@ a{
     }
 }
 
-figure{
-    margin: 60px 0;
+.wp-block-image{
+    margin: 40px 0;
+}
+
+figcaption{
+    font-family: $italic;
+    text-align: center;
+    margin: 10px 0 0;
 }
 
 img{
@@ -180,7 +199,7 @@ pre{
 }
 
 // color based on theme mode light/dark
-.light-mode{
+.light-theme {
     color: $black;
     background: $white;
     transition: ease all 0.3s;
@@ -193,7 +212,7 @@ pre{
     }
 }
 
-.dark-mode{
+.dark-theme {
     color: $white;
     background: $black;
     transition: ease all 0.3s;

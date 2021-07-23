@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 
-import AniLink from "gatsby-plugin-transition-link/AniLink";
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
+import helper from "@utils/helper"
+
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
 // version used by the Gatsby and @wordpress packages that causes build
@@ -17,13 +20,17 @@ import Layout from "@components/layout"
 import Seo from "@components/global/seo"
 
 // import page css
-import "@sass/pages/blog-post.scss"
+import "@sass/pages/single-post.scss"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
     fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
     alt: post.featuredImage?.node?.alt || ``,
   }
+
+  useEffect(() => {
+    helper.highlightCode()
+  })
 
   return (
     <Layout>
@@ -32,7 +39,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <article
         className="blog-post"
       >
-        <div className="container">
+        <div className="article-container">
           <h1 itemProp="headline">{parse(post.title)}</h1>
           <p>{post.date}</p>
         </div>
@@ -48,7 +55,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
         {!!post.content && (
           <section itemProp="articleBody">
-            <div className="article-content-wrapper">
+            <div className="article-container">
               {parse(post.content)}
             </div>
           </section>
@@ -73,7 +80,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         >
           <li>
             {previous && (
-              <AniLink direction="right" duration={1} cover bg="#F9A826" to={previous.uri} rel="prev">
+              <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={previous.uri} rel="prev">
                 ← {parse(previous.title)}
               </AniLink>
             )}
@@ -81,7 +88,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
           <li>
             {next && (
-              <AniLink direction="right" duration={1} cover bg="#F9A826" to={next.uri} rel="next">
+              <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={next.uri} rel="next">
                 {parse(next.title)} →
               </AniLink>
             )}
