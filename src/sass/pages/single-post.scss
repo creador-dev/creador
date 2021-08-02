@@ -13,18 +13,18 @@
     font-display: swap;
 }
 
-.lead-image{
+.lead-image {
     margin: 60px 0 40px;
 }
 
-.article-container{
+.article-container {
     max-width: 800px;
     margin: auto;
 }
 
 // code highlighter css
-.wp-block-syntaxhighlighter-code > pre, 
-pre > code{
+.wp-block-syntaxhighlighter-code>pre,
+pre>code {
     letter-spacing: 0.5px;
     font-size: $font-md;
     line-height: 1.75;
@@ -35,8 +35,10 @@ pre > code{
     overflow-x: scroll;
     border-radius: 8px;
     background-color: $navy;
-    
-    span{
+    max-height: 550px;
+    overflow: scroll;
+
+    span {
         font-family: $code-regular !important;
     }
 
@@ -44,7 +46,7 @@ pre > code{
         width: .5em;
         height: .5em;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         background: $dark-slate;
         border-radius: .5em;

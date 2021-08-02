@@ -7,12 +7,12 @@ import "@sass/components/switch-button.scss"
 function SwitchMode() {
 
     function toggleBtn() {
-        if(document.body.classList.contains("light-theme")) {
+        if (document.body.classList.contains("light-theme")) {
             enableDarkMode()
-            localStorage.setItem("theme" , "dark")
+            localStorage.setItem("theme", "dark")
         } else {
             enableLightMode()
-            localStorage.setItem("theme" , "light")
+            localStorage.setItem("theme", "light")
         }
     }
 
@@ -28,11 +28,11 @@ function SwitchMode() {
 
     function setThemePreference() {
         var currentTheme = localStorage.getItem("theme")
-        if(currentTheme){
-            if (currentTheme === "dark"){
+        if (currentTheme) {
+            if (currentTheme === "dark") {
                 document.body.classList.remove("light-theme")
                 document.body.classList.add("dark-theme")
-            } else if (currentTheme === "light"){
+            } else if (currentTheme === "light") {
                 document.body.classList.remove("dark-theme")
                 document.body.classList.add("light-theme")
             }
@@ -47,12 +47,12 @@ function SwitchMode() {
 
     useEffect(() => {
         setThemePreference();
-    }, [])
+    })
 
     return (
         <div className="switch-wrapper">
             <button id="theme-toggle" onClick={toggleBtn}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="472.39" height="472.39" viewBox="0 0 472.39 472.39">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 472.39 472.39">
                     <g class="toggle-sun">
                         <path d="M403.21,167V69.18H305.38L236.2,0,167,69.18H69.18V167L0,236.2l69.18,69.18v97.83H167l69.18,69.18,69.18-69.18h97.83V305.38l69.18-69.18Zm-167,198.17a129,129,0,1,1,129-129A129,129,0,0,1,236.2,365.19Z" />
                     </g>
