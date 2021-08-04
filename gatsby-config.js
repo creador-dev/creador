@@ -112,6 +112,17 @@ module.exports = {
       },
     },
 
+    // nprogess bar plugin
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `#F9A826`,
+        // Disable the loading spinner.
+        showSpinner: true,
+      },
+    },
+
     // gatsby root alias import
     {
       resolve: `gatsby-plugin-alias-imports`,

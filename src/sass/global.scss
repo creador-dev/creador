@@ -283,6 +283,31 @@ pre {
     .footer-grid{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-column-gap: 30px;
+        grid-row-gap: 30px;
+    }
+
+    .footer-main-menu{
+        grid-column: 1 / -1;
+        text-align: right;
+        padding-top: 20px;
+        a{
+            padding-left: 30px;
+        }
+    }
+
+    .menu-links{
+        float: right;
+    }
+
+    .copyright-text,
+    .menu-links a{
+        font-family: $regular;
+        font-size: $font-xxs;
+    }
+
+    .copyright-text{
+        float: left;
+        line-height: 1.8;
     }
 
     .footer-menu-wrap a{
@@ -358,7 +383,7 @@ pre {
         }
     }
 
-    .global-footer{
+    .footer-main-menu{
         border-top: 1px solid $white-border;
         border-top-color: $grey-border;
     }

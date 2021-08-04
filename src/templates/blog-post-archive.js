@@ -1,8 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-import AniLink from "gatsby-plugin-transition-link/AniLink";
 import Bio from "@components/global/bio"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
@@ -45,9 +44,9 @@ const BlogIndex = ({
               >
                 <header>
                   <h2>
-                    <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={post.uri} itemProp="url">
+                    <Link direction="right" duration={1.5} cover bg="#F9A826" to={post.uri} itemProp="url">
                       <span itemProp="headline">{parse(title)}</span>
-                    </AniLink>
+                    </Link>
                   </h2>
                   <small>{post.date}</small>
                 </header>
@@ -60,11 +59,11 @@ const BlogIndex = ({
 
       {previousPagePath && (
         <>
-          <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={previousPagePath}>Previous page</AniLink>
+          <Link to={previousPagePath} alt="previous">Previous page</Link>
           <br />
         </>
       )}
-      {nextPagePath && <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={nextPagePath}>Next page</AniLink>}
+      {nextPagePath && <Link to={nextPagePath} alt="next">Next page</Link>}
     </Layout>
   )
 }

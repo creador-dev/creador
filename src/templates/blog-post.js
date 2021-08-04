@@ -1,9 +1,7 @@
 import React, { useEffect } from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
-
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import helper from "@utils/helper"
 
@@ -80,17 +78,17 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         >
           <li>
             {previous && (
-              <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={previous.uri} rel="prev">
+              <Link to={previous.uri} rel="prev">
                 ← {parse(previous.title)}
-              </AniLink>
+              </Link>
             )}
           </li>
 
           <li>
             {next && (
-              <AniLink direction="right" duration={1.5} cover bg="#F9A826" to={next.uri} rel="next">
+              <Link to={next.uri} rel="next">
                 {parse(next.title)} →
-              </AniLink>
+              </Link>
             )}
           </li>
         </ul>

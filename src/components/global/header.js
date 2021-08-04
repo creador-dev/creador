@@ -1,7 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 // import dark/light switch button
 import SwitchMode from "@components/global/switchMode"
@@ -15,7 +13,7 @@ import SearchIcon from "@components/icons/searchIcon"
 const Header = () => {
   const data = useStaticQuery(graphql`
     query MenuQuery {
-      wpMenu(slug: {eq: "primary-menu"}) {
+      wpMenu(locations: {eq: PRIMARY}) {
         id
         menuItems {
           nodes {
@@ -41,15 +39,15 @@ const Header = () => {
     <header className="global-header" id="fixedHeader">
       <div className="container grid-container header-grid">
         <div>
-          <AniLink direction="right" duration={1.5} cover bg="#F9A826" to="/" alt="Creador" className="site-logo">
+          <Link to="/" alt="Creador" className="site-logo">
             <SvgLogo></SvgLogo>
-          </AniLink>
+          </Link>
         </div>
         <div>
           <div className="primary-menu menu-items">
             <ul>
               {menuItems.map((data) => {
-                return <li key={data.id}><AniLink direction="right" duration={1.5} cover bg="#F9A826" to={data.url}>{data.label}</AniLink></li>
+                return <li key={data.id}><Link to={data.url} alt={data.label}>{data.label}</Link></li>
               })}
             </ul>
           </div>

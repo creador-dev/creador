@@ -1,15 +1,13 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-import AniLink from "gatsby-plugin-transition-link/AniLink"
-
 // import logo svg
 import SvgLogo from "@components/icons/svgLogo"
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterMenuQuery {
-      wpMenu(slug: {eq: "footer-menu"}) {
+      wpMenu(locations: {eq: FOOTER}) {
         id
         menuItems {
           nodes {
@@ -27,18 +25,31 @@ const Footer = () => {
           }
         }
       }
+
+      footerLinks: wpMenu(locations: {eq: FOOTER_LINKS}) {
+        id
+        menuItems {
+          nodes {
+            id
+            parentId
+            label
+            url
+          }
+        }
+      }
     }
   `)
 
   const menuItems = data.wpMenu.menuItems.nodes ? data.wpMenu.menuItems.nodes.filter(menuItem => menuItem.parentId === null) : null
-
+  const footerLinks = data.footerLinks.menuItems.nodes ? data.footerLinks.menuItems.nodes.filter(menuItem => menuItem.parentId === null) : null
+  
   return (
     <footer className="global-footer menu-items">
       <div className="container grid-container footer-grid">
         <div>
-          <AniLink direction="right" duration={1.5} cover bg="#F9A826" to="/" alt="Creador" className="site-logo">
+          <Link to="/" alt="Creador" className="site-logo">
             <SvgLogo></SvgLogo>
-          </AniLink>
+          </Link>
         </div>
         {menuItems.map(item => (
           <div key={item.id}>
@@ -50,11 +61,16 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-            
           </div>
         ))}
-                
-        
+        <div className="footer-main-menu">
+          <span className="copyright-text">Copyright © {new Date().getFullYear()} Creador, All rights reserved.</span>
+          <div className="menu-links">
+            {footerLinks.map(item => (
+              <Link className="sub-item" to={item.url} key={item.id}>{item.label}</Link>
+            ))}
+          </div>
+        </div>       
       </div>
     </footer>
   )

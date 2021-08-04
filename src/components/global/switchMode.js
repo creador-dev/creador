@@ -28,7 +28,7 @@ function SwitchMode() {
 
     function setThemePreference() {
         var currentTheme = localStorage.getItem("theme")
-        if (currentTheme) {
+        if (currentTheme !== null) {
             if (currentTheme === "dark") {
                 document.body.classList.remove("light-theme")
                 document.body.classList.add("dark-theme")
@@ -45,8 +45,8 @@ function SwitchMode() {
         }
     }
 
-    useEffect(() => {
-        setThemePreference();
+    useEffect(() => {                
+        setThemePreference()
     })
 
     return (
