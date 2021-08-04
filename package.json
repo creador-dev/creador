@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@vtex/gatsby-plugin-onesignal": "^0.1.0-alpha.1",
     "dotenv": "^10.0.0",
     "gatsby": "^3.3.0",
     "gatsby-image": "^3.3.0",

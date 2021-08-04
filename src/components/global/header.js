@@ -46,7 +46,7 @@ const Header = () => {
           </AniLink>
         </div>
         <div>
-          <div className="primary-menu">
+          <div className="primary-menu menu-items">
             <ul>
               {menuItems.map((data) => {
                 return <li key={data.id}><AniLink direction="right" duration={1.5} cover bg="#F9A826" to={data.url}>{data.label}</AniLink></li>

@@ -2192,6 +2192,11 @@
     "@typescript-eslint/types" "4.28.1"
     eslint-visitor-keys "^2.0.0"
 
+"@vtex/gatsby-plugin-onesignal@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@vtex/gatsby-plugin-onesignal/-/gatsby-plugin-onesignal-0.1.0-alpha.1.tgz#d7339e3da4c5dcb5458c875c926e6fe43e2bc7c5"
+  integrity sha512-YFtvuqxkasNUBVFejmLKFi+/IRpDgnrktYe+yN69QDtI/io3xFnUnR6GxXWLOk4ZTPK2dJsTFs1qBXeVU1ztUA==
+
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.0.tgz#a5aa679efdc9e51707a4207139da57920555961f"

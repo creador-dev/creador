@@ -189,18 +189,19 @@ pre {
 
 .scrollbar-track {
     // background: transparent !important;
-    background-color: $header-bg !important;
-    backdrop-filter: $blur !important;
+    background-color: transparent !important;
+    // backdrop-filter: $blur !important;
 }
 
 .scrollbar-track-y {
     opacity: 1 !important;
+    width: 12px !important;
 }
 
 .scrollbar-thumb {
     top: 2px !important;
     left: 2px !important;
-    width: 4px !important;
+    width: 8px !important;
     background: $dark-slate !important;
 }
 
@@ -212,7 +213,7 @@ pre {
 .global-header {
     position: fixed;
     left: 0;
-    right: 8px;
+    right: 0;
     top: 0;
     z-index: 10;
     height: $nav-scroll-height;
@@ -250,9 +251,6 @@ pre {
             margin: 0 0;
 
             a {
-                font-family: $medium;
-                font-size: $font-md;
-                letter-spacing: normal;
                 padding: 20px 35px;
             }
         }
@@ -280,7 +278,42 @@ pre {
 }
 
 // footer css
-.global-footer {}
+.global-footer {
+    padding: 50px 0;
+    .footer-grid{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-column-gap: 30px;
+    }
+
+    .footer-menu-wrap a{
+        padding: 10px 0;
+        display: block;
+    }
+
+    ul{
+        padding: 0;
+        list-style: none;
+        margin: 0 0;
+        li{
+            margin: 0 0;
+            a{
+                padding: 8px 0;
+            }
+            line-height: 1;
+        }
+    }
+    
+    .sub-item{
+        font-size: $font-sm;
+    }
+}
+
+// menu items css
+.menu-items a {
+    font-family: $medium;
+    font-size: $font-md;
+    letter-spacing: normal;
+}
 
 // color based on theme mode light/dark
 .light-theme {
@@ -289,7 +322,11 @@ pre {
 
     .global-header {
         background-color: $white;
-        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+    }
+
+    .global-header.show,
+    .global-header.hide{
+        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
     }
 
     a {
@@ -312,10 +349,18 @@ pre {
     }
 
     .global-header {
-        background-color: $header-bg;
-        backdrop-filter: $blur;
+        background-color: $black;
         border-bottom: 1px solid $white-border;
         border-bottom-color: $grey-border;
+        @supports ((-webkit-backdrop-filter: $blur) or (backdrop-filter: $blur)) {
+            background-color: $header-bg;
+            backdrop-filter: $blur;
+        }
+    }
+
+    .global-footer{
+        border-top: 1px solid $white-border;
+        border-top-color: $grey-border;
     }
 
     .search-icon svg {

@@ -104,6 +104,14 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
     },
 
+    // onesignal settings
+    {
+      resolve: `@vtex/gatsby-plugin-onesignal`,
+      options: {
+        oneSignalAppId: "488662b8-5a9a-4753-ab17-1a9aab8dbe1e"
+      },
+    },
+
     // gatsby root alias import
     {
       resolve: `gatsby-plugin-alias-imports`,
