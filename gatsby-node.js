@@ -22,9 +22,31 @@ exports.createPages = async gatsbyUtilities => {
 
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
+  
+  // Query our pages from the GraphQL server
+  const pages = await getPages(gatsbyUtilities)
 
-  // And a paginated archive
-  await createBlogPostArchive({ posts, gatsbyUtilities })
+  // If there are no pages in WordPress, don't do anything
+  if (!pages.length) {
+    return
+  }
+
+  // If there are pages, create pages for them
+  await createIndividualPages({ pages, gatsbyUtilities })
+
+  // Query our categories from the GraphQL server
+  const categories = await getCategory(gatsbyUtilities)
+
+  // If there are no category in WordPress, don't do anything
+  if (!categories.length) {
+    return
+  }
+
+  // If there are category, create category for them
+  await createIndividualCategory({ categories, gatsbyUtilities })
+
+  // // And a paginated archive
+  // await createBlogPostArchive({ posts, gatsbyUtilities })
 }
 
 /**
@@ -59,67 +81,127 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
     )
   )
 
+
 /**
- * This function creates all the individual blog pages in this site
+ * This function creates all the individual pages in this site
  */
-async function createBlogPostArchive({ posts, gatsbyUtilities }) {
-  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-    {
-      wp {
-        readingSettings {
-          postsPerPage
-        }
-      }
-    }
-  `)
+ const createIndividualPages = async ({ pages, gatsbyUtilities }) =>
+ Promise.all(
+   pages.map(({ page }) =>
+     // createPage is an action passed to createPages
+     // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+     gatsbyUtilities.actions.createPage({
+       // Use the WordPress uri as the Gatsby page path
+       // This is a good idea so that internal links and menus work 👍
+       path: page.uri,
 
-  const { postsPerPage } = graphqlResult.data.wp.readingSettings
+       // use the page template as the page component
+       component: path.resolve(`src/templates/page.js`),
 
-  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-  const totalPages = postsChunkedIntoArchivePages.length
+       // `context` is available in the template as a prop and
+       // as a variable in GraphQL.
+       context: {
+         // we need to add the page id here
+         // so our page template knows which page
+         // the current page is (when you open it in a browser)
+         id: page.id,
 
-  return Promise.all(
-    postsChunkedIntoArchivePages.map(async (_posts, index) => {
-      const pageNumber = index + 1
+       },
+     })
+   )
+ )
 
-      const getPagePath = page => {
-        if (page > 0 && page <= totalPages) {
-          // Since our homepage is our blog page
-          // we want the first page to be "/" and any additional pages
-          // to be numbered.
-          // "/blog/2" for example
-          return page === 1 ? `/` : `/blog/${page}`
-        }
 
-        return null
-      }
-
-      // createPage is an action passed to createPages
+ /**
+ * This function creates all the individual categories in this site
+ */
+  const createIndividualCategory = async ({ categories, gatsbyUtilities }) =>
+  Promise.all(
+    categories.map(({ category }) =>
+      // createPage is an action passed to create categories
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      await gatsbyUtilities.actions.createPage({
-        path: getPagePath(pageNumber),
-
-        // use the blog post archive template as the page component
-        component: path.resolve(`src/templates/blog-post-archive.js`),
-
+      gatsbyUtilities.actions.createPage({
+        // Use the WordPress uri as the Gatsby page path
+        // This is a good idea so that internal links and menus work 👍
+        path: category.uri,
+ 
+        // use the category template as the category component
+        component: path.resolve(`src/templates/category.js`),
+ 
         // `context` is available in the template as a prop and
         // as a variable in GraphQL.
         context: {
-          // the index of our loop is the offset of which posts we want to display
-          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-          // etc
-          offset: index * postsPerPage,
-
-          // We need to tell the template how many posts to display too
-          postsPerPage,
-
-          nextPagePath: getPagePath(pageNumber + 1),
-          previousPagePath: getPagePath(pageNumber - 1),
+          // we need to add the category id here
+          // so our category template knows which category
+          // the current category is (when you open it in a browser)
+          id: category.id,
+ 
         },
       })
-    })
+    )
   )
-}
+
+/**
+ * This function creates all the individual blog pages in this site
+ */
+// async function createBlogPostArchive({ posts, gatsbyUtilities }) {
+//   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
+//     {
+//       wp {
+//         readingSettings {
+//           postsPerPage
+//         }
+//       }
+//     }
+//   `)
+
+//   const { postsPerPage } = graphqlResult.data.wp.readingSettings
+
+//   const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
+//   const totalPages = postsChunkedIntoArchivePages.length
+
+//   return Promise.all(
+//     postsChunkedIntoArchivePages.map(async (_posts, index) => {
+//       const pageNumber = index + 1
+
+//       const getPagePath = page => {
+//         if (page > 0 && page <= totalPages) {
+//           // Since our homepage is our blog page
+//           // we want the first page to be "/" and any additional pages
+//           // to be numbered.
+//           // "/blog/2" for example
+//           return page === 1 ? `/` : `/blog/${page}`
+//         }
+
+//         return null
+//       }
+
+//       // createPage is an action passed to createPages
+//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+//       await gatsbyUtilities.actions.createPage({
+//         path: getPagePath(pageNumber),
+
+//         // use the blog post archive template as the page component
+//         component: path.resolve(`src/templates/blog-post-archive.js`),
+
+//         // `context` is available in the template as a prop and
+//         // as a variable in GraphQL.
+//         context: {
+//           // the index of our loop is the offset of which posts we want to display
+//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
+//           // etc
+//           offset: index * postsPerPage,
+
+//           // We need to tell the template how many posts to display too
+//           postsPerPage,
+
+//           nextPagePath: getPagePath(pageNumber + 1),
+//           previousPagePath: getPagePath(pageNumber - 1),
+//         },
+//       })
+//     })
+//   )
+// }
 
 /**
  * This function queries Gatsby's GraphQL server and asks for
@@ -163,4 +245,64 @@ async function getPosts({ graphql, reporter }) {
   }
 
   return graphqlResult.data.allWpPost.edges
+}
+
+// get pages
+async function getPages({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query WpPages {
+      # Query all WordPress blog posts sorted by date
+      allWpPage(sort: { fields: [date], order: DESC }) {
+        edges {
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          page: node {
+            id
+            uri
+          }
+
+        }
+      }
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpPage.edges
+}
+
+// get categories
+async function getCategory({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query WpCategory {
+      # Query all WordPress blog posts sorted by date
+      allWpCategory {
+        edges {
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          category: node {
+            id
+            uri
+          }
+
+        }
+      }
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpCategory.edges
 }
