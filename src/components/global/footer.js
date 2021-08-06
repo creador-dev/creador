@@ -7,7 +7,7 @@ import SvgLogo from "@components/icons/svgLogo"
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterMenuQuery {
-      wpMenu(locations: {eq: FOOTER}) {
+      wpMenu(locations: {eq: GATSBY_FOOTER_MENU}) {
         id
         menuItems {
           nodes {
@@ -26,7 +26,7 @@ const Footer = () => {
         }
       }
 
-      footerLinks: wpMenu(locations: {eq: FOOTER_LINKS}) {
+      footerLinks: wpMenu(locations: {eq: GATSBY_FOOTER_LINKS}) {
         id
         menuItems {
           nodes {
@@ -47,17 +47,17 @@ const Footer = () => {
     <footer className="global-footer menu-items">
       <div className="container grid-container footer-grid">
         <div>
-          <Link to="/" alt="Creador" className="site-logo">
+          <Link to="/" alt="Creador" className="site-logo" data-cursor="-exclusion -lg">
             <SvgLogo></SvgLogo>
           </Link>
         </div>
         {menuItems.map(item => (
           <div key={item.id}>
             <div className="footer-menu-wrap">
-              <Link className="menu-item" to={item.url}>{item.label}</Link>
+              <Link className="menu-item" to={item.url} data-cursor="-exclusion -lg">{item.label}</Link>
               <ul>
                 {item.childItems.nodes.map(subItem => (
-                  <li key={subItem.id}><Link className="sub-item" to={subItem.url}>{subItem.label}</Link></li>
+                  <li key={subItem.id}><Link className="sub-item" to={subItem.url} data-cursor="-exclusion -lg">{subItem.label}</Link></li>
                 ))}
               </ul>
             </div>
@@ -67,7 +67,7 @@ const Footer = () => {
           <span className="copyright-text">Copyright © {new Date().getFullYear()} Creador, All rights reserved.</span>
           <div className="menu-links">
             {footerLinks.map(item => (
-              <Link className="sub-item" to={item.url} key={item.id}>{item.label}</Link>
+              <Link className="sub-item" to={item.url} key={item.id} data-cursor="-exclusion -lg">{item.label}</Link>
             ))}
           </div>
         </div>       

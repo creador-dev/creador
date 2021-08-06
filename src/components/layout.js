@@ -5,6 +5,9 @@ import React, { useEffect } from "react"
 // import smooth-scrollbar
 import Scrollbar from "smooth-scrollbar"
 
+// import cursor
+import Cursor from "@components/global/cursor"
+
 // import header
 import Header from "@components/global/header"
 
@@ -62,6 +65,7 @@ const Layout = ({ isHomePage, children }) => {
   return (
     <div className="global-wrapper page-wrapper" data-is-root-path={isHomePage}>
         <main>
+          <Cursor></Cursor>
           <Header></Header>
           <div id="smoothScrollbar">
             {children}

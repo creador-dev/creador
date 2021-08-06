@@ -183,7 +183,7 @@ pre {
 }
 
 .scroll-content {
-    padding-top: 150px;
+    padding-top: 140px;
     will-change: transform;
 }
 
@@ -279,6 +279,7 @@ pre {
 
 // footer css
 .global-footer {
+    margin: 100px 0 0;
     padding: 50px 0;
     .footer-grid{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -352,6 +353,10 @@ pre {
     .global-header.show,
     .global-header.hide{
         box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
+    }
+
+    .footer-main-menu{
+        border-top: 1px solid $light-black;
     }
 
     a {

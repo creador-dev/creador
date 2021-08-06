@@ -1,18 +1,6 @@
 // variables CSS 
 @import "@sass/default/variables";
 
-@font-face {
-    font-family: "Menlo";
-    src: url("/fonts/menlo/Menlo-Regular.eot");
-    src: url("/fonts/menlo/Menlo-Regular.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/menlo/Menlo-Regular.woff2") format("woff2"),
-        url("/fonts/menlo/Menlo-Regular.woff") format("woff"),
-        url("/fonts/menlo/Menlo-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 .lead-image {
     margin: 60px 0 40px;
 }

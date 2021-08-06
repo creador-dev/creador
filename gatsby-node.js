@@ -96,7 +96,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
        path: page.uri,
 
        // use the page template as the page component
-       component: path.resolve(`src/templates/page.js`),
+       component: page.pageTemplate === 'home' ? path.resolve(`src/templates/home.js`) : path.resolve(`src/templates/page.js`),
 
        // `context` is available in the template as a prop and
        // as a variable in GraphQL.
@@ -259,6 +259,7 @@ async function getPages({ graphql, reporter }) {
           page: node {
             id
             uri
+            pageTemplate
           }
 
         }
