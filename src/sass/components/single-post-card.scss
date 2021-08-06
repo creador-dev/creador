@@ -1,0 +1,51 @@
+// variables CSS 
+@import "@sass/default/variables";
+
+
+.card-wrapper{
+    &:hover{
+        color: inherit !important;
+    }
+}
+
+.single-post-card{
+    // grid-template-columns: 2.2fr 1fr;
+    // grid-column-gap: 20px;
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0 0 30px;
+    h3{
+        font-size: $font-xl;
+        line-height: 28px;
+        margin: 0 0 15px;
+    }
+
+    .post-info{
+        margin-right: 20px;
+    }
+
+    .feature-image{
+        position: relative;
+        padding-top: 67%;
+        height: 0;
+        width: 200px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            height: 100%;
+            width: auto;
+            max-width: unset;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50% , -50%);
+        }
+    }
+
+    // post detail css
+    .post-detail{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+}

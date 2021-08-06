@@ -39,7 +39,7 @@ const Header = () => {
     <header className="global-header" id="fixedHeader">
       <div className="container grid-container header-grid">
         <div>
-          <Link to="/" alt="Creador" className="site-logo" data-cursor="-exclusion -lg">
+          <Link to="/" alt="Creador" className="site-logo hoverable">
             <SvgLogo></SvgLogo>
           </Link>
         </div>
@@ -47,17 +47,17 @@ const Header = () => {
           <div className="primary-menu menu-items">
             <ul>
               {menuItems.map((data) => {
-                return <li key={data.id} data-cursor="-exclusion -lg"><Link to={data.url} alt={data.label}>{data.label}</Link></li>
+                return <li key={data.id}><Link className="hoverable" to={data.url} alt={data.label}>{data.label}</Link></li>
               })}
             </ul>
           </div>
         </div>
         <div>
           <div className="top-right-menu">
-            <span className="menu-icon" data-cursor="-exclusion -lg">
+            <span className="menu-icon hoverable">
               <SearchIcon></SearchIcon>
             </span>
-            <span className="menu-icon" data-cursor="-exclusion -lg">
+            <span className="menu-icon hoverable">
               <SwitchMode></SwitchMode>
             </span>
           </div>

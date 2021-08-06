@@ -57,6 +57,7 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     font-family: $regular;
+    cursor: none;
 }
 
 html,
@@ -267,7 +268,6 @@ pre {
         #theme-toggle,
         .search-icon {
             padding: 15px;
-            cursor: pointer;
         }
 
         svg {
