@@ -26,9 +26,9 @@
 
     .feature-image{
         position: relative;
-        padding-top: 67%;
+        padding-top: 72%;
         height: 0;
-        width: 200px;
+        min-width: 200px;
         overflow: hidden;
         img{
             position: absolute;
@@ -46,6 +46,30 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 25px;
+        font-size: $font-xs;
+    }
+
+    .post-detail-wrap{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .post-publish-date,
+    .post-read-time{
+        padding-right: 5px;
+    }
+
+    .post-category{
+        background: $grey;
+        padding: 5px 10px;
+        border-radius: 100px;
+    }
+
+    .share-wrapper{
+        margin-right: -5px;
+        button{
+            margin: 0 5px;
+        }
     }
 }

@@ -19,10 +19,10 @@ export default function singlePostCard({ title, publishDate, excerpt, featureIma
                     <h3>This Long-Awaited Technology May Finally Change the World</h3>
                     <span className="excerpt">Solid-state batteries are poised to emerge in the coming years</span>
                     <div className="post-detail">
-                        <div>
-                            <span>May 30 · </span>
-                            <span>6 min read · </span> 
-                            <span>Science</span>
+                        <div className="post-detail-wrap">
+                            <div className="post-publish-date">May 30 ·</div>
+                            <div className="post-read-time">6 min read ·</div> 
+                            <div className="post-category">Science</div>
                         </div>
                         <div className="share-wrapper">
                             <FacebookShareButton  url="/"><FacebookIcon size={30} round={true} /></FacebookShareButton>
@@ -34,7 +34,7 @@ export default function singlePostCard({ title, publishDate, excerpt, featureIma
                 </div>
                 <div>
                     <div className="feature-image">
-                        <img alt="This Long-Awaited Technology May Finally Change the World" class="" src="https://miro.medium.com/fit/c/200/134/1*GlIDBz93SkiY0H9Ib7rObQ.jpeg" width="200" height="134"/>
+                        <img alt="This Long-Awaited Technology May Finally Change the World" className="" src="https://miro.medium.com/fit/c/200/134/1*GlIDBz93SkiY0H9Ib7rObQ.jpeg" width="200" height="134"/>
                     </div>
                 </div>
             </div>

@@ -15,21 +15,7 @@ import Header from "@components/global/header"
 import Footer from "@components/global/footer"
 
 const Layout = ({ isHomePage, children }) => {
-  // const {
-  //   wp: {
-  //     generalSettings: { title },
-  //   },
-  // } = useStaticQuery(graphql`
-  //   query LayoutQuery {
-  //     wp {
-  //       generalSettings {
-  //         title
-  //         description
-  //       }
-  //     }
-  //   }
-  // `)
-
+  
   // function for animating header
   function headerAnimate(scrollbar){
     let lastScrollTop = 0
