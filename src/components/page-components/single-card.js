@@ -11,18 +11,18 @@ import {
     WhatsappIcon
 } from "react-share"
 
-export default function singlePostCard({ title, publishDate, excerpt, featureImage, readingTime, shareUri }) {
+export default function SingleCard({ title, publishDate, excerpt, featureImage, readingTime, shareUri }) {
     return (
         <Link to="/tab" className="card-wrapper hoverable">
-            <div className="grid-container single-post-card">
-                <div className="post-info">
+            <div className="grid-container single-card">
+                <div className="card-info">
                     <h3>This Long-Awaited Technology May Finally Change the World</h3>
-                    <span className="excerpt">Solid-state batteries are poised to emerge in the coming years</span>
-                    <div className="post-detail">
-                        <div className="post-detail-wrap">
-                            <div className="post-publish-date">May 30 ·</div>
-                            <div className="post-read-time">6 min read ·</div> 
-                            <div className="post-category">Science</div>
+                    <div className="excerpt">Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years</div>
+                    <div className="card-detail">
+                        <div className="card-detail-wrap">
+                            <span className="card-publish-date">May 30 ·</span>
+                            <span className="card-read-time">6 min read ·</span> 
+                            <Link to="#" className="card-category">Science</Link>
                         </div>
                         <div className="share-wrapper">
                             <FacebookShareButton  url="/"><FacebookIcon size={30} round={true} /></FacebookShareButton>
