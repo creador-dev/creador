@@ -7,9 +7,15 @@
  */
 
 // dot env file to load custom config
-require("dotenv").config({
-  path: `.env`,
-})
+if (process.env.STAGING) {
+  require("dotenv").config({
+    path: `.env.staging`,
+  })
+} else {
+  require("dotenv").config({
+    path: `.env`,
+  })
+}
 
 module.exports = {
   /**
@@ -32,10 +38,10 @@ module.exports = {
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
         url: process.env.WPGRAPHQL_URL,
-        // searchAndReplaceContentUrls: {
-        //   sourceUrl: process.env.BASE_URL,
-        //   replacementUrl: process.env.WORDPRESS_URL,
-        // },
+        searchAndReplaceContentUrls: {
+          sourceUrl: process.env.BASE_URL,
+          replacementUrl: process.env.WORDPRESS_URL,
+        },
       },
     },
 

@@ -11,11 +11,15 @@ import "@sass/pages/home.scss"
 
 const HomeTemplate = ({ data: { post }  }) => {
   
+  // shuffle items
+  // const shuffle = arr => arr.slice().sort(() => Math.random() - 0.5)
+  // shuffle(post.nodes)
+
   // Array of all articles
   const allPosts = post.nodes
 
   // State for the list
-  const [list, setList] = useState([...allPosts.slice(0, 10)])
+  const [list, setList] = useState([...allPosts.slice(0, 20)])
 
   // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false)
@@ -55,11 +59,22 @@ const HomeTemplate = ({ data: { post }  }) => {
           <div className="grid-post-items">
             <div>
               {list.map((article) => (
-                <SingleCard></SingleCard>
+                <SingleCard 
+                  title={article.title} 
+                  publishDate={article.date} 
+                  excerpt={article.excerpt} 
+                  featureImage={article.featuredImage}
+                  readingTime={article.readingTime}
+                  linkUrl={article.link}
+                  shareUrl={process.env.BASE_URL+article.link} 
+                  category={article.categories.nodes[0]}
+                ></SingleCard>
               ))}
             </div>
             {hasMore ? (
-              <button onClick={handleLoadMore}>Load More</button>
+              <div className="load-more-wrap">
+                <button className="hoverable load-more-btn" onClick={handleLoadMore}>Load More</button>
+              </div>
             ) : ''}
           </div>
           <div>
@@ -79,16 +94,23 @@ export const pageQuery = graphql`
     ) {
       nodes {
         excerpt
-        uri
-        date(formatString: "MMMM DD, YYYY")
+        link
+        date(formatString: "MMMM YYYY")
         title
         excerpt
+        readingTime
+        categories {
+          nodes {
+            name
+            link
+          }
+        }
         featuredImage {
           node {
             altText
             localFile {
               childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
+                fluid(maxWidth: 200, quality: 100) {
                   ...GatsbyImageSharpFluid_tracedSVG
                 }
               }

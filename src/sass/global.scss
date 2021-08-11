@@ -118,6 +118,10 @@ a {
     }
 }
 
+button{
+    cursor: pointer;
+}
+
 .wp-block-image {
     margin: 40px 0;
 }
@@ -141,11 +145,11 @@ pre {
     overflow-y: scroll;
 }
 
-#___gatsby{
-    *{
-        cursor: none;
-    }
-}
+// #___gatsby{
+//     *{
+//         cursor: none;
+//     }
+// }
 
 // logo
 
@@ -185,6 +189,20 @@ pre {
     }
 }
 
+.load-more-wrap{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.load-more-btn{
+    font-size: $font-sm;
+    background: $dark-yellow;
+    border-radius: 100px;
+    color: $white;
+    border: none;
+    padding: 12px 30px;
+}
+
 // scrollbar css
 #smoothScrollbar {
     width: 100%;
@@ -200,9 +218,7 @@ pre {
 }
 
 .scrollbar-track {
-    // background: transparent !important;
     background-color: transparent !important;
-    // backdrop-filter: $blur !important;
 }
 
 .scrollbar-track-y {
@@ -274,6 +290,7 @@ pre {
 
         .menu-icon {
             display: inline-block;
+            cursor: pointer;
         }
 
         #theme-toggle,

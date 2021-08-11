@@ -8,7 +8,6 @@ import "@sass/components/cursor.scss"
 export default function Cursor() {
     useEffect(() => {
       const $bigBall = document.querySelector('.cursor__ball--big');
-      const $smallBall = document.querySelector('.cursor__ball--small');
       const $hoverables = document.querySelectorAll('.hoverable');
       
       // Listeners
@@ -20,11 +19,7 @@ export default function Cursor() {
       
       // Move the cursor
       function onMouseMove(e) {
-        gsap.to($bigBall, .4, {
-          x: e.pageX - 15,
-          y: e.pageY - 15
-        })
-        gsap.to($smallBall, .1, {
+        gsap.to($bigBall, .01, {
           x: e.pageX - 5,
           y: e.pageY - 7
         })
@@ -33,7 +28,7 @@ export default function Cursor() {
       // Hover an element
       function onMouseHover() {
         gsap.to($bigBall, .3, {
-          scale: 4,
+          scale: 12,
           autoAlpha: 0.4
         })
       }
@@ -48,16 +43,16 @@ export default function Cursor() {
     return (
       <div className="cursor">
         <div className="cursor__ball cursor__ball--big ">
-          <svg height="30" width="30">
-            <circle cx="15" cy="15" r="12" strokeWidth="0"></circle>
-          </svg>
-        </div>
-        
-        <div className="cursor__ball cursor__ball--small">
           <svg height="10" width="10">
             <circle cx="5" cy="5" r="4" strokeWidth="0"></circle>
           </svg>
         </div>
+        
+        {/* <div className="cursor__ball cursor__ball--small">
+          <svg height="10" width="10">
+            <circle cx="5" cy="5" r="4" strokeWidth="0"></circle>
+          </svg>
+        </div> */}
       </div>
     );
 }

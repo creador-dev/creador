@@ -2,12 +2,11 @@
 @import "@sass/default/variables";
 
 .single-card{
-    // grid-template-columns: 2.2fr 1fr;
-    // grid-column-gap: 20px;
     display: flex;
     flex: 1 1 auto;
     padding: 40px 0;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $white-border;
+    border-bottom-color: $grey-border;
     h3{
         font-size: $font-xl;
         line-height: 28px;
@@ -25,18 +24,21 @@
         height: 0;
         min-width: 200px;
         overflow: hidden;
+        .gatsby-image-wrapper{
+            position: unset !important; 
+        }
         img{
-            position: absolute;
-            height: 100%;
-            width: auto;
+            position: absolute !important;
+            height: 100% !important;
+            width: auto !important;
             max-width: unset;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50% , -50%);
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50% , -50%) !important;
         }
     }
 
-    .excerpt{
+    .excerpt p{
         font-size: $font-md;
         line-height: 20px;
         max-height: 40px;
@@ -44,7 +46,7 @@
     }
 
     h3,
-    .excerpt{
+    .excerpt p{
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -57,7 +59,8 @@
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
-        font-size: $font-sm;
+        font-size: $font-xxs;
+        letter-spacing: 0.5px;
     }
 
     .card-detail-wrap{
@@ -93,7 +96,13 @@
     }
     &:first-child{
         .single-card{
-            margin:  0 0 0;
+            padding-top: 0;
         }
+    }
+}
+
+.light-theme{
+    .single-card{
+        border-bottom: 1px solid $white-border;
     }
 }

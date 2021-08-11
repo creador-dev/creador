@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
+import Image from "gatsby-image"
+import parse from "html-react-parser"
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -11,30 +13,40 @@ import {
     WhatsappIcon
 } from "react-share"
 
-export default function SingleCard({ title, publishDate, excerpt, featureImage, readingTime, shareUri }) {
+export default function SingleCard({ title, publishDate, excerpt, category, linkUrl, featureImage, readingTime, shareUrl }) {
+    const featuredImage = {
+        fluid: featureImage?.node?.localFile?.childImageSharp?.fluid,
+        alt: featureImage?.node?.alt || ``,
+    }
     return (
-        <Link to="/tab" className="card-wrapper hoverable">
+        <Link to={linkUrl} className="card-wrapper hoverable">
             <div className="grid-container single-card">
                 <div className="card-info">
-                    <h3>This Long-Awaited Technology May Finally Change the World</h3>
-                    <div className="excerpt">Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years Solid-state batteries are poised to emerge in the coming years</div>
+                    <h3>{ title }</h3>
+                    <div className="excerpt">{ parse(excerpt) }</div>
                     <div className="card-detail">
                         <div className="card-detail-wrap">
-                            <span className="card-publish-date">May 30 ·</span>
-                            <span className="card-read-time">6 min read ·</span> 
-                            <Link to="#" className="card-category">Science</Link>
+                            <span className="card-publish-date">{ publishDate } ·</span>
+                            <span className="card-read-time">{ readingTime } min read ·</span> 
+                            <Link to={ category.link } className="card-category">{ category.name }</Link>
                         </div>
                         <div className="share-wrapper">
-                            <FacebookShareButton  url="/"><FacebookIcon size={30} round={true} /></FacebookShareButton>
-                            <LinkedinShareButton url="/"><LinkedinIcon size={30} round={true}></LinkedinIcon></LinkedinShareButton>
-                            <TwitterShareButton  url="/"><TwitterIcon size={30} round={true}></TwitterIcon></TwitterShareButton>
-                            <WhatsappShareButton url="/"><WhatsappIcon size={30} round={true}></WhatsappIcon></WhatsappShareButton>
+                            <FacebookShareButton  url={shareUrl}><FacebookIcon size={30} round={true} /></FacebookShareButton>
+                            <LinkedinShareButton url={shareUrl}><LinkedinIcon size={30} round={true}></LinkedinIcon></LinkedinShareButton>
+                            <TwitterShareButton  url={shareUrl}><TwitterIcon size={30} round={true}></TwitterIcon></TwitterShareButton>
+                            <WhatsappShareButton url={shareUrl}><WhatsappIcon size={30} round={true}></WhatsappIcon></WhatsappShareButton>
                         </div>                        
                     </div>
                 </div>
                 <div>
                     <div className="feature-image">
-                        <img alt="This Long-Awaited Technology May Finally Change the World" className="" src="https://miro.medium.com/fit/c/200/134/1*GlIDBz93SkiY0H9Ib7rObQ.jpeg" width="200" height="134"/>
+                        {/* if we have a featured image for this post let's display it */}
+                        {featuredImage?.fluid && (
+                            <Image
+                                fluid={featuredImage.fluid}
+                                alt={featuredImage.alt}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
