@@ -1,0 +1,15 @@
+// variables CSS 
+@import "@sass/default/variables";
+
+.discover-card{
+    h4{
+        margin: 0 0 30px;
+    }
+    a{
+        font-size: $font-sm;
+        line-height: 20px;
+        display: inline-block;
+        padding: 8px 16px;
+        margin: 0 8px 10px 0;
+    }
+}

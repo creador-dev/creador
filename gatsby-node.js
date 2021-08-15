@@ -22,6 +22,9 @@ exports.createPages = async gatsbyUtilities => {
 
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
+
+  // get total number of categories
+  const totalCount = await getTotalCategories(gatsbyUtilities)
   
   // Query our pages from the GraphQL server
   const pages = await getPages(gatsbyUtilities)
@@ -32,7 +35,7 @@ exports.createPages = async gatsbyUtilities => {
   }
 
   // If there are pages, create pages for them
-  await createIndividualPages({ pages, gatsbyUtilities })
+  await createIndividualPages({ pages, totalCount, gatsbyUtilities })
 
   // Query our categories from the GraphQL server
   const categories = await getCategory(gatsbyUtilities)
@@ -43,7 +46,7 @@ exports.createPages = async gatsbyUtilities => {
   }
 
   // If there are category, create category for them
-  await createIndividualCategory({ categories, gatsbyUtilities })
+  await createIndividualCategory({ categories, totalCount, gatsbyUtilities })
 
   // // And a paginated archive
   // await createBlogPostArchive({ posts, gatsbyUtilities })
@@ -85,7 +88,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
 /**
  * This function creates all the individual pages in this site
  */
- const createIndividualPages = async ({ pages, gatsbyUtilities }) =>
+ const createIndividualPages = async ({ pages, totalCount, gatsbyUtilities }) =>
  Promise.all(
    pages.map(({ page }) =>
      // createPage is an action passed to createPages
@@ -105,7 +108,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
          // so our page template knows which page
          // the current page is (when you open it in a browser)
          id: page.id,
-
+         catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
        },
      })
    )
@@ -115,154 +118,57 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
  /**
  * This function creates all the individual categories in this site
  */
-  const createIndividualCategory = async ({ categories, gatsbyUtilities }) =>
-  Promise.all(
-    categories.map(({ category }) =>
-      // createPage is an action passed to create categories
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      gatsbyUtilities.actions.createPage({
-        // Use the WordPress uri as the Gatsby page path
-        // This is a good idea so that internal links and menus work 👍
-        path: category.uri,
- 
-        // use the category template as the category component
-        component: path.resolve(`src/templates/category.js`),
- 
-        // `context` is available in the template as a prop and
-        // as a variable in GraphQL.
-        context: {
-          // we need to add the category id here
-          // so our category template knows which category
-          // the current category is (when you open it in a browser)
-          id: category.id,
- 
-        },
-      })
-    )
+const createIndividualCategory = async ({ categories, totalCount, gatsbyUtilities }) =>
+Promise.all(
+  categories.map(({ category }) =>
+    // createPage is an action passed to create categories
+    // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+    gatsbyUtilities.actions.createPage({
+      // Use the WordPress uri as the Gatsby page path
+      // This is a good idea so that internal links and menus work 👍
+      path: category.uri,
+
+      // use the category template as the category component
+      component: path.resolve(`src/templates/category.js`),
+
+      // `context` is available in the template as a prop and
+      // as a variable in GraphQL.
+      context: {
+        // we need to add the category id here
+        // so our category template knows which category
+        // the current category is (when you open it in a browser)
+        id: category.id,
+        catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
+      },
+    })
   )
+)
 
-/**
- * This function creates all the individual blog pages in this site
- */
-// async function createBlogPostArchive({ posts, gatsbyUtilities }) {
-//   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-//     {
-//       wp {
-//         readingSettings {
-//           postsPerPage
-//         }
-//       }
-//     }
-//   `)
 
-//   const { postsPerPage } = graphqlResult.data.wp.readingSettings
 
-//   const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-//   const totalPages = postsChunkedIntoArchivePages.length
+// get total categories
 
-//   return Promise.all(
-//     postsChunkedIntoArchivePages.map(async (_posts, index) => {
-//       const pageNumber = index + 1
-
-//       const getPagePath = page => {
-//         if (page > 0 && page <= totalPages) {
-//           // Since our homepage is our blog page
-//           // we want the first page to be "/" and any additional pages
-//           // to be numbered.
-//           // "/blog/2" for example
-//           return page === 1 ? `/` : `/blog/${page}`
-//         }
-
-//         return null
-//       }
-
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       await gatsbyUtilities.actions.createPage({
-//         path: getPagePath(pageNumber),
-
-//         // use the blog post archive template as the page component
-//         component: path.resolve(`src/templates/blog-post-archive.js`),
-
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // the index of our loop is the offset of which posts we want to display
-//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-//           // etc
-//           offset: index * postsPerPage,
-
-//           // We need to tell the template how many posts to display too
-//           postsPerPage,
-
-//           nextPagePath: getPagePath(pageNumber + 1),
-//           previousPagePath: getPagePath(pageNumber - 1),
-//         },
-//       })
-//     })
-//   )
-// }
-
-async function createBlogPostArchive({ posts, gatsbyUtilities }) {
-  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-    {
-      wp {
-        readingSettings {
-          postsPerPage
-        }
+async function getTotalCategories({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query WpCatCount {
+      allWpCategory(filter: {name: {ne: "Uncategorized"}}) {
+        totalCount
       }
     }
   `)
 
-  const { postsPerPage } = graphqlResult.data.wp.readingSettings
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
 
-  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-  const totalPages = postsChunkedIntoArchivePages.length
-
-  return Promise.all(
-    postsChunkedIntoArchivePages.map(async (_posts, index) => {
-      const pageNumber = index + 1
-
-      const getPagePath = page => {
-        if (page > 0 && page <= totalPages) {
-          // Since our homepage is our blog page
-          // we want the first page to be "/" and any additional pages
-          // to be numbered.
-          // "/blog/2" for example
-          return page === 1 ? `/` : `/blog/${page}`
-        }
-
-        return null
-      }
-
-      // createPage is an action passed to createPages
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      await gatsbyUtilities.actions.createPage({
-        path: getPagePath(pageNumber),
-
-        // use the blog post archive template as the page component
-        component: path.resolve(`src/templates/blog-post-archive.js`),
-
-        // `context` is available in the template as a prop and
-        // as a variable in GraphQL.
-        context: {
-          // the index of our loop is the offset of which posts we want to display
-          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-          // etc
-          offset: index * postsPerPage,
-
-          // We need to tell the template how many posts to display too
-          postsPerPage,
-
-          nextPagePath: getPagePath(pageNumber + 1),
-          previousPagePath: getPagePath(pageNumber - 1),
-        },
-      })
-    })
-  )
+  return graphqlResult.data.allWpCategory.totalCount
 }
 
-/**
+  /**
  * This function queries Gatsby's GraphQL server and asks for
  * All WordPress blog posts. If there are any GraphQL error it throws an error
  * Otherwise it will return the posts 🙌
@@ -342,7 +248,7 @@ async function getCategory({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
     query WpCategory {
       # Query all WordPress blog posts sorted by date
-      allWpCategory {
+      allWpCategory(filter: {name: {ne: "Uncategorized"}}) {
         edges {
           # note: this is a GraphQL alias. It renames "node" to "post" for this query
           # We're doing this because this "node" is a post! It makes our code more readable further down the line.

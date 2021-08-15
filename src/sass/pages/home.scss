@@ -1,14 +1,20 @@
 // variables CSS 
 @import "@sass/default/variables";
 
-// import 
-@import "@sass/components/single-post-card";
+// import single card css
+@import "@sass/components/single-card";
+
+// import discover more css
+@import "@sass/components/discover-topics";
 
 .home-grid{
     grid-template-columns: repeat(8,1fr) repeat(4, minmax(48px, 1fr));
-    
 }
 
 .grid-post-items{
     grid-column: 1 / span 7;
+}
+
+.grid-sidebar{
+    grid-column: 9 / span 4;
 }

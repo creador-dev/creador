@@ -6,51 +6,19 @@ import Layout from "@components/layout"
 // import single post card
 import SingleCard from "@components/page-components/single-card"
 
+// import disciover topics
+import DiscoverTopics from "@components/page-components/discover-topics"
+
 // scss file
 import "@sass/pages/home.scss"
 
-const HomeTemplate = ({ data: { post }  }) => {
+const HomeTemplate = ({ data: { post, wpCategory }  }) => {
   
-  // shuffle items
-  // const shuffle = arr => arr.slice().sort(() => Math.random() - 0.5)
-  // shuffle(post.nodes)
-
   // Array of all articles
   const allPosts = post.nodes
 
-  // State for the list
-  const [list, setList] = useState([...allPosts.slice(0, 20)])
-
-  // State to trigger oad more
-  const [loadMore, setLoadMore] = useState(false)
-
-  // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allPosts.length > 10)
-
-  // Load more button click
-  const handleLoadMore = () => {
-    setLoadMore(true)
-  }
-
-  // Handle loading more articles
-  useEffect(() => {
-    if (loadMore && hasMore) {
-      const currentLength = list.length
-      const isMore = currentLength < allPosts.length
-      const nextResults = isMore
-        ? allPosts.slice(currentLength, currentLength + 10)
-        : []
-      setList([...list, ...nextResults])
-      setLoadMore(false)
-    }
-  }, [loadMore, hasMore]) //eslint-disable-line
-
-  //Check if there is more
-  useEffect(() => {
-    const isMore = list.length < allPosts.length
-    setHasMore(isMore)
-  }, [list]) //eslint-disable-line
-
+  // Array of all categories
+  const categories = wpCategory.nodes
 
   return(
     <Layout>
@@ -58,7 +26,7 @@ const HomeTemplate = ({ data: { post }  }) => {
         <div className="container grid-container home-grid">
           <div className="grid-post-items">
             <div>
-              {list.map((article) => (
+              {allPosts.map((article) => (
                 <SingleCard 
                   title={article.title} 
                   publishDate={article.date} 
@@ -71,14 +39,9 @@ const HomeTemplate = ({ data: { post }  }) => {
                 ></SingleCard>
               ))}
             </div>
-            {hasMore ? (
-              <div className="load-more-wrap">
-                <button className="hoverable load-more-btn" onClick={handleLoadMore}>Load More</button>
-              </div>
-            ) : ''}
           </div>
-          <div>
-
+          <div className="grid-sidebar">
+            <DiscoverTopics categories={categories}></DiscoverTopics>
           </div>
         </div>
       </section>
@@ -88,10 +51,23 @@ const HomeTemplate = ({ data: { post }  }) => {
 export default HomeTemplate
 
 export const pageQuery = graphql`
-  query WordPressPosts {
+  query WordPressPosts($catTotalCount: Int! = 0 ) {
+    wpCategory: allWpCategory(
+      limit: 10,
+      filter: {name: {ne: "Uncategorized"}},
+      skip: $catTotalCount
+    ) {
+        nodes {
+            name
+            link
+        }
+    }
+
     post: allWpPost(
       sort: { fields: [date], order: DESC }
+      limit: 30
     ) {
+      totalCount
       nodes {
         excerpt
         link

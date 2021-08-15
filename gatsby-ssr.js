@@ -13,6 +13,6 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
         data-position="Right" 
         data-x_margin="20" 
         data-y_margin="20">
-    </script>,
+    </script>
   ])
 }

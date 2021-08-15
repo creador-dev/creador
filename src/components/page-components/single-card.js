@@ -28,7 +28,7 @@ export default function SingleCard({ title, publishDate, excerpt, category, link
                         <div className="card-detail-wrap">
                             <span className="card-publish-date">{ publishDate } ·</span>
                             <span className="card-read-time">{ readingTime } min read ·</span> 
-                            <Link to={ category.link } className="card-category">{ category.name }</Link>
+                            <Link to={ category.link } className="card-category tags">{ category.name }</Link>
                         </div>
                         <div className="share-wrapper">
                             <FacebookShareButton  url={shareUrl}><FacebookIcon size={30} round={true} /></FacebookShareButton>

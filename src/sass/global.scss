@@ -189,19 +189,19 @@ pre {
     }
 }
 
-.load-more-wrap{
-    text-align: center;
-    margin-top: 40px;
-}
-
-.load-more-btn{
-    font-size: $font-sm;
-    background: $dark-yellow;
-    border-radius: 100px;
-    color: $white;
-    border: none;
-    padding: 12px 30px;
-}
+// .load-more-wrap{
+//     text-align: center;
+//     margin-top: 40px;
+//     .load-more-btn{
+//         font-size: $font-sm;
+//         background: $dark-yellow;
+//         border-radius: 100px;
+//         color: $white !important;
+//         border: none;
+//         padding: 10px 25px;
+//         cursor: pointer;
+//     }
+// }
 
 // scrollbar css
 #smoothScrollbar {
@@ -370,6 +370,13 @@ pre {
     letter-spacing: normal;
 }
 
+// tags color
+.tags{
+    border-radius: 100px;
+    background: $grey-bg;
+    color: $white;
+}
+
 // color based on theme mode light/dark
 .light-theme {
     color: $black;
@@ -377,11 +384,7 @@ pre {
 
     .global-header {
         background-color: $white;
-    }
-
-    .global-header.show,
-    .global-header.hide{
-        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
+        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
     }
 
     .footer-main-menu{
@@ -424,5 +427,10 @@ pre {
 
     .search-icon svg {
         fill: $white !important;
+    }
+
+    .tags{
+        border-radius: 100px;
+        background: $navy;
     }
 }

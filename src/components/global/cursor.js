@@ -47,12 +47,6 @@ export default function Cursor() {
             <circle cx="5" cy="5" r="4" strokeWidth="0"></circle>
           </svg>
         </div>
-        
-        {/* <div className="cursor__ball cursor__ball--small">
-          <svg height="10" width="10">
-            <circle cx="5" cy="5" r="4" strokeWidth="0"></circle>
-          </svg>
-        </div> */}
       </div>
     );
 }
