@@ -20,8 +20,8 @@ const HomeTemplate = ({ data: { post, wpCategory }  }) => {
   // Array of all categories
   const categories = wpCategory.nodes
 
-  return(
-    <Layout>
+  return( 
+    <Layout >
       <section>
         <div className="container grid-container home-grid">
           <div className="grid-post-items">
