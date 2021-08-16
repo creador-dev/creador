@@ -14,6 +14,7 @@
     "gatsby-image": "^3.3.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-gatsby-cloud": "^2.7.1",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^3.3.0",
     "gatsby-plugin-nprogress": "^3.10.0",
     "gatsby-plugin-offline": "^4.3.0",
@@ -35,9 +36,7 @@
     "react-helmet": "^5.2.1",
     "react-share": "^4.4.0",
     "sass": "^1.35.1",
-    "smooth-scrollbar": "^8.6.2",
-    "typeface-merriweather": "1.1.13",
-    "typeface-montserrat": "1.1.13"
+    "smooth-scrollbar": "^8.6.2"
   },
   "devDependencies": {
     "dumper.js": "^1.3.1",

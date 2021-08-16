@@ -9,6 +9,9 @@ import SingleCard from "@components/page-components/single-card"
 // import disciover topics
 import DiscoverTopics from "@components/page-components/discover-topics"
 
+// import mailchimp form
+import SubscribeForm from "@components/global/subscribe-form"
+
 // scss file
 import "@sass/pages/home.scss"
 
@@ -41,7 +44,10 @@ const HomeTemplate = ({ data: { post, wpCategory }  }) => {
             </div>
           </div>
           <div className="grid-sidebar">
+            {/* discover topics component */}
             <DiscoverTopics categories={categories}></DiscoverTopics>
+            {/* mailchimp subscribe form */}
+            <SubscribeForm></SubscribeForm>
           </div>
         </div>
       </section>

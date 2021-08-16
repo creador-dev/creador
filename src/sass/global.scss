@@ -145,13 +145,17 @@ pre {
     overflow-y: scroll;
 }
 
-// #___gatsby{
-//     *{
-//         cursor: none;
-//     }
-// }
+input[type="submit"],
+input[type="button"],
+button{
 
-// logo
+    // padding: 15px 30px;
+    // border: none;
+    // cursor: pointer;
+    // color: $white;
+    // background: $dark-yellow;
+    // border-radius: 2px;
+}
 
 .ellipse-fill{
     fill: $dark-yellow !important;
@@ -188,20 +192,6 @@ pre {
         height: auto !important;
     }
 }
-
-// .load-more-wrap{
-//     text-align: center;
-//     margin-top: 40px;
-//     .load-more-btn{
-//         font-size: $font-sm;
-//         background: $dark-yellow;
-//         border-radius: 100px;
-//         color: $white !important;
-//         border: none;
-//         padding: 10px 25px;
-//         cursor: pointer;
-//     }
-// }
 
 // scrollbar css
 #smoothScrollbar {

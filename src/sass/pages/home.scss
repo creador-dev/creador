@@ -7,6 +7,9 @@
 // import discover more css
 @import "@sass/components/discover-topics";
 
+// import subscribe form scss
+@import "@sass/components/subscribe-form";
+
 .home-grid{
     grid-template-columns: repeat(8,1fr) repeat(4, minmax(48px, 1fr));
 }
