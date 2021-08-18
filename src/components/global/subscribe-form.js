@@ -44,10 +44,10 @@ export default class SubscribeForm extends React.Component {
                 <div className="subscribe-image"></div>
                 <div>
                     <form onSubmit={this._handleSubmit}>
-                        <div className="form__group">
+                        <div className="hoverable form__group">
                             <input
                                 id="subscribeName"
-                                className="hoverable form__field"
+                                className="form__field"
                                 type="text"
                                 onChange={this._handleChange}
                                 placeholder="name"
@@ -56,10 +56,10 @@ export default class SubscribeForm extends React.Component {
                             />
                             <label htmlFor="subscribeName" className="form__label">Your Name*</label>
                         </div>
-                        <div className="form__group">
+                        <div className="hoverable form__group">
                             <input
                                 id="subscribeEmail"
-                                className="hoverable form__field"
+                                className="form__field"
                                 type="email"
                                 onChange={this._handleChange}
                                 placeholder="email"

@@ -32,9 +32,12 @@
 .pagination-wrapper{
     text-align: center;
     margin: 30px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .arrow{
         display: inline-block;
-        padding: 10px 15px;
+        padding: 10px 15px 6px;
         path{
             fill: $white;
         }
@@ -47,7 +50,9 @@
     }
 
     .next-arrow{
-        transform: rotate(180deg);
+        svg{
+            transform: rotate(180deg);
+        }
     }
 
     .pagination-number{

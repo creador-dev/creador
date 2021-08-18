@@ -58,7 +58,7 @@ const CategoryTemplate = ({
               {totalPages > 1 ? 
                 <div className="pagination-wrapper">
                   <Link className={previousPagePath ? "hoverable previous-arrow arrow":"previous-arrow arrow disabled" } to={previousPagePath} alt="previous"><Arrow></Arrow></Link>
-                  <span className="pagination-number">{pageNumber +' of '+ totalPages} </span>
+                  <span className="pagination-number">Page {pageNumber +' of '+ totalPages} </span>
                   <Link className={nextPagePath ? "hoverable next-arrow arrow":"next-arrow arrow disabled" } to={nextPagePath} alt="next"><Arrow></Arrow></Link>
                 </div> 
                 : ''
