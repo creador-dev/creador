@@ -3,18 +3,32 @@
 
 .subscribe-form{
     padding-right: 100px;
-    margin: 80px 0;
+    margin: 0 0 80px;
     h3{
-        font-size: 20px;
+        font-size: $font-xl;
         line-height: 28px;
         margin: 0 0 30px;
+    }
+}
+
+.message-block{
+    display: none;
+    font-size: $font-sm;
+    line-height: 18px;
+    color: green;
+    margin: 20px 0 0;
+    &.danger{
+        color: red;
+    }
+    &.show{
+        display: block;
     }
 }
 
 .subscribe-image{
     background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIg0KCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyINCgl4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMTAuMTE1IDMxMC4xMTUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMxMC4xMTUgMzEwLjExNTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KCTxnPg0KCQk8cGF0aCBzdHlsZT0iZmlsbDojRDA3QzQwOyIgZD0iTTMwOS42OTEsMTE2LjgyNGMtMS40MDEtNC4wNjktMy42MDUtNy45MDYtNi44NTItMTEuMTUzTDE3NS41OTUsOS4xNw0KCQljLTE2LjU5NC0xMi4yMjYtMjUuMDUxLTEyLjIyNi00MS4zNjQsMEw3LjUzNywxMDUuNjcxYy0zLjI0NywzLjI0Ny01LjQ2LDcuMDg0LTYuODYyLDExLjE1M2wxNTQuMjM3LDEzNS4zMDQNCgkJQzE1NC45MTMsMjUyLjEyOSwzMDkuNjkxLDExNi44MjQsMzA5LjY5MSwxMTYuODI0eiIvPg0KCQk8cGF0aCBzdHlsZT0iZmlsbDojRTRFN0U3OyIgZD0iTTM5LjA4MiwyOS44NTJoMjMxLjk1djE5My4yODJIMzkuMDgyVjI5Ljg1MnoiLz4NCgkJPHBhdGggc3R5bGU9ImZpbGw6I0Y5QTgyNjsiIGQ9Ik0xNi4zNTEsMjk3LjIwM2wxMzguNTIzLTEwNy45MDVsMTM4Ljg4LDEwNy45MTVjNS4xMzItMi42MTksOS4zNDYtNi42NzgsMTIuMTU4LTExLjcwNA0KCQlMMTc1LjU5NSwxODMuMTUyYy0xNi40NDktMTIuMTM5LTI1LjA5OS0xMi4zMzItNDEuMzY0LDBMNC4xMTYsMjg1LjM0NUM2LjkxOSwyOTAuNDI4LDExLjE1MiwyOTQuNTU1LDE2LjM1MSwyOTcuMjAzeiIvPg0KCQk8cGF0aCBzdHlsZT0iZmlsbDojQzJDNUM1OyIgZD0iTTc3Ljc0MSw3OC4xNzV2MTkuMzI5aDE1NC42MzRWNzguMTc1SDc3Ljc0MXogTTc3Ljc0MSwxMzYuMTUyaDE1NC42MzR2LTE5LjMySDc3Ljc0MVYxMzYuMTUyeiIvPg0KCQk8cGF0aCBzdHlsZT0iZmlsbDojRjlBODI2OyIgZD0iTTE1NS4wNTgsMjMyLjc5OWwxNTQuNjM0LTExNS45NzV2MTY0LjI5OGMwLDE2LjAxNC0xMi45OCwyOC45OTQtMjguOTk0LDI4Ljk5NEgyOS40MTgNCgkJYy0xNi4wMTQsMC0yOC45OTQtMTIuOTgtMjguOTk0LTI4Ljk5NFYxMTYuODI0QzAuNDI0LDExNi44MjQsMTU1LjA1OCwyMzIuNzk5LDE1NS4wNTgsMjMyLjc5OXoiLz4NCgkJPHBhdGggc3R5bGU9ImZpbGw6I0Y5QTgyNjsiIGQ9Ik0yODMuNzksMzA5Ljc5NmM2LjI2My0wLjY2NywxMS45MjYtMy4yODYsMTYuMzQzLTcuMzA2TDE1NC44NzQsMTg5LjI4OEw5Ljk1MywzMDIuNDkNCgkJYzQuNDI2LDQuMDMsMTAuMDgsNi42NCwxNi4zNjIsNy4zMTZMMjgzLjc5LDMwOS43OTZ6Ii8+DQoJCTxwYXRoIHN0eWxlPSJmaWxsOiNGOUQ3QTc7IiBkPSJNNC4xMTYsMjk1LjAwOWMyLjgwMyw1LjA4NCw3LjA0NSw5LjIxLDEyLjIzNSwxMS44NjhsMTM4LjUyMy0xMDcuODk2bDEzOC44OCwxMDcuOTA1DQoJCWM1LjEzMi0yLjYxOSw5LjM0Ni02LjY3OCwxMi4xNTgtMTEuNzA0TDE3NS41OTUsMTkyLjc5OGMtMTguMjU2LTEzLjUyMS0yMi42ODMtMTQuMTM5LTQxLjM2NCwwDQoJCUMxMzQuMjMsMTkyLjc5OCw0LjExNiwyOTUuMDA5LDQuMTE2LDI5NS4wMDl6Ii8+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KPC9zdmc+DQo=");
     width: 100%;
-    height: 140px;
+    height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -32,9 +46,10 @@
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 1px solid #bebebe;
     outline: 0;
-    font-size: 16px;
+    font-size: $font-md;
+    line-height: 22px;
     color: $black;
     padding: 7px 0;
     background: transparent;
@@ -52,7 +67,7 @@
 }
 
 .form__field:placeholder-shown ~ .form__label {
-    font-size: 16px;
+    font-size: $font-md;
     cursor: text;
     top: 20px;
 }
@@ -63,9 +78,9 @@ label,
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: 12px;
+    font-size: $font-xxs;
     letter-spacing: 0.5px;
-    color: #9b9b9b;
+    color: #8b8b8b;
 }
 
 .form__field:focus ~ .form__label {
@@ -93,7 +108,6 @@ label,
     // text-transform: uppercase;
     color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
     background-color: $dark-yellow;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     font-family: $medium;
     font-size: 14px;
     letter-spacing: 0.3px;
@@ -139,27 +153,27 @@ label,
 }
 
 /* Hover, Focus */
-.pure-material-button-contained:hover,
-.pure-material-button-contained:focus {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
-}
+// .pure-material-button-contained:hover,
+// .pure-material-button-contained:focus {
+//     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+// }
 
-.pure-material-button-contained:hover::before {
-    opacity: 0.08;
-}
+// .pure-material-button-contained:hover::before {
+//     opacity: 0.08;
+// }
 
-.pure-material-button-contained:focus::before {
-    opacity: 0.24;
-}
+// .pure-material-button-contained:focus::before {
+//     opacity: 0.24;
+// }
 
-.pure-material-button-contained:hover:focus::before {
-    opacity: 0.3;
-}
+// .pure-material-button-contained:hover:focus::before {
+//     opacity: 0.3;
+// }
 
 /* Active */
-.pure-material-button-contained:active {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
+// .pure-material-button-contained:active {
+//     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+// }
 
 .pure-material-button-contained:active::after {
     opacity: 0.32;
@@ -169,16 +183,13 @@ label,
 
 /* Disabled */
 .pure-material-button-contained:disabled {
-    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
-    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.12);
+    color: transparent;
     box-shadow: none;
     cursor: initial;
-}
-
-.pure-material-button-contained:disabled::before {
-    opacity: 0;
-}
-
-.pure-material-button-contained:disabled::after {
-    opacity: 0;
+    background-image: url('/loader.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    background-size: contain;
+    background-color: rgba(249, 168, 38, 0.85);
 }

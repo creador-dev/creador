@@ -1,0 +1,74 @@
+// variables CSS 
+@import "@sass/default/variables";
+
+// import single card css
+@import "@sass/components/single-card";
+
+// import discover more css
+@import "@sass/components/discover-topics";
+
+// import subscribe form scss
+@import "@sass/components/subscribe-form";
+
+.home-grid{
+    grid-template-columns: repeat(8,1fr) repeat(4, minmax(48px, 1fr));
+}
+
+.grid-post-items{
+    grid-column: 1 / span 7;
+}
+
+.grid-sidebar{
+    grid-column: 9 / span 4;
+}
+
+.category-page{
+    h2{
+        margin: 0 0 40px;
+    }
+}
+
+// pagination css
+.pagination-wrapper{
+    text-align: center;
+    margin: 30px 0 0;
+    .arrow{
+        display: inline-block;
+        padding: 10px 15px;
+        path{
+            fill: $white;
+        }
+    }
+
+    .disabled{
+        path{
+            fill: $navy;
+        }
+    }
+
+    .next-arrow{
+        transform: rotate(180deg);
+    }
+
+    .pagination-number{
+        display: inline-block;
+        padding: 5px 0;
+    }
+}
+
+.light-theme{
+    .pagination-wrapper{
+        .arrow{
+            path{
+                fill: $black;
+            }
+        }
+
+        .disabled{
+            path{
+                fill: $grey-bg;
+            }
+        }
+    }
+}
+

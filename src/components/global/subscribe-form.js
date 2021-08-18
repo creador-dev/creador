@@ -16,16 +16,24 @@ export default class SubscribeForm extends React.Component {
 
     _handleSubmit = e => {
         e.preventDefault()
+        const message = document.getElementById("messageBlock")
+        const submitBtn = document.getElementById("submitBtn")
+        submitBtn.disabled = true
         addToMailchimp(this.state.email, this.state)
         .then(({ msg, result }) => {
             if (result !== 'success') {
+                message.classList.add("danger", "show")
                 throw msg
+            } else {
+                message.classList.remove("danger")
+                message.classList.add("show")
             }
-            alert(msg)
+            message.innerHTML = msg
+            submitBtn.disabled = false
         })
         .catch(err => {
-            console.log('err', err)
-            alert(err)
+            message.innerHTML = err
+            submitBtn.disabled = false
         })
     }
 
@@ -46,7 +54,7 @@ export default class SubscribeForm extends React.Component {
                                 name="name"
                                 required
                             />
-                            <label for="subscribeName" className="form__label">Your Name*</label>
+                            <label htmlFor="subscribeName" className="form__label">Your Name*</label>
                         </div>
                         <div className="form__group">
                             <input
@@ -58,9 +66,10 @@ export default class SubscribeForm extends React.Component {
                                 name="email"
                                 required
                             />
-                            <label for="subscribeEmail" className="form__label">Your Email*</label>
+                            <label htmlFor="subscribeEmail" className="form__label">Your Email*</label>
                         </div>
-                        <input className="hoverable pure-material-button-contained" type="submit" value="Subscribe" />
+                        <div id="messageBlock" className="message-block"></div>
+                        <input className="hoverable pure-material-button-contained" id="submitBtn" type="submit" value="Subscribe" />
                     </form>
                 </div>
             </div>

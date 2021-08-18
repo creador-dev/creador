@@ -157,6 +157,15 @@ button{
     // border-radius: 2px;
 }
 
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: #fff !important;
+}
+
 .ellipse-fill{
     fill: $dark-yellow !important;
 }
@@ -389,6 +398,14 @@ button{
         .path-fill {
             fill: $black !important;
         }
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active  {
+        transition: background-color 5000s;
+        -webkit-text-fill-color: #000 !important;
     }
 }
 

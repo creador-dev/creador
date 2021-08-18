@@ -27,14 +27,40 @@ export default function SingleCard({ title, publishDate, excerpt, category, link
                     <div className="card-detail">
                         <div className="card-detail-wrap">
                             <span className="card-publish-date">{ publishDate } ·</span>
-                            <span className="card-read-time">{ readingTime } min read ·</span> 
-                            <Link to={ category.link } className="card-category tags">{ category.name }</Link>
+                            <span className="card-read-time">{ readingTime } min read </span> 
+                            {category ?
+                                <span>· <Link to={ category.link } className="card-category tags">{ category.name }</Link></span>
+                                : ''
+                            }
                         </div>
                         <div className="share-wrapper">
-                            <FacebookShareButton  url={shareUrl}><FacebookIcon size={30} round={true} /></FacebookShareButton>
-                            <LinkedinShareButton url={shareUrl}><LinkedinIcon size={30} round={true}></LinkedinIcon></LinkedinShareButton>
-                            <TwitterShareButton  url={shareUrl}><TwitterIcon size={30} round={true}></TwitterIcon></TwitterShareButton>
-                            <WhatsappShareButton url={shareUrl}><WhatsappIcon size={30} round={true}></WhatsappIcon></WhatsappShareButton>
+                            <FacebookShareButton  url={shareUrl}>
+                                <FacebookIcon 
+                                    size={30} 
+                                    round={true}
+                                />
+                            </FacebookShareButton>
+                            <LinkedinShareButton url={shareUrl}>
+                                <LinkedinIcon 
+                                    size={30} 
+                                    round={true}
+                                >
+                                </LinkedinIcon>
+                            </LinkedinShareButton>
+                            <TwitterShareButton  url={shareUrl}>
+                                <TwitterIcon 
+                                    size={30} 
+                                    round={true}
+                                >
+                                </TwitterIcon>
+                            </TwitterShareButton>
+                            <WhatsappShareButton url={shareUrl}>
+                                <WhatsappIcon 
+                                    size={30} 
+                                    round={true}
+                                >
+                                </WhatsappIcon>
+                            </WhatsappShareButton>
                         </div>                        
                     </div>
                 </div>

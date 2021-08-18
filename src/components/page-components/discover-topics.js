@@ -7,7 +7,7 @@ export default function DiscoverTopics(data) {
         <div className="discover-card">
             <h4>Discover More</h4>
             {categories.map((data) => (
-                <Link to={data.link} className="hoverable tags">{data.name}</Link>
+                <Link key={data.id} to={data.link} className="hoverable tags">{data.name}</Link>
             ))}
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "@components/layout"
@@ -6,10 +6,22 @@ import Layout from "@components/layout"
 // import single post card
 import SingleCard from "@components/page-components/single-card"
 
-// scss file
-import "@sass/pages/home.scss"
+// import disciover topics
+import DiscoverTopics from "@components/page-components/discover-topics"
 
-const CategoryTemplate = ({ data: { post, wpCategory }  }) => {
+// import mailchimp form
+import SubscribeForm from "@components/global/subscribe-form"
+
+// import arrow 
+import Arrow from "@components/icons/arrow"
+
+// scss file
+import "@sass/pages/listing-page.scss"
+
+const CategoryTemplate = ({ 
+  data: { post, wpCategory, categoryName }, 
+  pageContext: { nextPagePath, previousPagePath,  pageNumber, totalPages, name }
+}) => {
   
   // Array of all articles
   const allPosts = post.nodes
@@ -17,14 +29,21 @@ const CategoryTemplate = ({ data: { post, wpCategory }  }) => {
   // Array of all categories
   const categories = wpCategory.nodes
 
+  // category name
+  const categoryname = name
+
   return( 
     <Layout >
-      <section>
-        <div className="grid-container container">
-          
-            {allPosts.map((article) => (
-              <div>
+      <section className="category-page">
+        <div className="container">
+          <h2>{categoryname}</h2>
+        </div>
+        <div className="container grid-container home-grid">
+          <div className="grid-post-items">
+            <div>
+              {allPosts.map((article) => (
                 <SingleCard 
+                  key={article.id}
                   title={article.title} 
                   publishDate={article.date} 
                   excerpt={article.excerpt} 
@@ -32,12 +51,29 @@ const CategoryTemplate = ({ data: { post, wpCategory }  }) => {
                   readingTime={article.readingTime}
                   linkUrl={article.link}
                   shareUrl={process.env.BASE_URL+article.link} 
-                  category={article.categories.nodes[0]}
                 ></SingleCard>
-              </div>
-              
-            ))}
-          
+              ))}
+
+              {/* pagination */}
+              {totalPages > 1 ? 
+                <div className="pagination-wrapper">
+                  <Link className={previousPagePath ? "hoverable previous-arrow arrow":"previous-arrow arrow disabled" } to={previousPagePath} alt="previous"><Arrow></Arrow></Link>
+                  <span className="pagination-number">{pageNumber +' of '+ totalPages} </span>
+                  <Link className={nextPagePath ? "hoverable next-arrow arrow":"next-arrow arrow disabled" } to={nextPagePath} alt="next"><Arrow></Arrow></Link>
+                </div> 
+                : ''
+              }    
+
+            </div>
+          </div>
+          <div className="grid-sidebar">
+            {/* discover topics component */}
+            {categories.length ? 
+              <DiscoverTopics categories={categories}></DiscoverTopics> : ''
+            }
+            {/* mailchimp subscribe form */}
+            <SubscribeForm></SubscribeForm>
+          </div>
         </div>
       </section>
     </Layout>
@@ -46,24 +82,28 @@ const CategoryTemplate = ({ data: { post, wpCategory }  }) => {
 export default CategoryTemplate
 
 export const pageQuery = graphql`
-  query WordPressCategoryPosts($catTotalCount: Int! = 0 ) {
+  query WordPressCategoryListing($catTotalCount: Int! = 0, $id: String!, $offset: Int!, $postsPerPage: Int!) {    
     wpCategory: allWpCategory(
       limit: 10,
-      filter: {name: {ne: "Uncategorized"}},
+      filter: {name: {ne: "Uncategorized"}, count: {gt: 0}},
       skip: $catTotalCount
     ) {
         nodes {
-            name
-            link
+          id
+          name
+          link
         }
     }
 
     post: allWpPost(
       sort: { fields: [date], order: DESC }
-      limit: 30
+      filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}
+      limit: $postsPerPage,
+      skip: $offset
     ) {
       totalCount
       nodes {
+        id
         excerpt
         link
         date(formatString: "MMMM YYYY")

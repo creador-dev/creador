@@ -1,16 +1,6 @@
 const path = require(`path`)
 const chunk = require(`lodash/chunk`)
 
-// This is a simple debugging tool
-// dd() will prettily dump to the terminal and kill the process
-// const { dd } = require(`dumper.js`)
-
-/**
- * exports.createPages is a built-in Gatsby Node API.
- * It's purpose is to allow you to create pages for your site! 💡
- *
- * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
- */
 exports.createPages = async gatsbyUtilities => {
   // Query our posts from the GraphQL server
   const posts = await getPosts(gatsbyUtilities)
@@ -118,31 +108,115 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
  /**
  * This function creates all the individual categories in this site
  */
-const createIndividualCategory = async ({ categories, totalCount, gatsbyUtilities }) =>
-Promise.all(
-  categories.map(({ category }) =>
-    // createPage is an action passed to create categories
-    // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-    gatsbyUtilities.actions.createPage({
-      // Use the WordPress uri as the Gatsby page path
-      // This is a good idea so that internal links and menus work 👍
-      path: category.uri,
+// const createIndividualCategory = async ({ categories, totalCount, gatsbyUtilities }) =>
+// Promise.all(
+//   categories.map(({ category }) =>
+  
+//     // createPage is an action passed to create categories    
+//     await gatsbyUtilities.actions.createPage({
+//       // Use the WordPress uri as the Gatsby page path
+//       // This is a good idea so that internal links and menus work 👍
+//       path: category.uri,
 
-      // use the category template as the category component
-      component: path.resolve(`src/templates/category.js`),
+//       // use the category template as the category component
+//       component: path.resolve(`src/templates/category.js`),
 
-      // `context` is available in the template as a prop and
-      // as a variable in GraphQL.
-      context: {
-        // we need to add the category id here
-        // so our category template knows which category
-        // the current category is (when you open it in a browser)
-        id: category.id,
-        catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
-      },
-    })
-  )
-)
+//       // `context` is available in the template as a prop and
+//       // as a variable in GraphQL.
+//       context: {
+//         // we need to add the category id here
+//         // so our category template knows which category
+//         // the current category is (when you open it in a browser)
+//         id: category.id,
+//         slug: category.slug,
+//         catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
+//       },
+//     })
+//   )
+// )
+
+
+// create individual category pagination pages
+async function createIndividualCategory({ categories, totalCount, gatsbyUtilities }) {
+  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
+    {
+      wp {
+        readingSettings {
+          postsPerPage
+        }
+      }
+    }
+  `)
+
+  const { postsPerPage } = graphqlResult.data.wp.readingSettings
+
+  categories.map(({ category }) =>{
+    
+    const posts = category.posts.post
+    // If there are no posts in WordPress, don't do anything
+    if (!posts.length) {
+      return
+    }
+
+    const postsChunkedCategoryPages = chunk(posts, postsPerPage)
+    const totalPages = postsChunkedCategoryPages.length 
+
+    return Promise.all(
+      postsChunkedCategoryPages.map(async (_posts, index) => {
+        const pageNumber = index + 1
+  
+        function getPagePath(page , url){
+          const pageUrl = url + page
+          if (page > 0 && page <= totalPages) {
+            // Since our homepage is our blog page
+            // we want the first page to be "/" and any additional pages
+            // to be numbered.
+            // "/category/2" for example
+            return page === 1 ? `${url}` : `${pageUrl}`
+          }
+  
+          return null
+        }
+  
+        // createPage is an action passed to createPages
+        // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+        await gatsbyUtilities.actions.createPage({
+          path: getPagePath(pageNumber, category.uri),
+  
+          // use the category template as the category component
+          component: path.resolve(`src/templates/category.js`),
+  
+          // `context` is available in the template as a prop and
+          // as a variable in GraphQL.
+          context: {
+            // the index of our loop is the offset of which posts we want to display
+            // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
+            // etc
+            offset: index * postsPerPage,
+  
+            // We need to tell the template how many posts to display too
+            postsPerPage,
+  
+            id: category.id,
+            name: category.name,
+            catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1),
+            
+            pageNumber,
+            totalPages,
+            
+            // page path url 
+            nextPagePath: getPagePath(pageNumber + 1, category.uri),
+            previousPagePath: getPagePath(pageNumber - 1, category.uri),
+          },
+        })
+      })
+    )
+  })
+
+  
+
+  
+}
 
 
 
@@ -250,11 +324,17 @@ async function getCategory({ graphql, reporter }) {
       # Query all WordPress blog posts sorted by date
       allWpCategory(filter: {name: {ne: "Uncategorized"}}) {
         edges {
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
           category: node {
             id
+            name
             uri
+            count
+            posts {
+              post: nodes {
+                id
+                uri
+              }
+            }
           }
 
         }

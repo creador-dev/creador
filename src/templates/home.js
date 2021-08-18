@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { Link, graphql } from "gatsby"
+import React from "react"
+import { graphql } from "gatsby"
 
 import Layout from "@components/layout"
 
@@ -13,7 +13,7 @@ import DiscoverTopics from "@components/page-components/discover-topics"
 import SubscribeForm from "@components/global/subscribe-form"
 
 // scss file
-import "@sass/pages/home.scss"
+import "@sass/pages/listing-page.scss"
 
 const HomeTemplate = ({ data: { post, wpCategory }  }) => {
   
@@ -31,6 +31,7 @@ const HomeTemplate = ({ data: { post, wpCategory }  }) => {
             <div>
               {allPosts.map((article) => (
                 <SingleCard 
+                  key={article.id}
                   title={article.title} 
                   publishDate={article.date} 
                   excerpt={article.excerpt} 
@@ -45,7 +46,9 @@ const HomeTemplate = ({ data: { post, wpCategory }  }) => {
           </div>
           <div className="grid-sidebar">
             {/* discover topics component */}
-            <DiscoverTopics categories={categories}></DiscoverTopics>
+            {categories.length ? 
+              <DiscoverTopics categories={categories}></DiscoverTopics> : ''
+            }
             {/* mailchimp subscribe form */}
             <SubscribeForm></SubscribeForm>
           </div>
@@ -60,7 +63,7 @@ export const pageQuery = graphql`
   query WordPressPosts($catTotalCount: Int! = 0 ) {
     wpCategory: allWpCategory(
       limit: 10,
-      filter: {name: {ne: "Uncategorized"}},
+      filter: {name: {ne: "Uncategorized"}, count: {gt: 0}},
       skip: $catTotalCount
     ) {
         nodes {
@@ -75,6 +78,7 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
+        id
         excerpt
         link
         date(formatString: "MMMM YYYY")

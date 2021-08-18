@@ -1,17 +1,11 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import parse from "html-react-parser"
-import Image from "gatsby-image"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
 
 const PageTemplate = ({ data: { page }  }) => {
-  const featuredImage = {
-    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.fluid,
-    alt: page.featuredImage?.node?.alt || ``,
-  }
-
   return(
     <Layout>
       <Seo title={page.title} description={page.excerpt} />
