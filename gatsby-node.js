@@ -1,6 +1,17 @@
 const path = require(`path`)
 const chunk = require(`lodash/chunk`)
 
+// dot env file to load custom config
+if (process.env.STAGING) {
+  require("dotenv").config({
+    path: `.env.staging`,
+  })
+} else {
+  require("dotenv").config({
+    path: `.env`,
+  })
+}
+
 exports.createPages = async gatsbyUtilities => {
   // Query our posts from the GraphQL server
   const posts = await getPosts(gatsbyUtilities)
@@ -47,9 +58,16 @@ exports.createPages = async gatsbyUtilities => {
  */
 const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
-    posts.map(({ previous, post, next }) =>
+    posts.map(({ post }) => {
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+
+      const categoryArr = []
+      const ArrObject =  post.categories.nodes
+      ArrObject.map((categoryData) => {
+        categoryArr.push(categoryData.id)
+      })
+
       gatsbyUtilities.actions.createPage({
         // Use the WordPress uri as the Gatsby page path
         // This is a good idea so that internal links and menus work 👍
@@ -66,12 +84,13 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
           // the current page is (when you open it in a browser)
           id: post.id,
 
-          // We also use the next and previous id's to query them and add links!
-          previousPostId: previous ? previous.id : null,
-          nextPostId: next ? next.id : null,
+          baseUrl: process.env.BASE_URL,
+
+          categoryArr: categoryArr
+
         },
       })
-    )
+    })
   )
 
 
@@ -98,43 +117,14 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
          // so our page template knows which page
          // the current page is (when you open it in a browser)
          id: page.id,
+
+         baseUrl: process.env.BASE_URL,
+         
          catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
        },
      })
    )
  )
-
-
- /**
- * This function creates all the individual categories in this site
- */
-// const createIndividualCategory = async ({ categories, totalCount, gatsbyUtilities }) =>
-// Promise.all(
-//   categories.map(({ category }) =>
-  
-//     // createPage is an action passed to create categories    
-//     await gatsbyUtilities.actions.createPage({
-//       // Use the WordPress uri as the Gatsby page path
-//       // This is a good idea so that internal links and menus work 👍
-//       path: category.uri,
-
-//       // use the category template as the category component
-//       component: path.resolve(`src/templates/category.js`),
-
-//       // `context` is available in the template as a prop and
-//       // as a variable in GraphQL.
-//       context: {
-//         // we need to add the category id here
-//         // so our category template knows which category
-//         // the current category is (when you open it in a browser)
-//         id: category.id,
-//         slug: category.slug,
-//         catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
-//       },
-//     })
-//   )
-// )
-
 
 // create individual category pagination pages
 async function createIndividualCategory({ categories, totalCount, gatsbyUtilities }) {
@@ -150,7 +140,7 @@ async function createIndividualCategory({ categories, totalCount, gatsbyUtilitie
 
   const { postsPerPage } = graphqlResult.data.wp.readingSettings
 
-  categories.map(({ category }) =>{
+  categories.map(({ category }) => {
     
     const posts = category.posts.post
     // If there are no posts in WordPress, don't do anything
@@ -201,6 +191,8 @@ async function createIndividualCategory({ categories, totalCount, gatsbyUtilitie
             name: category.name,
             catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1),
             
+            baseUrl: process.env.BASE_URL,
+
             pageNumber,
             totalPages,
             
@@ -256,20 +248,19 @@ async function getPosts({ graphql, reporter }) {
       # Query all WordPress blog posts sorted by date
       allWpPost(sort: { fields: [date], order: DESC }) {
         edges {
-          previous {
-            id
-          }
 
           # note: this is a GraphQL alias. It renames "node" to "post" for this query
           # We're doing this because this "node" is a post! It makes our code more readable further down the line.
           post: node {
             id
             uri
+            categories {
+              nodes {
+                id
+              }
+            }
           }
 
-          next {
-            id
-          }
         }
       }
     }

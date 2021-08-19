@@ -1,0 +1,25 @@
+// variables CSS 
+@import "@sass/default/variables";
+
+.more-post-card{
+    .card-image{
+        position: relative;
+        padding-top: 72%;
+        height: 0;
+        min-width: 200px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        .gatsby-image-wrapper{
+            position: unset !important; 
+        }
+    }
+    h3{
+        font-size: $font-md;
+        line-height: 28px;
+        margin: 0 0 6px;
+    }
+
+    a::hover{
+        color: inherit !important;
+    }
+}

@@ -1,5 +1,6 @@
 // variables CSS 
 @import "@sass/default/variables";
+@import "@sass/components/more-post-card";
 
 .lead-image {
     margin: 60px 0 40px;
@@ -39,5 +40,52 @@ pre>code {
         background: $dark-slate;
         border-radius: .5em;
         box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
+    }
+}
+
+.comments-wrapper{
+    margin: 60px 0 0;
+}
+
+.author-post-info,
+.bio,
+.author-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.author-post-info{
+    justify-content: space-between;
+}
+
+.author-wrapper{
+    font-size: $font-sm;
+}
+
+.bio{
+    margin-right: 5px;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+}
+
+// morew posts grid
+.more-posts-section{
+    margin-top: 20px;
+    .section-heading{
+        margin: 0 0 30px;
+    }
+    .more-posts-wrapper{
+        padding: 60px 0 0;
+        border-top: 1px solid #ddd;
+        border-top-color: rgba(255, 255, 255, 0.2);
+    }
+    .more-posts-grid{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 30px;
+        grid-row-gap: 30px;
     }
 }

@@ -2,16 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
-import {
-    FacebookShareButton,
-    FacebookIcon,
-    LinkedinShareButton,
-    LinkedinIcon,
-    TwitterShareButton,
-    TwitterIcon,
-    WhatsappShareButton,
-    WhatsappIcon
-} from "react-share"
+
+// share icon
+import ShareIcons from "@components/global/shareIcons"
 
 export default function SingleCard({ title, publishDate, excerpt, category, linkUrl, featureImage, readingTime, shareUrl }) {
     const featuredImage = {
@@ -33,35 +26,7 @@ export default function SingleCard({ title, publishDate, excerpt, category, link
                                 : ''
                             }
                         </div>
-                        <div className="share-wrapper">
-                            <FacebookShareButton  url={shareUrl}>
-                                <FacebookIcon 
-                                    size={30} 
-                                    round={true}
-                                />
-                            </FacebookShareButton>
-                            <LinkedinShareButton url={shareUrl}>
-                                <LinkedinIcon 
-                                    size={30} 
-                                    round={true}
-                                >
-                                </LinkedinIcon>
-                            </LinkedinShareButton>
-                            <TwitterShareButton  url={shareUrl}>
-                                <TwitterIcon 
-                                    size={30} 
-                                    round={true}
-                                >
-                                </TwitterIcon>
-                            </TwitterShareButton>
-                            <WhatsappShareButton url={shareUrl}>
-                                <WhatsappIcon 
-                                    size={30} 
-                                    round={true}
-                                >
-                                </WhatsappIcon>
-                            </WhatsappShareButton>
-                        </div>                        
+                        <ShareIcons shareUrl={shareUrl} pageTypePost={false}></ShareIcons>                
                     </div>
                 </div>
                 <div>

@@ -15,7 +15,10 @@ import SubscribeForm from "@components/global/subscribe-form"
 // scss file
 import "@sass/pages/listing-page.scss"
 
-const HomeTemplate = ({ data: { post, wpCategory }  }) => {
+const HomeTemplate = ({ 
+  data: { post, wpCategory }, 
+  pageContext: { baseUrl }  
+}) => {
   
   // Array of all articles
   const allPosts = post.nodes
@@ -38,7 +41,7 @@ const HomeTemplate = ({ data: { post, wpCategory }  }) => {
                   featureImage={article.featuredImage}
                   readingTime={article.readingTime}
                   linkUrl={article.link}
-                  shareUrl={process.env.BASE_URL+article.link} 
+                  shareUrl={baseUrl+article.link} 
                   category={article.categories.nodes[0]}
                 ></SingleCard>
               ))}

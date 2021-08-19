@@ -99,6 +99,10 @@ p {
     margin: 22px 0;
 }
 
+a{
+    cursor: pointer;
+}
+
 blockquote {
     margin: 50px 50px 100px;
 
@@ -130,6 +134,11 @@ figcaption {
     font-family: $italic;
     text-align: center;
     margin: 10px 0 0;
+}
+
+figure {
+    margin: 0;
+    text-align: center;
 }
 
 img {
@@ -199,6 +208,15 @@ input:-webkit-autofill:active  {
     svg {
         width: 100% !important;
         height: auto !important;
+    }
+}
+
+// share icons
+.share-wrapper{
+    line-height: 0;
+    margin-right: -5px;
+    button{
+        margin: 0 5px;
     }
 }
 

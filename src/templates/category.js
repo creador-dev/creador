@@ -20,7 +20,7 @@ import "@sass/pages/listing-page.scss"
 
 const CategoryTemplate = ({ 
   data: { post, wpCategory, categoryName }, 
-  pageContext: { nextPagePath, previousPagePath,  pageNumber, totalPages, name }
+  pageContext: { nextPagePath, previousPagePath,  pageNumber, totalPages, baseUrl, name }
 }) => {
   
   // Array of all articles
@@ -50,7 +50,7 @@ const CategoryTemplate = ({
                   featureImage={article.featuredImage}
                   readingTime={article.readingTime}
                   linkUrl={article.link}
-                  shareUrl={process.env.BASE_URL+article.link} 
+                  shareUrl={baseUrl+article.link} 
                 ></SingleCard>
               ))}
 
