@@ -49,7 +49,13 @@ const BlogPostTemplate = ({
               <Bio />
               <div className="post-date-readtime">{post.date} · {post.readingTime} min read</div>
             </div>
-            <ShareIcons shareUrl={shareUrl} pageTypePost={true}></ShareIcons>
+            <ShareIcons 
+              shareUrl={shareUrl} 
+              title={post.title} 
+              categories={post.categories.nodes}
+              featuredImage={featuredImage} 
+              pageTypePost={true}
+            ></ShareIcons>
           </div>
         </div>
         <div className="lead-image">
@@ -116,6 +122,11 @@ export const pageQuery = graphql`
       link
       date(formatString: "MMMM DD, YYYY")
       slug
+      categories {
+        nodes {
+          name
+        }
+      }
       readingTime
       featuredImage {
         node {

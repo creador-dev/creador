@@ -6,7 +6,7 @@ import parse from "html-react-parser"
 // share icon
 import ShareIcons from "@components/global/shareIcons"
 
-export default function SingleCard({ title, publishDate, excerpt, category, linkUrl, featureImage, readingTime, shareUrl }) {
+export default function SingleCard({ title, publishDate, excerpt, category, categories, linkUrl, featureImage, readingTime, shareUrl }) {
     const featuredImage = {
         fluid: featureImage?.node?.localFile?.childImageSharp?.fluid,
         alt: featureImage?.node?.alt || ``,
@@ -26,7 +26,13 @@ export default function SingleCard({ title, publishDate, excerpt, category, link
                                 : ''
                             }
                         </div>
-                        <ShareIcons shareUrl={shareUrl} pageTypePost={false}></ShareIcons>                
+                        <ShareIcons 
+                            shareUrl={shareUrl} 
+                            title={title} 
+                            categories={categories}
+                            featuredImage={featuredImage} 
+                            pageTypePost={false}
+                        ></ShareIcons>                
                     </div>
                 </div>
                 <div>

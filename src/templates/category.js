@@ -51,6 +51,7 @@ const CategoryTemplate = ({
                   readingTime={article.readingTime}
                   linkUrl={article.link}
                   shareUrl={baseUrl+article.link} 
+                  categories={article.categories.nodes}
                 ></SingleCard>
               ))}
 

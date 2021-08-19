@@ -17,30 +17,61 @@ import {
     TelegramIcon,
 } from "react-share"
 
-export default function ShareIcons({ shareUrl, pageTypePost }) {
+export default function ShareIcons({ shareUrl, title, pageTypePost, categories, featuredImage }) {
+
+    const tagsArr = []
+    let fbTag = ''
+
+    if(categories.length){
+        categories.map(( item ) => {
+            tagsArr.push(item.name)
+        })
+
+        const max = tagsArr.length
+        const min = 0
+        fbTag = '#'+tagsArr[Math.floor(Math.random() * (max - min) + min)]
+    }
+
     return (
         <div className="share-wrapper hoverable">
-            <FacebookShareButton  url={shareUrl}>
+            <FacebookShareButton  
+                url={shareUrl}
+                quote={title}
+                hashtag={fbTag}
+            >   
                 <FacebookIcon 
                     size={30} 
                     round={true}
                 />
             </FacebookShareButton>
-            <TwitterShareButton  url={shareUrl}>
+            <TwitterShareButton  
+                url={shareUrl}
+                title={title}
+                hashtags={tagsArr}
+            >
                 <TwitterIcon 
                     size={30} 
                     round={true}
                 >
                 </TwitterIcon>
             </TwitterShareButton>
-            <WhatsappShareButton url={shareUrl}>
+            <WhatsappShareButton
+                url={shareUrl}
+                title={title}
+                separator=":: "
+            >
                 <WhatsappIcon 
                     size={30} 
                     round={true}
                 >
                 </WhatsappIcon>
             </WhatsappShareButton>
-            <RedditShareButton url={shareUrl}>
+            <RedditShareButton
+                url={shareUrl}
+                title={title}
+                windowWidth={660}
+                windowHeight={460}    
+            >
                 <RedditIcon 
                     size={30} 
                     round={true}
@@ -48,7 +79,10 @@ export default function ShareIcons({ shareUrl, pageTypePost }) {
                 </RedditIcon>
             </RedditShareButton>
             {pageTypePost ?
-                <PinterestShareButton url={shareUrl}>
+                <PinterestShareButton 
+                    url={shareUrl}
+                    media={`${String(window.location.origin)}/${featuredImage.fluid.src}`}
+                >
                     <PinterestIcon 
                         size={30} 
                         round={true}
@@ -58,7 +92,9 @@ export default function ShareIcons({ shareUrl, pageTypePost }) {
                 : ""
             }
             {pageTypePost ?
-                <LinkedinShareButton url={shareUrl}>
+                <LinkedinShareButton 
+                    url={shareUrl}
+                >
                     <LinkedinIcon 
                         size={30} 
                         round={true}
@@ -68,7 +104,10 @@ export default function ShareIcons({ shareUrl, pageTypePost }) {
                 : ""
             }
             {pageTypePost ?
-                <TelegramShareButton url={shareUrl}>
+                <TelegramShareButton
+                    url={shareUrl}
+                    title={title}
+                >
                     <TelegramIcon 
                         size={30} 
                         round={true}
