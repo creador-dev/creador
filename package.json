@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@lyket/react": "^1.4.7",
     "@vtex/gatsby-plugin-onesignal": "^0.1.0-alpha.1",
     "disqus-react": "^1.1.1",
     "dotenv": "^10.0.0",

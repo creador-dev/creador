@@ -80,12 +80,42 @@ pre>code {
     }
     .more-posts-wrapper{
         padding: 60px 0 0;
-        border-top: 1px solid #ddd;
-        border-top-color: rgba(255, 255, 255, 0.2);
     }
     .more-posts-grid{
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 30px;
         grid-row-gap: 30px;
     }
+}
+
+// post footer
+.post-footer{
+    margin: 80px 0 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $light-black;
+    .post-cta{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 25px 0 0;
+    }
+}
+
+.post-categories .tags{
+    display: inline-block;
+    font-size: $font-xs;
+    padding: 8px 10px;
+    margin: 0 8px 8px 0;
+    border-radius: 3px;
+}
+
+.dark-theme{
+    .post-footer{
+        border-bottom: 1px solid $white-border;
+        border-bottom-color: $grey-border;
+    }
+
+    .clap-button svg{
+        fill: $white !important;
+    }    
 }

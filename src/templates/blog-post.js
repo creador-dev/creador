@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 
@@ -18,6 +18,9 @@ import MorePostsCard from "@components/page-components/more-posts-card"
 // import comments
 import Comments from "@components/page-components/comments"
 
+// import clap button
+import PostClapButton from "@components/page-components/clap-button"
+
 // import page css
 import "@sass/pages/single-post.scss"
 
@@ -32,6 +35,8 @@ const BlogPostTemplate = ({
   }
 
   const shareUrl = baseUrl+post.link
+
+  const postCategories = post.categories.nodes
 
   useEffect(() => {
     helper.highlightCode()
@@ -52,7 +57,7 @@ const BlogPostTemplate = ({
             <ShareIcons 
               shareUrl={shareUrl} 
               title={post.title} 
-              categories={post.categories.nodes}
+              categories={postCategories}
               featuredImage={featuredImage} 
               pageTypePost={true}
             ></ShareIcons>
@@ -72,9 +77,35 @@ const BlogPostTemplate = ({
           <section itemProp="articleBody">
             <div className="article-container">
               {parse(post.content)}
+              <div className="post-footer">
+                <div className="post-categories">
+                  {postCategories.length ? 
+                    postCategories.map(( item ) => {
+                      return <Link to={item.link} className="hoverable tags">{item.name}</Link>
+                    })
+                    : ""
+                  }
+                </div>
+                <div className="post-cta">
+                  <PostClapButton postId={post.id}></PostClapButton>
+                  <ShareIcons 
+                    shareUrl={shareUrl} 
+                    title={post.title} 
+                    categories={postCategories}
+                    featuredImage={featuredImage} 
+                    pageTypePost={true}
+                  ></ShareIcons>
+                </div>
+              </div>            
             </div>
           </section>
         )}
+
+        <section className="comments-wrapper">
+          <div className="article-container">
+            <Comments slug={ post.slug } title={ post.title }></Comments>
+          </div>
+        </section>  
         
         {morePosts ?
           <section className="more-posts-section">
@@ -90,14 +121,7 @@ const BlogPostTemplate = ({
             </div>
           </section>
           : ""
-        }
-        
-
-        <section className="comments-wrapper">
-          <div className="article-container">
-            <Comments slug={ post.slug } title={ post.title }></Comments>
-          </div>
-        </section>        
+        }      
 
       </article>
       
@@ -124,7 +148,9 @@ export const pageQuery = graphql`
       slug
       categories {
         nodes {
+          id
           name
+          link
         }
       }
       readingTime
