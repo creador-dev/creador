@@ -237,6 +237,9 @@ input:-webkit-autofill:active  {
 .scroll-content {
     padding-top: 140px;
     will-change: transform;
+    @include for-small-devices{
+        padding-top: 120px;
+    }
 }
 
 .scrollbar-track {
@@ -351,6 +354,12 @@ input:-webkit-autofill:active  {
 .global-footer {
     margin: 100px 0 0;
     padding: 50px 0;
+
+    @include for-small-devices{
+        margin: 0;
+        padding: 50px 0 100px;
+    }
+
     .footer-grid{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-column-gap: 30px;
@@ -365,14 +374,33 @@ input:-webkit-autofill:active  {
         grid-column: 1 / -1;
         text-align: right;
         padding-top: 20px;
+
+        @include for-small-devices{
+            display: grid;
+        }
+
         a{
             padding: 0 15px;
+            
+            @include for-small-devices{
+                padding: 0 10px;
+            }
         }
     }
 
     .menu-links{
         margin-right: -15px;
         float: right;
+
+        @include for-small-devices{
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            // margin-right: 0;
+            // margin-bottom: 15px;
+            margin: 0 -10px 15px -10px;
+        }
+
     }
 
     .copyright-text,
@@ -384,6 +412,10 @@ input:-webkit-autofill:active  {
     .copyright-text{
         float: left;
         line-height: 1.8;
+
+        @include for-small-devices{
+            order: 2;
+        }
     }
 
     .footer-menu-wrap a{
@@ -408,8 +440,7 @@ input:-webkit-autofill:active  {
         font-size: $font-sm;
     }
 
-    .grid-footer-menu,
-    .menu-links{
+    .grid-footer-menu{
         @include for-small-devices{
             display: none;
         }

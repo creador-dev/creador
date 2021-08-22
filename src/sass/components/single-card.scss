@@ -18,6 +18,16 @@
         @include for-below-desktop{
             grid-row: span 1;
         }
+
+        @include for-mobile{
+            order: 1;
+        }
+    }
+
+    .card-info{
+        @include for-mobile{
+            order: 2;
+        }
     }
 
     .grid-card-share{
@@ -27,6 +37,7 @@
 
         @include for-mobile{
             grid-column: span 1;
+            order: 3;
         }
     }
 

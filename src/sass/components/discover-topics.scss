@@ -3,6 +3,11 @@
 
 .discover-card{
     margin: 0 0 80px;
+    
+    @include for-small-devices{
+        margin: 60px 0 40px;
+    }
+    
     h4{
         margin: 0 0 30px;
     }

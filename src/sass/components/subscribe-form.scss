@@ -9,6 +9,10 @@
         padding-right: 0;
     }
 
+    @include for-small-devices{
+        margin: 0 0 40px;
+    }
+
     h3{
         font-size: $font-xl;
         line-height: 28px;
