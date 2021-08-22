@@ -17,6 +17,19 @@ export default function SingleCard({ title, publishDate, excerpt, category, cate
                 <div className="card-info">
                     <h3>{ title }</h3>
                     <div className="excerpt">{ parse(excerpt) }</div>
+                </div>
+                <div className="grid-card-image">
+                    <div className="feature-image">
+                        {/* if we have a featured image for this post let's display it */}
+                        {featuredImage?.fluid && (
+                            <Image
+                                fluid={featuredImage.fluid}
+                                alt={featuredImage.alt}
+                            />
+                        )}
+                    </div>
+                </div>
+                <div className="grid-card-share">
                     <div className="card-detail">
                         <div className="card-detail-wrap">
                             <span className="card-publish-date">{ publishDate } ·</span>
@@ -33,17 +46,6 @@ export default function SingleCard({ title, publishDate, excerpt, category, cate
                             featuredImage={featuredImage} 
                             pageTypePost={false}
                         ></ShareIcons>                
-                    </div>
-                </div>
-                <div>
-                    <div className="feature-image">
-                        {/* if we have a featured image for this post let's display it */}
-                        {featuredImage?.fluid && (
-                            <Image
-                                fluid={featuredImage.fluid}
-                                alt={featuredImage.alt}
-                            />
-                        )}
                     </div>
                 </div>
             </div>

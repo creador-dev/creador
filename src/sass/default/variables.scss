@@ -53,6 +53,13 @@ $blur: blur(10px);
     }
 }
 
+// media queries
+@mixin for-below-desktop {
+    @media (max-width: 1279px) {
+        @content;
+    }
+}
+
 @mixin for-tablet-horizontal {
     @media (min-width: 992px) and (max-width: 1279px) {
         @content;

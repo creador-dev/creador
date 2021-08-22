@@ -184,16 +184,17 @@ input:-webkit-autofill:active  {
     max-width: 1200px;
     margin: 0 auto;
 
-    @include for-mobile {
-        margin: 0 15px;
-    }
-
     @include for-tablet-horizontal {
         max-width: 860px;
     }
 
     @include for-tablet-vertical {
         max-width: 550px;
+    }
+
+    @include for-small-devices {
+        max-width: 100%;
+        margin: 0 15px !important;
     }
 }
 
@@ -217,6 +218,10 @@ input:-webkit-autofill:active  {
     margin-right: -5px;
     button{
         margin: 0 5px;
+    }
+
+    @include for-mobile{
+        margin: 20px 0 0 -5px;
     }
 }
 
@@ -278,9 +283,25 @@ input:-webkit-autofill:active  {
         grid-column-gap: 30px;
         height: 100%;
         align-items: center;
+
+        @include for-tablet-horizontal{
+            grid-template-columns: 2fr 7fr 1.5fr;
+            grid-column-gap: 10px;
+        }
+
+        @include for-small-devices{
+            grid-template-columns: 1fr 1fr;
+        }
     }
 
     // primary menu css
+
+    .grid-primary-menu{
+        @include for-small-devices{
+            display: none;
+        }
+    }
+
     .primary-menu {
         text-align: center;
 
@@ -297,6 +318,10 @@ input:-webkit-autofill:active  {
 
             a {
                 padding: 20px 35px;
+
+                @include for-tablet-horizontal{
+                    padding: 20px 20px;
+                }
             }
         }
     }
@@ -330,6 +355,10 @@ input:-webkit-autofill:active  {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-column-gap: 30px;
         grid-row-gap: 30px;
+
+        @include for-small-devices{
+            grid-template-columns: 1fr;
+        }
     }
 
     .footer-main-menu{
@@ -377,6 +406,13 @@ input:-webkit-autofill:active  {
     
     .sub-item{
         font-size: $font-sm;
+    }
+
+    .grid-footer-menu,
+    .menu-links{
+        @include for-small-devices{
+            display: none;
+        }
     }
 }
 
@@ -457,5 +493,12 @@ input:-webkit-autofill:active  {
     .tags{
         border-radius: 100px;
         background: $navy;
+    }
+}
+
+// detect touch devices
+@media (hover: none) {
+    .cursor{
+        display: none;
     }
 }

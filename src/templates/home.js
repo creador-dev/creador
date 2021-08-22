@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "@components/layout"
+import Seo from "@components/global/seo"
 
 // import single post card
 import SingleCard from "@components/page-components/single-card"
@@ -16,7 +17,7 @@ import SubscribeForm from "@components/global/subscribe-form"
 import "@sass/pages/listing-page.scss"
 
 const HomeTemplate = ({ 
-  data: { post, wpCategory }, 
+  data: { post, wpCategory, page }, 
   pageContext: { baseUrl }  
 }) => {
   
@@ -26,8 +27,20 @@ const HomeTemplate = ({
   // Array of all categories
   const categories = wpCategory.nodes
 
+  const featuredImage = {
+    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    alt: page.featuredImage?.node?.alt || ``,
+  }
+
+  const seoImage = featuredImage.fluid ?  featuredImage.fluid.src : null
+
   return( 
     <Layout >
+      <Seo 
+        image={seoImage}
+        seo={page.seo}
+        baseUrl={baseUrl}
+      />
       <section>
         <div className="container grid-container home-grid">
           <div className="grid-post-items">
@@ -64,16 +77,45 @@ const HomeTemplate = ({
 export default HomeTemplate
 
 export const pageQuery = graphql`
-  query WordPressPosts($catTotalCount: Int! = 0 ) {
+  query WordPressPosts($catTotalCount: Int! = 0, $id: String! ) {
     wpCategory: allWpCategory(
       limit: 10,
       filter: {name: {ne: "Uncategorized"}, count: {gt: 0}},
       skip: $catTotalCount
     ) {
         nodes {
-            name
-            link
+          name
+          link
         }
+    }
+
+    # selecting the current post by id
+    page: wpPage(id: { eq: $id }) {
+      id
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1000, quality: 100) {
+                ...GatsbyImageSharpFluid_tracedSVG
+              }
+            }
+          }
+        }
+      }
+      seo {
+        title
+        metaDesc
+        opengraphAuthor
+        opengraphSiteName
+        opengraphType
+        opengraphUrl
+        breadcrumbs {
+          text
+          url
+        }
+      }
     }
 
     post: allWpPost(
@@ -107,6 +149,18 @@ export const pageQuery = graphql`
             }
           }
       	}
+        seo {
+          title
+          metaDesc
+          opengraphAuthor
+          opengraphSiteName
+          opengraphType
+          opengraphUrl
+          breadcrumbs {
+            text
+            url
+          }
+        }
       }
     }
   }

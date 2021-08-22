@@ -11,16 +11,25 @@
 @import "@sass/components/subscribe-form";
 
 .home-grid{
-    grid-template-columns: repeat(8,1fr) repeat(4, minmax(48px, 1fr));
+    grid-template-columns: 7fr 4fr;
+    grid-column-gap: 100px;
+    
+    @include for-below-desktop{
+        grid-column-gap: 50px;
+    }
+
+    @include for-small-devices {
+        grid-template-columns: 1fr;
+    }
 }
 
-.grid-post-items{
-    grid-column: 1 / span 7;
-}
+// .grid-post-items{
+//     grid-column: 1 / span 7;
+// }
 
-.grid-sidebar{
-    grid-column: 9 / span 4;
-}
+// .grid-sidebar{
+//     grid-column: 9 / span 4;
+// }
 
 .category-page{
     h2{

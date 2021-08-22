@@ -5,10 +5,25 @@ import parse from "html-react-parser"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
 
-const PageTemplate = ({ data: { page }  }) => {
+const PageTemplate = ({ 
+  data: { page }, 
+  pageContext: { baseUrl }  
+}) => {
+
+  const featuredImage = {
+    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    alt: page.featuredImage?.node?.alt || ``,
+  }
+
+  const seoImage = featuredImage ?  featuredImage.fluid?.src : null
+
   return(
     <Layout>
-      <Seo title={page.title} description={page.excerpt} />
+      <Seo 
+        image={seoImage}
+        seo={page.seo}
+        baseUrl={baseUrl}
+      />
 
       <section>
         <div className="container">
@@ -49,6 +64,18 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+      }
+      seo {
+        title
+        metaDesc
+        opengraphAuthor
+        opengraphSiteName
+        opengraphType
+        opengraphUrl
+        breadcrumbs {
+          text
+          url
         }
       }
     }

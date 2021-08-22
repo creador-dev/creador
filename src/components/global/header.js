@@ -43,7 +43,7 @@ const Header = () => {
             <SvgLogo></SvgLogo>
           </Link>
         </div>
-        <div>
+        <div className="grid-primary-menu">
           <div className="primary-menu menu-items">
             <ul>
               {menuItems.map((data) => {

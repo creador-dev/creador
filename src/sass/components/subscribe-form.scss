@@ -4,6 +4,11 @@
 .subscribe-form{
     padding-right: 100px;
     margin: 0 0 80px;
+
+    @include for-below-desktop{
+        padding-right: 0;
+    }
+
     h3{
         font-size: $font-xl;
         line-height: 28px;

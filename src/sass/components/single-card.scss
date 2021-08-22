@@ -2,20 +2,39 @@
 @import "@sass/default/variables";
 
 .single-card{
-    display: flex;
-    flex: 1 1 auto;
+    grid-template-columns: 7fr 3fr;
+    grid-gap: 25px;
     padding: 40px 0;
     border-bottom: 1px solid $white-border;
     border-bottom-color: $grey-border;
+
+    @include for-mobile{
+        grid-template-columns: 1fr;
+    }
+
+    .grid-card-image{
+        grid-row: span 2;
+
+        @include for-below-desktop{
+            grid-row: span 1;
+        }
+    }
+
+    .grid-card-share{
+        @include for-below-desktop{
+            grid-column: span 2;
+        }
+
+        @include for-mobile{
+            grid-column: span 1;
+        }
+    }
+
     h3{
         font-size: $font-xl;
         line-height: 28px;
         max-height: 60px;
         margin: 0 0 6px;
-    }
-
-    .card-info{
-        margin-right: 20px;
     }
 
     .feature-image{
@@ -43,6 +62,7 @@
         line-height: 20px;
         max-height: 40px;
         color: $grey;
+        margin-bottom: 0;
     }
 
     h3,
@@ -58,14 +78,17 @@
     .card-detail{
         display: flex;
         justify-content: space-between;
-        margin-top: 15px;
         font-size: $font-xxs;
         letter-spacing: 0.5px;
+
+        @include for-mobile{
+            display: block;
+        }
     }
 
     .card-detail-wrap{
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         align-items: center;
     }
 

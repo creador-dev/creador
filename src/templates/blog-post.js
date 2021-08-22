@@ -38,16 +38,22 @@ const BlogPostTemplate = ({
 
   const postCategories = post.categories.nodes
 
+  const seoImage = featuredImage.fluid ?  featuredImage.fluid?.src : null
+
   useEffect(() => {
     helper.highlightCode()
   })
 
   return (
     <Layout>
-      <Seo title={post.title} description={post.excerpt} />
+      <Seo 
+        image={seoImage}
+        seo={post.seo}
+        baseUrl={baseUrl}
+      />
       
       <article className="blog-post">
-        <div className="article-container">
+        <div className="container article-container">
           <h1 itemProp="headline">{parse(post.title)}</h1>
           <div className="author-post-info">
             <div className="author-wrapper">
@@ -75,7 +81,7 @@ const BlogPostTemplate = ({
 
         {!!post.content && (
           <section itemProp="articleBody">
-            <div className="article-container">
+            <div className="container article-container">
               {parse(post.content)}
               <div className="post-footer">
                 <div className="post-categories">
@@ -87,7 +93,7 @@ const BlogPostTemplate = ({
                   }
                 </div>
                 <div className="post-cta">
-                  <PostClapButton postId={post.id}></PostClapButton>
+                  {/* <PostClapButton postId={post.id}></PostClapButton> */}
                   <ShareIcons 
                     shareUrl={shareUrl} 
                     title={post.title} 
@@ -102,14 +108,14 @@ const BlogPostTemplate = ({
         )}
 
         <section className="comments-wrapper">
-          <div className="article-container">
+          <div className="container article-container">
             <Comments slug={ post.slug } title={ post.title }></Comments>
           </div>
         </section>  
         
         {morePosts ?
           <section className="more-posts-section">
-            <div className="article-container more-posts-wrapper">
+            <div className="container article-container more-posts-wrapper">
               <h3 className="section-heading">More posts</h3>
               <div className="grid-container more-posts-grid">
                 {morePosts.nodes.map((item) =>
@@ -164,6 +170,18 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+      }
+      seo {
+        title
+        metaDesc
+        opengraphAuthor
+        opengraphSiteName
+        opengraphType
+        opengraphUrl
+        breadcrumbs {
+          text
+          url
         }
       }
     }

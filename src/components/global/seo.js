@@ -10,7 +10,13 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-const Seo = ({ description, lang, meta, title }) => {
+const Seo = ({  
+  lang, 
+  meta, 
+  image,
+  seo,
+  baseUrl
+}) => {
   const { wp, wpUser } = useStaticQuery(
     graphql`
       query {
@@ -20,17 +26,20 @@ const Seo = ({ description, lang, meta, title }) => {
             description
           }
         }
-
-        # if there's more than one user this would need to be filtered to the main user
-        wpUser {
-          twitter: name
-        }
+        # # if there's more than one user this would need to be filtered to the main user
+        # wpUser {
+        #   twitter: name
+        # }
       }
     `
   )
 
-  const metaDescription = description || wp.generalSettings?.description
+  const metaDescription = seo.metaDesc || wp.generalSettings?.description
+  const title = seo.title || wp.generalSettings?.title
   const defaultTitle = wp.generalSettings?.title
+  const metaUrl = baseUrl+seo.opengraphUrl
+  const metaType = seo.opengraphType
+  const metaImage = baseUrl+(image ? image : "/seo-image.svg")
 
   return (
     <Helmet
@@ -38,11 +47,19 @@ const Seo = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `%s` : null}
       meta={[
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          property: `og:url`,
+          content: metaUrl,
+        },
+        {
+          property: `og:type`,
+          content: metaType,
         },
         {
           property: `og:title`,
@@ -53,16 +70,16 @@ const Seo = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: `og:image`,
+          content: metaImage,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
-          content: wpUser?.twitter || ``,
+          content: `@pwnkumar221`,
         },
         {
           name: `twitter:title`,

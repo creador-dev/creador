@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "@components/layout"
+import Seo from "@components/global/seo"
 
 // import single post card
 import SingleCard from "@components/page-components/single-card"
@@ -19,7 +20,7 @@ import Arrow from "@components/icons/arrow"
 import "@sass/pages/listing-page.scss"
 
 const CategoryTemplate = ({ 
-  data: { post, wpCategory, categoryName }, 
+  data: { post, wpCategory, fetchCategory }, 
   pageContext: { nextPagePath, previousPagePath,  pageNumber, totalPages, baseUrl, name }
 }) => {
   
@@ -32,8 +33,15 @@ const CategoryTemplate = ({
   // category name
   const categoryname = name
 
+  const seoImage = null
+
   return( 
     <Layout >
+      <Seo 
+        image={seoImage}
+        seo={fetchCategory.seo}
+        baseUrl={baseUrl}
+      />
       <section className="category-page">
         <div className="container">
           <h2>{categoryname}</h2>
@@ -96,6 +104,23 @@ export const pageQuery = graphql`
         }
     }
 
+    fetchCategory: wpCategory(
+      id: {eq: $id}
+    ) {
+      seo {
+        title
+        metaDesc
+        opengraphAuthor
+        opengraphSiteName
+        opengraphType
+        opengraphUrl
+        breadcrumbs {
+          text
+          url
+        }
+      }
+    }    
+
     post: allWpPost(
       sort: { fields: [date], order: DESC }
       filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}
@@ -105,7 +130,6 @@ export const pageQuery = graphql`
       totalCount
       nodes {
         id
-        excerpt
         link
         date(formatString: "MMMM YYYY")
         title

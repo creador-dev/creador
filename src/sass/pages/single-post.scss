@@ -4,6 +4,11 @@
 
 .lead-image {
     margin: 60px 0 40px;
+    .gatsby-image-wrapper{
+        @include for-small-devices{
+            min-height: 300px;
+        }
+    }
 }
 
 .article-container {
@@ -85,6 +90,14 @@ pre>code {
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 30px;
         grid-row-gap: 30px;
+
+        @include for-small-devices{
+            grid-template-columns: 1fr;
+        }
+
+        @include for-tablet-vertical{
+            grid-template-columns: 1fr 1fr;
+        }
     }
 }
 

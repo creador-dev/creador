@@ -52,7 +52,7 @@ const Footer = () => {
           </Link>
         </div>
         {menuItems.map(item => (
-          <div key={item.id}>
+          <div key={item.id} className="grid-footer-menu">
             <div className="footer-menu-wrap">
               <Link className="menu-item hoverable" to={item.url}>{item.label}</Link>
               <ul>
