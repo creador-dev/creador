@@ -27,9 +27,11 @@
 //     grid-column: 1 / span 7;
 // }
 
-// .grid-sidebar{
-//     grid-column: 9 / span 4;
-// }
+.grid-sidebar{
+    @include for-small-devices{
+        margin-top: 60px;
+    }
+}
 
 .category-page{
     h2{
