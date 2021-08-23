@@ -149,18 +149,6 @@ export const pageQuery = graphql`
             }
           }
       	}
-        seo {
-          title
-          metaDesc
-          opengraphAuthor
-          opengraphSiteName
-          opengraphType
-          opengraphUrl
-          breadcrumbs {
-            text
-            url
-          }
-        }
       }
     }
   }

@@ -9,6 +9,9 @@ import Bio from "@components/global/bio"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
 
+// import breadcrumbs
+import BreadCrumbs from "@components/global/breadcrumbs"
+
 // share icon
 import ShareIcons from "@components/global/shareIcons"
 
@@ -51,7 +54,9 @@ const BlogPostTemplate = ({
         seo={post.seo}
         baseUrl={baseUrl}
       />
-      
+      <BreadCrumbs
+        list={post.seo.breadcrumbs}
+      />
       <article className="blog-post">
         <div className="container article-container">
           <h1 itemProp="headline">{parse(post.title)}</h1>

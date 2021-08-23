@@ -24,7 +24,6 @@ const PageTemplate = ({
         seo={page.seo}
         baseUrl={baseUrl}
       />
-
       <section>
         <div className="container">
           <h1 itemProp="headline">{parse(page.title)}</h1>

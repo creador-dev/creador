@@ -280,7 +280,38 @@ input:-webkit-autofill:active  {
 }
 
 // breadcrumbs css
-
+.breadcrumbs-wrapper{
+    font-size: $font-sm;
+    letter-spacing: 0.3px;
+    margin: -50px 0 60px;
+    white-space: nowrap;
+    @include for-small-devices{
+        margin: -40px 0 40px;
+    }
+    .container{
+        overflow: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .breadcrumb-items{
+        margin: 0 -12px;
+    }
+    a{
+        padding: 5px 12px;
+        position: relative;
+        &::after{
+            content: "»";
+            font-size: $font-md;
+            position: absolute;
+            right: -5px;
+            top: 4px;
+        }
+        &:last-child::after{
+            content: unset;
+        }
+    }
+}
 
 // header css
 .global-header {

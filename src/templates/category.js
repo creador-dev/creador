@@ -4,6 +4,9 @@ import { Link, graphql } from "gatsby"
 import Layout from "@components/layout"
 import Seo from "@components/global/seo"
 
+// import breadcrumbs
+import BreadCrumbs from "@components/global/breadcrumbs"
+
 // import single post card
 import SingleCard from "@components/page-components/single-card"
 
@@ -41,6 +44,9 @@ const CategoryTemplate = ({
         image={seoImage}
         seo={fetchCategory.seo}
         baseUrl={baseUrl}
+      />
+      <BreadCrumbs
+        list={fetchCategory.seo.breadcrumbs}
       />
       <section className="category-page">
         <div className="container">
