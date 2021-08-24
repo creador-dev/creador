@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, useStaticQuery, useEffect, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 // import dark/light switch button
 import SwitchMode from "@components/global/switchMode"
@@ -85,9 +85,9 @@ const Header = () => {
         </div>
         <div>
           <div className="top-right-menu">
-            <span className="menu-icon hoverable">
+            <Link to="/search" className="menu-icon hoverable">
               <SearchIcon></SearchIcon>
-            </span>
+            </Link>
             <span className="menu-icon hoverable">
               <SwitchMode></SwitchMode>
             </span>

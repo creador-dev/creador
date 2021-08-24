@@ -17,7 +17,7 @@ const Seo = ({
   seo,
   baseUrl
 }) => {
-  const { wp, wpUser } = useStaticQuery(
+  const { wp } = useStaticQuery(
     graphql`
       query {
         wp {
@@ -26,10 +26,6 @@ const Seo = ({
             description
           }
         }
-        # # if there's more than one user this would need to be filtered to the main user
-        # wpUser {
-        #   twitter: name
-        # }
       }
     `
   )

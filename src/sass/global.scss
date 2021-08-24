@@ -171,17 +171,14 @@ pre {
     overflow-y: scroll;
 }
 
-input[type="submit"],
-input[type="button"],
-button{
-
-    // padding: 15px 30px;
-    // border: none;
-    // cursor: pointer;
-    // color: $white;
-    // background: $dark-yellow;
-    // border-radius: 2px;
-}
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 /* Change the white to any color */
 input:-webkit-autofill,
@@ -724,14 +721,14 @@ input:-webkit-autofill:active  {
 }
 
 // buy me a coffee button
-@include for-small-devices{
-    #bmc-wbtn{
+#bmc-wbtn{
+    @include for-small-devices{
         width: 55px !important;
         height: 55px !important;
         img{
             height: 30px !important;
         }
-    }
+    }   
 }
 
 // detect touch devices

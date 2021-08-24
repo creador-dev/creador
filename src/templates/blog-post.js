@@ -70,7 +70,7 @@ const BlogPostTemplate = ({
               title={post.title} 
               categories={postCategories}
               featuredImage={featuredImage} 
-              pageTypePost={true}
+              showCategory={true}
             ></ShareIcons>
           </div>
         </div>
@@ -98,13 +98,13 @@ const BlogPostTemplate = ({
                   }
                 </div>
                 <div className="post-cta">
-                  {/* <PostClapButton postId={post.id}></PostClapButton> */}
+                  <PostClapButton postId={post.id}></PostClapButton>
                   <ShareIcons 
                     shareUrl={shareUrl} 
                     title={post.title} 
                     categories={postCategories}
                     featuredImage={featuredImage} 
-                    pageTypePost={true}
+                    showCategory={true}
                   ></ShareIcons>
                 </div>
               </div>            

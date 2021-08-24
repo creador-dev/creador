@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.8",
     "@lyket/react": "^1.4.7",
     "@vtex/gatsby-plugin-onesignal": "^0.1.0-alpha.1",
     "disqus-react": "^1.1.1",
@@ -27,6 +28,7 @@
     "gatsby-source-wordpress": "latest",
     "gatsby-source-wordpress-experimental": "^7.0.6",
     "gatsby-transformer-sharp": "^3.3.0",
+    "graphql": "^15.5.1",
     "gsap": "^3.7.1",
     "highlight.js": "^11.1.0",
     "html-react-parser": "^1.1.1",

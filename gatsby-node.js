@@ -49,8 +49,6 @@ exports.createPages = async gatsbyUtilities => {
   // If there are category, create category for them
   await createIndividualCategory({ categories, totalCount, gatsbyUtilities })
 
-  // // And a paginated archive
-  // await createBlogPostArchive({ posts, gatsbyUtilities })
 }
 
 /**
@@ -108,7 +106,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
        path: page.uri,
 
        // use the page template as the page component
-       component: page.pageTemplate === 'home' ? path.resolve(`src/templates/home.js`) : path.resolve(`src/templates/page.js`),
+       component: page.pageTemplate === 'home' ? path.resolve(`src/templates/home.js`) : page.pageTemplate === 'search' ? path.resolve(`src/templates/search.js`) : path.resolve(`src/templates/page.js`),
 
        // `context` is available in the template as a prop and
        // as a variable in GraphQL.
@@ -119,6 +117,8 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
          id: page.id,
 
          baseUrl: process.env.BASE_URL,
+
+         apolloUri: process.env.WPGRAPHQL_URL,
          
          catTotalCount: Math.floor(Math.random() * (totalCount - 1) + 1)
        },
@@ -204,12 +204,7 @@ async function createIndividualCategory({ categories, totalCount, gatsbyUtilitie
       })
     )
   })
-
-  
-
-  
 }
-
 
 
 // get total categories

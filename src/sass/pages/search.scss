@@ -1,0 +1,76 @@
+// variables CSS 
+@import "@sass/default/variables";
+
+// single card CSS 
+@import "@sass/components/single-card";
+
+
+.search-results{
+    max-width: 800px;
+    margin: 60px auto;
+}
+
+.search-section{
+    min-height: 70vh;
+}
+
+#psearch{
+    font-size: 24px;
+    line-height: 46px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $white;
+    color: $white;
+    width: 100%;
+
+    @include for-small-devices{
+        font-size: 18px;
+        // line-height: 28px;
+    }
+}
+
+.light-theme{
+    #psearch{
+        border-bottom: 1px solid $light-black;
+        color: $black;
+    }
+}
+
+.form-fields{
+    position: relative;
+    #submitBtn,
+    .submit-btn-wrapper{
+        background: transparent;
+        border: none;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        @include for-small-devices{
+            .search-icon svg{
+                height: 25px;
+            }
+        }
+    }
+
+    #submitBtn{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.search-loading-icon{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    background-color: $header-bg;
+    background-image: url("/yellow-loader.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+}

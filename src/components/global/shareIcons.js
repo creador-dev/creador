@@ -17,14 +17,14 @@ import {
     TelegramIcon,
 } from "react-share"
 
-export default function ShareIcons({ shareUrl, title, pageTypePost, categories, featuredImage }) {
+export default function ShareIcons({ shareUrl, title, showCategory, categories, featuredImage }) {
 
     const tagsArr = []
     let fbTag = ''
 
     if(categories.length){
         categories.map(( item ) => {
-            tagsArr.push(item.name)
+            return tagsArr.push(item.name)
         })
 
         const max = tagsArr.length
@@ -78,7 +78,7 @@ export default function ShareIcons({ shareUrl, title, pageTypePost, categories, 
                 >
                 </RedditIcon>
             </RedditShareButton>
-            {pageTypePost ?
+            {showCategory ?
                 <PinterestShareButton 
                     url={shareUrl}
                     media={`${String(window.location.origin)}/${featuredImage.fluid.src}`}
@@ -91,7 +91,7 @@ export default function ShareIcons({ shareUrl, title, pageTypePost, categories, 
                 </PinterestShareButton>
                 : ""
             }
-            {pageTypePost ?
+            {showCategory ?
                 <LinkedinShareButton 
                     url={shareUrl}
                 >
@@ -103,7 +103,7 @@ export default function ShareIcons({ shareUrl, title, pageTypePost, categories, 
                 </LinkedinShareButton>
                 : ""
             }
-            {pageTypePost ?
+            {showCategory ?
                 <TelegramShareButton
                     url={shareUrl}
                     title={title}
