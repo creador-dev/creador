@@ -36,7 +36,7 @@ const Seo = ({
   const defaultTitle = wp.generalSettings?.title
   const metaUrl = baseUrl+url
   const metaType = seo?.opengraphType
-  const metaImage = baseUrl+(image ? image : "/seo-image.svg")
+  const metaImage = baseUrl+(image ? image : "/seo-image.png")
 
   return (
     <Helmet
