@@ -15,6 +15,7 @@ const Seo = ({
   meta, 
   image,
   seo,
+  url,
   baseUrl
 }) => {
   const { wp } = useStaticQuery(
