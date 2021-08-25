@@ -50,24 +50,24 @@ const Seo = ({
           content: metaDescription,
         },
         {
-          property: `og:url`,
-          content: metaUrl,
+          property: `og:title`,
+          content: title,
         },
         {
           property: `og:type`,
           content: metaType,
         },
         {
-          property: `og:title`,
-          content: title,
+          property: `og:url`,
+          content: metaUrl,
+        },
+        {
+          property: `og:image:secure_url`,
+          content: metaImage,
         },
         {
           property: `og:description`,
           content: metaDescription,
-        },
-        {
-          property: `og:image:secure`,
-          content: metaImage,
         },
         {
           name: `twitter:card`,
@@ -80,6 +80,10 @@ const Seo = ({
         {
           name: `twitter:title`,
           content: title,
+        },
+        {
+          name: `twitter:image`,
+          content: metaImage,
         },
         {
           name: `twitter:description`,
