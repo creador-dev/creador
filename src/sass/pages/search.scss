@@ -30,6 +30,11 @@
     }
 }
 
+.no-results{
+    text-align: center;
+    font-size: $font-xxl;
+}
+
 .light-theme{
     #psearch{
         border-bottom: 1px solid $light-black;

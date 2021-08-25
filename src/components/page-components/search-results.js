@@ -7,6 +7,8 @@ import {
 // import single post card
 import SingleCard from "@components/page-components/single-card"
 
+const moment= require('moment') 
+
 export default function SearchResults({ search, baseUrl }) { 
 
     const GET_RESULTS = gql`
@@ -47,22 +49,22 @@ export default function SearchResults({ search, baseUrl }) {
         variables: { searchInput: search },
     })
 
-    if (loading) return <div className="search-loading-icon"></div>;
+    if(search === "") return <div></div>
 
-    if (error) return `Error! ${error}`;
+    if (loading) return <div className="search-loading-icon"></div>
+
+    if (error) return `Error! ${error}`
 
     const searchData = data.searchWP.nodes
-
-    console.log(searchData)
 
     return(
         <div>
             <div className="hoverable search-results">
-                {searchData?.map((data) => (
+                {searchData.length ? searchData.map((data) => (
                     <SingleCard 
                         key={data.id}
                         title={data.title} 
-                        publishDate={data.date} 
+                        publishDate={moment(data.date).format("MMMM DD, YYYY")} 
                         excerpt={data.excerpt} 
                         featureImage={data.featuredImage}
                         readingTime={data.readingTime}
@@ -71,7 +73,8 @@ export default function SearchResults({ search, baseUrl }) {
                         category={data.categories?.nodes?.[0] || ''}
                         categories={data.categories?.nodes || ''}
                     ></SingleCard>
-                ))}
+                ))
+                : <div className="no-results">No results found</div>}
             </div>
         </div>        
     )
