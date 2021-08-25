@@ -62,7 +62,7 @@ const Seo = ({
           content: metaUrl,
         },
         {
-          property: `og:image:secure_url`,
+          property: `og:image`,
           content: metaImage,
         },
         {
