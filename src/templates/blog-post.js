@@ -52,6 +52,7 @@ const BlogPostTemplate = ({
       <Seo 
         image={seoImage}
         seo={post.seo}
+        url={post.uri}
         baseUrl={baseUrl}
       />
       <BreadCrumbs
@@ -158,6 +159,7 @@ export const pageQuery = graphql`
       link
       date(formatString: "MMMM DD, YYYY")
       slug
+      uri
       categories {
         nodes {
           id
@@ -184,7 +186,6 @@ export const pageQuery = graphql`
         opengraphAuthor
         opengraphSiteName
         opengraphType
-        opengraphUrl
         breadcrumbs {
           text
           url

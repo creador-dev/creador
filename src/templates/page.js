@@ -22,6 +22,7 @@ const PageTemplate = ({
       <Seo 
         image={seoImage}
         seo={page.seo}
+        url={page.uri}
         baseUrl={baseUrl}
       />
       <section>
@@ -52,6 +53,7 @@ export const pageQuery = graphql`
       id
       content
       title
+      uri
       date(formatString: "MMMM DD, YYYY")
       featuredImage {
         node {
@@ -71,7 +73,6 @@ export const pageQuery = graphql`
         opengraphAuthor
         opengraphSiteName
         opengraphType
-        opengraphUrl
         breadcrumbs {
           text
           url

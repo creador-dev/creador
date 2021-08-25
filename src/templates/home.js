@@ -39,6 +39,7 @@ const HomeTemplate = ({
       <Seo 
         image={seoImage}
         seo={page.seo}
+        url={page.uri}
         baseUrl={baseUrl}
       />
       <section>
@@ -93,6 +94,7 @@ export const pageQuery = graphql`
     # selecting the current post by id
     page: wpPage(id: { eq: $id }) {
       id
+      uri
       featuredImage {
         node {
           altText
@@ -111,7 +113,6 @@ export const pageQuery = graphql`
         opengraphAuthor
         opengraphSiteName
         opengraphType
-        opengraphUrl
         breadcrumbs {
           text
           url

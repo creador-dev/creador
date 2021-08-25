@@ -43,6 +43,7 @@ const CategoryTemplate = ({
       <Seo 
         image={seoImage}
         seo={fetchCategory.seo}
+        url={fetchCategory.uri}
         baseUrl={baseUrl}
       />
       <BreadCrumbs
@@ -114,13 +115,13 @@ export const pageQuery = graphql`
     fetchCategory: wpCategory(
       id: {eq: $id}
     ) {
+      uri
       seo {
         title
         metaDesc
         opengraphAuthor
         opengraphSiteName
         opengraphType
-        opengraphUrl
         breadcrumbs {
           text
           url

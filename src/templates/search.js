@@ -42,6 +42,7 @@ export default function Search({
             <Seo 
                 image={seoImage}
                 seo={page.seo}
+                url={page.uri}
                 baseUrl={baseUrl}
             />
             <section className="search-section">
@@ -72,13 +73,13 @@ export const pageQuery = graphql`
     # selecting the current post by id
     page: wpPage(id: { eq: $id }) {
       id
+      uri
       seo {
         title
         metaDesc
         opengraphAuthor
         opengraphSiteName
         opengraphType
-        opengraphUrl
         breadcrumbs {
           text
           url

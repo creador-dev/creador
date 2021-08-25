@@ -71,7 +71,7 @@ module.exports = {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Creador Developer Blog`,
+        name: `Creador Developer`,
         short_name: `Creadeor Dev`,
         start_url: `/`,
         background_color: `#ffffff`,
