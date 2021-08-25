@@ -14,5 +14,9 @@
     circle {
       fill: $dark-yellow;
     }
-  }    
+  }
+  
+  @include for-small-devices{
+    display: none;
+  }
 }

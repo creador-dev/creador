@@ -47,7 +47,7 @@ const Footer = () => {
     <footer className="global-footer menu-items">
       <div className="container grid-container footer-grid">
         <div>
-          <Link to="/" alt="Creador" className="site-logo hoverable">
+          <Link to="/" alt="Creador" aria-label="logo" className="site-logo hoverable">
             <SvgLogo></SvgLogo>
           </Link>
         </div>

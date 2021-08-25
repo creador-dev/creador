@@ -70,7 +70,7 @@ const Header = () => {
     <header className="global-header" id="fixedHeader">
       <div className="container grid-container header-grid">
         <div>
-          <Link to="/" alt="Creador" className="site-logo hoverable">
+          <Link to="/" alt="Creador" aria-label="Logo" className="site-logo hoverable">
             <SvgLogo></SvgLogo>
           </Link>
         </div>
@@ -85,7 +85,7 @@ const Header = () => {
         </div>
         <div>
           <div className="top-right-menu">
-            <Link to="/search" className="menu-icon hoverable">
+            <Link to="/search" aria-label="search" className="menu-icon hoverable">
               <SearchIcon></SearchIcon>
             </Link>
             <span className="menu-icon hoverable">

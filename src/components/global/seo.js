@@ -66,7 +66,7 @@ const Seo = ({
           content: metaDescription,
         },
         {
-          property: `og:image`,
+          property: `og:image:secure`,
           content: metaImage,
         },
         {
