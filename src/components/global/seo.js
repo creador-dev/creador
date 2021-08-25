@@ -30,11 +30,11 @@ const Seo = ({
     `
   )
 
-  const metaDescription = seo.metaDesc || wp.generalSettings?.description
-  const title = seo.title || wp.generalSettings?.title
+  const metaDescription = seo?.metaDesc || wp.generalSettings?.description
+  const title = seo?.title || wp.generalSettings?.title
   const defaultTitle = wp.generalSettings?.title
-  const metaUrl = baseUrl+seo.opengraphUrl
-  const metaType = seo.opengraphType
+  const metaUrl = baseUrl+seo?.opengraphUrl
+  const metaType = seo?.opengraphType
   const metaImage = baseUrl+(image ? image : "/seo-image.svg")
 
   return (
