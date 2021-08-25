@@ -7,7 +7,7 @@ export default function Breadrumbs({ list }) {
             <div className="container">
                 <div className="breadcrumb-items">
                     {list.map((item) => (
-                        <Link to={item.url}>{item.text}</Link>
+                        <Link to={item.url} className="hoverable">{item.text}</Link>
                     ))}
                 </div>
             </div>
