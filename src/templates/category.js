@@ -66,6 +66,7 @@ const CategoryTemplate = ({
                   linkUrl={article.link}
                   shareUrl={baseUrl+article.link} 
                   categories={article.categories.nodes}
+                  baseUrl={baseUrl}
                 ></SingleCard>
               ))}
 

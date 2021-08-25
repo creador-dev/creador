@@ -72,6 +72,7 @@ export default function SearchResults({ search, baseUrl }) {
                         shareUrl={baseUrl+data.uri} 
                         category={data.categories?.nodes?.[0] || ''}
                         categories={data.categories?.nodes || ''}
+                        baseUrl={baseUrl}
                     ></SingleCard>
                 ))
                 : <div className="no-results">No results found</div>}

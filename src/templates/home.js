@@ -57,6 +57,7 @@ const HomeTemplate = ({
                   shareUrl={baseUrl+article.link} 
                   category={article.categories.nodes[0]}
                   categories={article.categories.nodes}
+                  baseUrl={baseUrl}
                 ></SingleCard>
               ))}
             </div>

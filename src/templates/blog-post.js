@@ -71,6 +71,7 @@ const BlogPostTemplate = ({
               categories={postCategories}
               featuredImage={featuredImage} 
               showCategory={true}
+              baseUrl={baseUrl}
             ></ShareIcons>
           </div>
         </div>

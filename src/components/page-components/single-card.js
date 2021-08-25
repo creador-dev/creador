@@ -15,7 +15,8 @@ export default function SingleCard({
     linkUrl, 
     featureImage, 
     readingTime, 
-    shareUrl 
+    shareUrl,
+    baseUrl
 }) {
     const featuredImage = {
         fluid: featureImage?.node?.localFile?.childImageSharp?.fluid,
@@ -79,6 +80,7 @@ export default function SingleCard({
                             categories={categories}
                             featuredImage={featuredImage} 
                             showCategory={false}
+                            baseUrl={baseUrl}
                         ></ShareIcons>                
                     </div>
                 </div>

@@ -17,7 +17,14 @@ import {
     TelegramIcon,
 } from "react-share"
 
-export default function ShareIcons({ shareUrl, title, showCategory, categories, featuredImage }) {
+export default function ShareIcons({ 
+    shareUrl, 
+    title, 
+    showCategory, 
+    categories, 
+    featuredImage,
+    baseUrl 
+}) {
 
     const tagsArr = []
     let fbTag = ''
@@ -81,7 +88,7 @@ export default function ShareIcons({ shareUrl, title, showCategory, categories, 
             {showCategory ?
                 <PinterestShareButton 
                     url={shareUrl}
-                    media={`${String(window.location.origin)}/${featuredImage.fluid.src}`}
+                    media={baseUrl+featuredImage.fluid.src}
                 >
                     <PinterestIcon 
                         size={30} 
