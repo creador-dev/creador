@@ -81,6 +81,14 @@ module.exports = {
         theme_color: `#F9A826`,
         display: `minimal-ui`,
         icon: `content/assets/favicon.png`,
+        icons:[
+          {
+            src: `/favicons/android-chrome-192x192.png`,
+            sizes: `196x196`,
+            type: `image/png`,
+            purpose: `any maskable`
+          }
+        ]
       },
     },
 
