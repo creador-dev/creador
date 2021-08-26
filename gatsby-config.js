@@ -39,11 +39,11 @@ module.exports = {
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
         url: process.env.WPGRAPHQL_URL,
-        schema: {
-          perPage: 20,
-          requestConcurrency: 5,
-          previewRequestConcurrency: 2,
-        },
+        // schema: {
+        //   perPage: 20,
+        //   requestConcurrency: 5,
+        //   previewRequestConcurrency: 2,
+        // },
         searchAndReplace: [
           {
             search: process.env.BASE_URL,
