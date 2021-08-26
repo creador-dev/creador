@@ -92,7 +92,7 @@ const Header = () => {
               <SwitchMode></SwitchMode>
             </span>
             <span className="hamburger-icon">
-              <span className="hamburger" role="button" tabIndex={0} onClick={hamburgerClick} onKeyDown={() => {}}>
+              <span className="hamburger" aria-label="Mega Menu" role="button" tabIndex={0} onClick={hamburgerClick} onKeyDown={() => {}}>
                 <span></span>
               </span>
             </span>

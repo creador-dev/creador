@@ -24,6 +24,13 @@ module.exports = {
    * Gatsby has a rich ecosystem of plugins.
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
+
+  // for sitemap generation
+  siteMetadata: {
+    // If you didn't use the resolveSiteUrl option this needs to be set
+    siteUrl: process.env.BASE_URL,
+  },
+
   plugins: [
     {
       /**
@@ -190,7 +197,9 @@ module.exports = {
         enableWebVitalsTracking: true,
       },
     },
-    
+
+    // for generating sitemap
+    `gatsby-plugin-advanced-sitemap`
     
   ],
 }
