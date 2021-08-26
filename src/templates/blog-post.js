@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 
-import helper from "@utils/helper"
+import highlightCode from "@utils/helper"
 
 import Bio from "@components/global/bio"
 import Layout from "@components/layout"
@@ -44,7 +44,7 @@ const BlogPostTemplate = ({
   const seoImage = featuredImage.fluid ?  featuredImage.fluid?.src : null
 
   useEffect(() => {
-    helper.highlightCode()
+    highlightCode()
   })
 
   return (

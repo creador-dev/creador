@@ -27,7 +27,6 @@
     "gatsby-source-filesystem": "^3.3.0",
     "gatsby-source-graphql": "^3.12.0",
     "gatsby-source-wordpress": "latest",
-    "gatsby-source-wordpress-experimental": "^7.0.6",
     "gatsby-transformer-sharp": "^3.3.0",
     "graphql": "^15.5.1",
     "gsap": "^3.7.1",

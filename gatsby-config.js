@@ -34,14 +34,16 @@ module.exports = {
        * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
        *
        */
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
         url: process.env.WPGRAPHQL_URL,
-        searchAndReplaceContentUrls: {
-          sourceUrl: process.env.BASE_URL,
-          replacementUrl: process.env.WORDPRESS_URL,
-        },
+        searchAndReplace: [
+          {
+            search: process.env.BASE_URL,
+            replace: process.env.WORDPRESS_URL,
+          },
+        ],
       },
     },
 

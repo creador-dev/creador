@@ -5,7 +5,7 @@ hljs.configure({
   languages: ["php", "javascript", "json", "bash", "scss"],
 })
 
-const highlightCode = () => {
+export default function highlightCode(){
   const codes = document.querySelectorAll(".wp-block-syntaxhighlighter-code > pre, pre > code")
   for (let key in codes) {
     if (typeof codes[key] === "object") {
@@ -14,4 +14,4 @@ const highlightCode = () => {
   }
 }
 
-export default { highlightCode }
+// export default { highlightCode }
