@@ -2,9 +2,6 @@ import React, { useEffect } from "react"
 // import { Link, useStaticQuery, graphql } from "gatsby"
 // import parse from "html-react-parser"
 
-// import smooth-scrollbar
-import Scrollbar from "smooth-scrollbar"
-
 // import cursor
 import Cursor from "@components/global/cursor"
 
@@ -17,11 +14,11 @@ import Footer from "@components/global/footer"
 const Layout = ({ isHomePage, children }) => {
   
   // function for animating header
-  function headerAnimate(scrollbar){
+  function headerAnimate(){
     let lastScrollTop = 0
     let headerElem = document.querySelector(".global-header")
-    scrollbar.addListener((status) => {
-      let st = status.offset.y
+    window.addEventListener("scroll" , function() {
+      let st = window.pageYOffset
 
       if(st < 80){
         // if scroll is less then remove css
@@ -41,11 +38,8 @@ const Layout = ({ isHomePage, children }) => {
   }
  
   useEffect(() => {
-    // smooth scrollbar init
-    let scrollbar = Scrollbar.init(document.querySelector("#smoothScrollbar"))
-
-    // animate header in scroll
-    headerAnimate(scrollbar)
+    // animate header on scroll
+    headerAnimate()
   })
   
   return (
@@ -53,10 +47,10 @@ const Layout = ({ isHomePage, children }) => {
         <main>
           <Cursor></Cursor>
           <Header></Header>
-          <div id="smoothScrollbar">
+          <div className="content-wrapper">
             {children}
-            <Footer></Footer>
           </div>
+          <Footer></Footer>
         </main>
     </div>    
   )

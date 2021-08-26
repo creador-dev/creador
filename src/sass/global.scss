@@ -239,41 +239,12 @@ input:-webkit-autofill:active  {
     }
 }
 
-// scrollbar css
-#smoothScrollbar {
-    width: 100%;
-    max-height: 100vh;
-    overflow: auto;
-    height: 100%;
-    will-change: transform;
-}
-
-.scroll-content {
+.content-wrapper {
     padding-top: 140px;
     will-change: transform;
     @include for-small-devices{
         padding-top: 120px;
     }
-}
-
-.scrollbar-track {
-    background-color: transparent !important;
-}
-
-.scrollbar-track-y {
-    opacity: 1 !important;
-    width: 12px !important;
-}
-
-.scrollbar-thumb {
-    top: 2px !important;
-    left: 2px !important;
-    width: 8px !important;
-    background: $dark-slate !important;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: transparent !important;
 }
 
 // breadcrumbs css
