@@ -2,15 +2,9 @@ const path = require(`path`)
 const chunk = require(`lodash/chunk`)
 
 // dot env file to load custom config
-if (process.env.STAGING) {
-  require("dotenv").config({
-    path: `.env.staging`,
-  })
-} else {
-  require("dotenv").config({
-    path: `.env`,
-  })
-}
+require("dotenv").config({
+  path: `.env`,
+})
 
 exports.createPages = async gatsbyUtilities => {
   // Query our posts from the GraphQL server

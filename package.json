@@ -56,7 +56,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "STAGING=true gatsby develop",
+    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
