@@ -160,7 +160,28 @@ module.exports = {
       },
     }, 
     
-    // apollo client for querying graphql dynamically
+    // google analytics
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "GOOGLE_ANALYTICS_TRACKING_ID",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+        // // Enables Google Optimize using your container Id
+        // optimizeId: "GOOGLE_OPTIMIZE_TRACKING_ID",
+        // // Enables Google Optimize Experiment ID
+        // experimentId: "GOOGLE_EXPERIMENT_ID",
+        // // Set Variation ID. 0 for original 1,2,3....
+        // variationId: "GOOGLE_OPTIMIZE_VARIATION_ID",
+        // Defers execution of google analytics script after page load
+        defer: false,
+        // defaults to false
+        enableWebVitalsTracking: true,
+      },
+    },
     
     
   ],

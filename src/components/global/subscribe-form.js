@@ -52,6 +52,7 @@ export default class SubscribeForm extends React.Component {
                                 onChange={this._handleChange}
                                 placeholder="name"
                                 name="name"
+                                pattern="^[A-Za-z -]+$"
                                 required
                             />
                             <label htmlFor="subscribeName" className="form__label">Your Name*</label>
