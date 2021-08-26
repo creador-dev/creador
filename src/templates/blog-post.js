@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import parse from "html-react-parser"
 
 import highlightCode from "@utils/helper"
@@ -32,8 +32,10 @@ const BlogPostTemplate = ({
   pageContext: { baseUrl } 
 }) => {
   
+  console.log(post.featuredImage.node.localFile.childImageSharp.gatsbyImageData)
+
   const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: post.featuredImage?.node?.alt || ``,
   }
 
@@ -41,11 +43,12 @@ const BlogPostTemplate = ({
 
   const postCategories = post.categories.nodes
 
-  const seoImage = featuredImage.fluid ?  featuredImage.fluid?.src : null
+  const seoImage = featuredImage.fluid ?  featuredImage.fluid?.images?.fallback?.src : null
 
   useEffect(() => {
     highlightCode()
   })
+
 
   return (
     <Layout>
@@ -79,10 +82,7 @@ const BlogPostTemplate = ({
         <div className="lead-image">
           {/* if we have a featured image for this post let's display it */}
           {featuredImage?.fluid && (
-            <Image
-              fluid={featuredImage.fluid}
-              alt={featuredImage.alt}
-            />
+            <GatsbyImage image={featuredImage.fluid} alt={featuredImage.alt} />
           )}
         </div>
 
@@ -94,7 +94,7 @@ const BlogPostTemplate = ({
                 <div className="post-categories">
                   {postCategories.length ? 
                     postCategories.map(( item ) => {
-                      return <Link to={item.link} className="hoverable tags">{item.name}</Link>
+                      return <Link to={item.link} key={item.id} className="hoverable tags">{item.name}</Link>
                     })
                     : ""
                   }
@@ -126,7 +126,7 @@ const BlogPostTemplate = ({
               <h3 className="section-heading">More posts</h3>
               <div className="grid-container more-posts-grid">
                 {morePosts.nodes.map((item) =>
-                  <div>
+                  <div key={item.id}>
                     <MorePostsCard post={item}></MorePostsCard>
                   </div>
                 )}
@@ -139,27 +139,60 @@ const BlogPostTemplate = ({
       </article>
       
     </Layout>
-  )
+  );
 }
 
 export default BlogPostTemplate
 
-export const pageQuery = graphql`
-  query BlogPostById(
-    # these variables are passed in via createPage.pageContext in gatsby-node.js
-    $id: String!
-    $categoryArr: [String!]
-  ) {
-    # selecting the current post by id
-    post: wpPost(id: { eq: $id }) {
-      id
-      excerpt
-      content
+export const pageQuery = graphql`query BlogPostById($id: String!, $categoryArr: [String!]) {
+  post: wpPost(id: {eq: $id}) {
+    id
+    excerpt
+    content
+    title
+    link
+    date(formatString: "MMMM DD, YYYY")
+    slug
+    uri
+    categories {
+      nodes {
+        id
+        name
+        link
+      }
+    }
+    readingTime
+    featuredImage {
+      node {
+        altText
+        localFile {
+          childImageSharp {
+            gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+    seo {
       title
+      metaDesc
+      opengraphAuthor
+      opengraphSiteName
+      opengraphType
+      breadcrumbs {
+        text
+        url
+      }
+    }
+  }
+  morePosts: allWpPost(
+    sort: {fields: [date], order: DESC}
+    limit: 9
+    filter: {categories: {nodes: {elemMatch: {id: {in: $categoryArr}}}}, id: {ne: $id}}
+  ) {
+    nodes {
+      id
       link
-      date(formatString: "MMMM DD, YYYY")
-      slug
-      uri
+      title
       categories {
         nodes {
           id
@@ -167,75 +200,22 @@ export const pageQuery = graphql`
           link
         }
       }
-      readingTime
       featuredImage {
         node {
           altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
-          }
-        }
-      }
-      seo {
-        title
-        metaDesc
-        opengraphAuthor
-        opengraphSiteName
-        opengraphType
-        breadcrumbs {
-          text
-          url
-        }
-      }
-    }
-
-    # fetch more posts
-    morePosts: allWpPost(
-      sort: {fields: [date], order: DESC}
-      limit: 9
-      filter: {
-        categories: {
-          nodes: {
-            elemMatch: {
-              id: {
-                in: $categoryArr
-              }
-            }
-          }
-        },
-        id: {
-          ne: $id
-        }
-      }
-    ) {
-      nodes {
-        id
-        link
-        title
-        categories {
-          nodes {
-            id
-            name
-            link
-          }
-        }
-        featuredImage {
-          node {
-            altText
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 400, quality: 100) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
+              gatsbyImageData(
+                width: 400
+                quality: 100
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
             }
           }
         }
       }
     }
   }
+}
 `

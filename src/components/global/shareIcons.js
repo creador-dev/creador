@@ -88,7 +88,7 @@ export default function ShareIcons({
             {showCategory ?
                 <PinterestShareButton 
                     url={shareUrl}
-                    media={baseUrl+featuredImage.fluid.src}
+                    media={baseUrl+featuredImage.fluid?.images?.fallback?.src}
                 >
                     <PinterestIcon 
                         size={30} 

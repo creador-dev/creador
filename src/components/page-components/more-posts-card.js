@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function MorePostsCard({ post }) {
     
     const featuredImage = {
-        fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+        fluid: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
         alt: post.featuredImage?.node?.alt || ``,
     }
     
@@ -14,14 +14,11 @@ export default function MorePostsCard({ post }) {
             <Link to={post.link} className="hoverable">
                 <div className="card-image">
                     {featuredImage?.fluid && (
-                        <Image
-                        fluid={featuredImage.fluid}
-                        alt={featuredImage.alt}
-                        />
+                        <GatsbyImage image={featuredImage.fluid} alt={featuredImage.alt} />
                     )}
                 </div>
                 <h3>{post.title}</h3>
             </Link>
         </div>
-    )
+    );
 }

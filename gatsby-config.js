@@ -66,9 +66,10 @@ module.exports = {
      * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
      * if you're curious about it.
      */
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-
+    `gatsby-transformer-sharp`,
+    
     {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
       resolve: `gatsby-plugin-manifest`,

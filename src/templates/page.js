@@ -11,11 +11,11 @@ const PageTemplate = ({
 }) => {
 
   const featuredImage = {
-    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: page.featuredImage?.node?.alt || ``,
   }
 
-  const seoImage = featuredImage ?  featuredImage.fluid?.src : null
+  const seoImage = featuredImage ?  featuredImage.fluid?.images?.fallback?.src : null
 
   return(
     <Layout>
@@ -43,41 +43,34 @@ const PageTemplate = ({
 
 export default PageTemplate
 
-export const pageQuery = graphql`
-  query PageById(
-    # these variables are passed in via createPage.pageContext in gatsby-node.js
-    $id: String!
-  ) {
-    # selecting the current post by id
-    page: wpPage(id: { eq: $id }) {
-      id
-      content
-      title
-      uri
-      date(formatString: "MMMM DD, YYYY")
-      featuredImage {
-        node {
-          altText
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
+export const pageQuery = graphql`query PageById($id: String!) {
+  page: wpPage(id: {eq: $id}) {
+    id
+    content
+    title
+    uri
+    date(formatString: "MMMM DD, YYYY")
+    featuredImage {
+      node {
+        altText
+        localFile {
+          childImageSharp {
+            gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
           }
         }
       }
-      seo {
-        title
-        metaDesc
-        opengraphAuthor
-        opengraphSiteName
-        opengraphType
-        breadcrumbs {
-          text
-          url
-        }
+    }
+    seo {
+      title
+      metaDesc
+      opengraphAuthor
+      opengraphSiteName
+      opengraphType
+      breadcrumbs {
+        text
+        url
       }
     }
   }
+}
 `

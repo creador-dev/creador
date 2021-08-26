@@ -28,12 +28,12 @@ const HomeTemplate = ({
   const categories = wpCategory.nodes
 
   const featuredImage = {
-    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    fluid: page.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: page.featuredImage?.node?.alt || ``,
   }
 
-  const seoImage = featuredImage.fluid ?  featuredImage.fluid.src : null
-
+  const seoImage = featuredImage.fluid ?  featuredImage.fluid?.images?.fallback?.src : null
+  console.log(page.featuredImage)
   return( 
     <Layout >
       <Seo 
@@ -78,80 +78,74 @@ const HomeTemplate = ({
 }
 export default HomeTemplate
 
-export const pageQuery = graphql`
-  query WordPressPosts($catTotalCount: Int! = 0, $id: String! ) {
-    wpCategory: allWpCategory(
-      limit: 10,
-      filter: {name: {ne: "Uncategorized"}, count: {gt: 0}},
-      skip: $catTotalCount
-    ) {
+export const pageQuery = graphql`query WordPressPosts($catTotalCount: Int! = 0, $id: String!) {
+  wpCategory: allWpCategory(
+    limit: 10
+    filter: {name: {ne: "Uncategorized"}, count: {gt: 0}}
+    skip: $catTotalCount
+  ) {
+    nodes {
+      name
+      link
+    }
+  }
+  page: wpPage(id: {eq: $id}) {
+    id
+    uri
+    featuredImage {
+      node {
+        altText
+        localFile {
+          childImageSharp {
+            gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+    seo {
+      title
+      metaDesc
+      opengraphAuthor
+      opengraphSiteName
+      opengraphType
+      breadcrumbs {
+        text
+        url
+      }
+    }
+  }
+  post: allWpPost(sort: {fields: [date], order: DESC}, limit: 30) {
+    totalCount
+    nodes {
+      id
+      excerpt
+      link
+      date(formatString: "MMMM DD YYYY")
+      title
+      excerpt
+      readingTime
+      categories {
         nodes {
           name
           link
         }
-    }
-
-    # selecting the current post by id
-    page: wpPage(id: { eq: $id }) {
-      id
-      uri
+      }
       featuredImage {
         node {
           altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+              gatsbyImageData(
+                width: 400
+                quality: 100
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
             }
           }
         }
-      }
-      seo {
-        title
-        metaDesc
-        opengraphAuthor
-        opengraphSiteName
-        opengraphType
-        breadcrumbs {
-          text
-          url
-        }
-      }
-    }
-
-    post: allWpPost(
-      sort: { fields: [date], order: DESC }
-      limit: 30
-    ) {
-      totalCount
-      nodes {
-        id
-        excerpt
-        link
-        date(formatString: "MMMM YYYY")
-        title
-        excerpt
-        readingTime
-        categories {
-          nodes {
-            name
-            link
-          }
-        }
-        featuredImage {
-          node {
-            altText
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 200, quality: 100) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
-            }
-          }
-      	}
       }
     }
   }
+}
 `

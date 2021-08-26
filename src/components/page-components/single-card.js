@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import parse from "html-react-parser"
 
 // share icon
@@ -19,7 +19,7 @@ export default function SingleCard({
     baseUrl
 }) {
     const featuredImage = {
-        fluid: featureImage?.node?.localFile?.childImageSharp?.fluid,
+        fluid: featureImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
         alt: featureImage?.node?.alt || title,
     }
 
@@ -40,10 +40,7 @@ export default function SingleCard({
                         <div className="feature-image">
                             {/* if we have a featured image for this post let's display it */}
                             {featuredImage?.fluid && (
-                                <Image
-                                    fluid={featuredImage.fluid}
-                                    alt={featuredImage.alt}
-                                />
+                                <GatsbyImage image={featuredImage.fluid} alt={featuredImage.alt} />
                             )}
                             {featureImage?.node?.srcSet && (
                                 <div className="gatsby-image-wrapper">
@@ -86,5 +83,5 @@ export default function SingleCard({
                 </div>
             </div>
         </Link>
-    )
+    );
 }

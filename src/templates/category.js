@@ -98,70 +98,68 @@ const CategoryTemplate = ({
 }
 export default CategoryTemplate
 
-export const pageQuery = graphql`
-  query WordPressCategoryListing($catTotalCount: Int! = 0, $id: String!, $offset: Int!, $postsPerPage: Int!) {    
-    wpCategory: allWpCategory(
-      limit: 10,
-      filter: {name: {ne: "Uncategorized"}, count: {gt: 0}},
-      skip: $catTotalCount
-    ) {
-        nodes {
-          id
-          name
-          link
-        }
+export const pageQuery = graphql`query WordPressCategoryListing($catTotalCount: Int! = 0, $id: String!, $offset: Int!, $postsPerPage: Int!) {
+  wpCategory: allWpCategory(
+    limit: 10
+    filter: {name: {ne: "Uncategorized"}, count: {gt: 0}}
+    skip: $catTotalCount
+  ) {
+    nodes {
+      id
+      name
+      link
     }
-
-    fetchCategory: wpCategory(
-      id: {eq: $id}
-    ) {
-      uri
-      seo {
-        title
-        metaDesc
-        opengraphAuthor
-        opengraphSiteName
-        opengraphType
-        breadcrumbs {
-          text
-          url
-        }
-      }
-    }    
-
-    post: allWpPost(
-      sort: { fields: [date], order: DESC }
-      filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}
-      limit: $postsPerPage,
-      skip: $offset
-    ) {
-      totalCount
-      nodes {
-        id
-        link
-        date(formatString: "MMMM YYYY")
-        title
-        excerpt
-        readingTime
-        categories {
-          nodes {
-            name
-            link
-          }
-        }
-        featuredImage {
-          node {
-            altText
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 200, quality: 100) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
-            }
-          }
-      	}
+  }
+  fetchCategory: wpCategory(id: {eq: $id}) {
+    uri
+    seo {
+      title
+      metaDesc
+      opengraphAuthor
+      opengraphSiteName
+      opengraphType
+      breadcrumbs {
+        text
+        url
       }
     }
   }
+  post: allWpPost(
+    sort: {fields: [date], order: DESC}
+    filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}
+    limit: $postsPerPage
+    skip: $offset
+  ) {
+    totalCount
+    nodes {
+      id
+      link
+      date(formatString: "MMMM DD YYYY")
+      title
+      excerpt
+      readingTime
+      categories {
+        nodes {
+          name
+          link
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 400
+                quality: 100
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `
