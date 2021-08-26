@@ -136,6 +136,7 @@ pre>code {
     .share-wrapper{
         @include for-small-devices{
             margin: 0 0 0 -5px;
+            display: block;
         }
     }
 }
