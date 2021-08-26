@@ -1,9 +1,4 @@
 import React, { useEffect } from "react"
-// import { Link, useStaticQuery, graphql } from "gatsby"
-// import parse from "html-react-parser"
-
-// import cursor
-import Cursor from "@components/global/cursor"
 
 // import header
 import Header from "@components/global/header"
