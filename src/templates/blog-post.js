@@ -32,8 +32,6 @@ const BlogPostTemplate = ({
   pageContext: { baseUrl } 
 }) => {
   
-  console.log(post.featuredImage.node.localFile.childImageSharp.gatsbyImageData)
-
   const featuredImage = {
     fluid: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: post.featuredImage?.node?.alt || ``,
@@ -89,7 +87,7 @@ const BlogPostTemplate = ({
         {!!post.content && (
           <section itemProp="articleBody">
             <div className="container article-container">
-              {parse(post.content)}
+              <div className="article-content-wrapper">{parse(post.content)}</div>
               <div className="post-footer">
                 <div className="post-categories">
                   {postCategories.length ? 
