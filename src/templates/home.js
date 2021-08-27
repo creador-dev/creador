@@ -117,7 +117,7 @@ export const pageQuery = graphql`query WordPressPosts($catTotalCount: Int! = 0, 
       }
     }
   }
-  post: allWpPost(sort: {fields: [date], order: DESC}, limit: 30) {
+  post: allWpPost(sort: {fields: [date], order: DESC}, limit: 20) {
     totalCount
     nodes {
       id
