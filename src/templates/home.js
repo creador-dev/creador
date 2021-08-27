@@ -33,7 +33,6 @@ const HomeTemplate = ({
   }
 
   const seoImage = featuredImage.fluid ?  featuredImage.fluid?.images?.fallback?.src : null
-  console.log(page.featuredImage)
   return( 
     <Layout >
       <Seo 
