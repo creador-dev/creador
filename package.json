@@ -13,7 +13,7 @@
     "@vtex/gatsby-plugin-onesignal": "^0.373.29",
     "disqus-react": "^1.1.1",
     "dotenv": "^10.0.0",
-    "gatsby": "^3.3.0",
+    "gatsby": "^3.12.1",
     "gatsby-plugin-advanced-sitemap": "^2.0.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-gatsby-cloud": "^3.0.0",

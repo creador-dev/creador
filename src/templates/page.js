@@ -55,7 +55,11 @@ export const pageQuery = graphql`query PageById($id: String!) {
         altText
         localFile {
           childImageSharp {
-            gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
+            gatsbyImageData(
+              quality: 90, 
+              placeholder: BLURRED, 
+              layout: FULL_WIDTH
+            )
           }
         }
       }

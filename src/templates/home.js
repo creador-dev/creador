@@ -96,7 +96,11 @@ export const pageQuery = graphql`query WordPressPosts($catTotalCount: Int! = 0, 
         altText
         localFile {
           childImageSharp {
-            gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
+            gatsbyImageData(
+              quality: 90, 
+              placeholder: BLURRED, 
+              layout: FULL_WIDTH
+            )
           }
         }
       }
@@ -135,10 +139,10 @@ export const pageQuery = graphql`query WordPressPosts($catTotalCount: Int! = 0, 
           localFile {
             childImageSharp {
               gatsbyImageData(
-                width: 400
-                quality: 100
-                placeholder: BLURRED
-                layout: CONSTRAINED
+                width: 400,
+                quality: 90,
+                placeholder: BLURRED,
+                layout: CONSTRAINED,
               )
             }
           }
