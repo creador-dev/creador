@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-wordpress-blog",
+  "name": "creador-gatsby-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com> and Tyler Barnes <tylerdbarnes@gmail.com>",
+  "description": "A starter for a blog",
+  "version": "1.1.0",
+  "author": "Pawan Kumar <pwnkumar201@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/creador-dev/creador/issues"
   },
   "dependencies": {
     "@apollo/client": "^3.4.8",
@@ -43,7 +43,7 @@
     "dumper.js": "^1.3.1",
     "prettier": "^2.3.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/creador-dev/creador#readme",
   "keywords": [
     "gatsby"
   ],
@@ -51,7 +51,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/creador-dev/creador.git"
   },
   "scripts": {
     "build": "gatsby build",
