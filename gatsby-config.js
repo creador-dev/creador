@@ -111,10 +111,39 @@ module.exports = {
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
       options: {
-        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
-        allPageHeaders: [
-          "Cache-Control: max-age=31536000;",
-        ], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        headers: {
+          "/public/**/*.html": [
+            "cache-control: public",
+            "cache-control:  max-age=0", 
+            "cache-control: must-revalidate"
+          ],
+          "/public/page-data/*": [
+            "cache-control: public",
+            "cache-control:  max-age=0", 
+            "cache-control: must-revalidate"
+          ],
+          "/public/static/": [
+            "cache-control: public",
+            "cache-control:  max-age=31536000", 
+            "cache-control: immutable"
+          ],
+          "/public/*.js": [
+            "cache-control: public",
+            "cache-control:  max-age=31536000", 
+            "cache-control: immutable"
+          ],
+          "/public/*.css": [
+            "cache-control: public",
+            "cache-control:  max-age=31536000", 
+            "cache-control: immutable"
+          ],
+          "/public/sw.js": [
+            "cache-control: public",
+            "cache-control:  max-age=0", 
+            "cache-control: must-revalidate"
+          ],
+        }, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
         mergeSecurityHeaders: true, // boolean to turn off the default security headers
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
         mergeCachingHeaders: true, // boolean to turn off the default caching headers

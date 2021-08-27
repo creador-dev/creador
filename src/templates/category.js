@@ -150,10 +150,10 @@ export const pageQuery = graphql`query WordPressCategoryListing($catTotalCount: 
           localFile {
             childImageSharp {
               gatsbyImageData(
-                width: 400
-                quality: 100
-                placeholder: BLURRED
-                layout: CONSTRAINED
+                width: 400,
+                quality: 90,
+                placeholder: BLURRED,
+                layout: CONSTRAINED,
               )
             }
           }
