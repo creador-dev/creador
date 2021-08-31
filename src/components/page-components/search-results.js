@@ -22,8 +22,8 @@ export default function SearchResults({ search, baseUrl }) {
                         uri
                         featuredImage {
                             node {
-                                srcSet(size: THUMBNAIL)
-                                sourceUrl(size: THUMBNAIL)
+                                srcSet(size: MEDIUM)
+                                sourceUrl(size: MEDIUM)
                             }
                         }
                         categories {
