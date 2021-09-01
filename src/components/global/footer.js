@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 // import logo svg
@@ -42,6 +42,27 @@ const Footer = () => {
 
   const menuItems = data.wpMenu.menuItems.nodes ? data.wpMenu.menuItems.nodes.filter(menuItem => menuItem.parentId === null) : null
   const footerLinks = data.footerLinks.menuItems.nodes ? data.footerLinks.menuItems.nodes.filter(menuItem => menuItem.parentId === null) : null
+
+  function backToTopAnimate(){
+    let lastScrollTop = 0
+    let backToTopElem = document.querySelector(".back-to-top")
+    window.addEventListener("scroll" , function() {
+      let st = window.pageYOffset
+      if(st > 200){
+        // if scroll is more then add css
+        backToTopElem.classList.add("show")
+      } else {
+        // if scroll is less then remove css
+        backToTopElem.classList.remove("show")
+      }
+      lastScrollTop = st <= 0 ? 0 : st  // For Mobile or negative scrolling
+    })
+  }
+
+  useEffect(() => {
+    // show or hide back to top according to scroll position
+    backToTopAnimate()
+  })
   
   return (
     <footer className="global-footer menu-items">
@@ -72,6 +93,7 @@ const Footer = () => {
           </div>
         </div>       
       </div>
+      <button aria-label="Back to top" className="back-to-top" onClick={() => window.scrollTo({ top: 0 })}/>
     </footer>
   )
 }
