@@ -89,8 +89,64 @@ module.exports = {
         icon: `content/assets/favicon.png`,
         icons:[
           {
-            src: `/favicons/android-chrome-192x192.png`,
-            sizes: `196x196`,
+            src: `/favicons/icon-72x72.png`,
+            sizes: `72x72`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-96x96.png`,
+            sizes: `96x96`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-128x128.png`,
+            sizes: `128x128`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-144x144.png`,
+            sizes: `144x144`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-152x152.png`,
+            sizes: `152x152`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-384x384.png`,
+            sizes: `384x384`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+
+          // ios icons
+          {
+            src: `/favicons/icon-120x120.png`,
+            sizes: `120x120`,
+            type: `image/png`,
+            purpose: `any maskable`
+          },
+          {
+            src: `/favicons/icon-180x180.png`,
+            sizes: `180x180`,
             type: `image/png`,
             purpose: `any maskable`
           }
