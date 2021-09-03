@@ -5,7 +5,7 @@
   </a>
 </p>
 <h1 align="center">
-  Creador Dev Gatsby WordPress
+  Creador Dev Gatsby WordPress Theme
 </h1>
 
 Soon i will write step by step guide to set it up
