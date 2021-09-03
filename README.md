@@ -11,3 +11,7 @@
 Soon i will write step by step guide to set it up
 
 Demo : https://creador.dev
+
+Lighthouse Results:
+- <img alt="Results" src="https://github.com/creador-dev/creador/blob/main/lighthouse-results/result.png" />
+- Detailed Report: https://htmlpreview.github.io/?https://github.com/creador-dev/creador/blob/main/lighthouse-results/results.html
