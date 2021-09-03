@@ -15,4 +15,4 @@ Demo : https://creador.dev
 ## Lighthouse Results
 
 <img alt="Results" src="https://github.com/creador-dev/creador/blob/main/lighthouse-results/result.png" />
-- Detailed Report: https://htmlpreview.github.io/?https://github.com/creador-dev/creador/blob/main/lighthouse-results/results.html
+- Detailed Report: <a href="https://htmlpreview.github.io/?https://github.com/creador-dev/creador/blob/main/lighthouse-results/results.html" alt="detai;ed report">Click here</a>
